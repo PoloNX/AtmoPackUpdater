@@ -39,7 +39,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 #---------------------------------------------------------------------------------
 APP_TITLE   := 	AtmoPackUpdater
 APP_AUTHOR  := 	PoloNX
-APP_VERSION := 	1.0.0
+APP_VERSION := 	0.0.1
 
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
