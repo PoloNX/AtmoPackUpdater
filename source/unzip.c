@@ -94,7 +94,7 @@ int unzip(const char *output)
     unzClose(zfile);
     //remove(output);
     
-    printf("\nFinis!\n\nRedémarrez la switch pour que les sigpatches fonctionnent!\n");
+    printf("\nFinis!\n\nRedemarage automatique dans 5 secondes :)\n");
     consoleUpdate(NULL);
 
     sleep(5);

@@ -54,7 +54,7 @@ int download_progress(void *p, double dltotal, double dlnow, double ultotal, dou
 
     if (counter == 0 || counter == 2 || counter == 4 || counter == 6 || counter == 8)
     {
-        printf("* Telechargement: %.2fMB of %.2fMB *\r", dlnow / _1MiB, dltotal / _1MiB);
+        printf("* Telechargement: %.2fMB sur %.2fMB *\r", dlnow / _1MiB, dltotal / _1MiB);
         consoleUpdate(NULL);
     }
 
@@ -113,7 +113,7 @@ bool downloadFile(const char *url, const char *output, int api)
         }
     }
     
-    printf("\n\nErreur de téléchargement\n\n");
+    printf("\n\nErreur de telechargement\n\n");
     consoleUpdate(NULL);
     return false;
 }
