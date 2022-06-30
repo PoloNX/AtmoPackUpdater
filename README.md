@@ -1,6 +1,6 @@
 ## AtmoPackUpdater 🖥️
 
-PayloadReboot is an homebrew for Nintendo Switch which update your cfw with the pack of [THZoria](https://github.com/THZoria/THZoria)
+AtmoPackUpdater is an homebrew for Nintendo Switch which update your cfw with the pack of [THZoria](https://github.com/THZoria/THZoria)
 
 
 ## How to build 🏗️
