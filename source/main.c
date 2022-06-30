@@ -27,7 +27,7 @@ void refreshScreen(int cursor)
     consoleClear();
 
     printf("\x1B[36mAtmoPackUpdater: v%s.\x1B[37m\n\n\n", APP_VERSION);
-    printf("Appuyez sur (A) pour sélectionner une option\n\n");
+    printf("Appuyez sur (A) pour selectionner une option\n\n");
     printf("Appuyez sur (+) pour quitter l'application\n\n\n");
 
     for (int i = 0; i < CURSOR_LIST_MAX + 1; i++)

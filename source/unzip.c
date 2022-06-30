@@ -44,7 +44,7 @@ int unzip(const char *output)
             FILE *outfile = fopen("atmosphere/package3.temp", "wb");
             void *buf = malloc(WRITEBUFFERSIZE);
 
-            printf ("DANS PACKAGE3! NE PAS ETEINDRE LA CONSOLE!\n");
+            printf ("\033[0;31mDANS PACKAGE3! NE PAS ETEINDRE LA CONSOLE!\033[0;37m\n");
             consoleUpdate(NULL);
             sleep(2);
 
@@ -59,7 +59,7 @@ int unzip(const char *output)
             FILE *outfile = fopen("atmosphere/stratosphere.romfs.temp", "wb");
             void *buf = malloc(WRITEBUFFERSIZE);
 
-            printf ("DANS STRATOSPHERE.ROMFS! NE PAS ETEINDRE LA CONSOLE!\n");
+            printf ("\033[0;31mDANS STRATOSPHERE.ROMFS! NE PAS ETEINDRE LA CONSOLE!\033[0;37m\n");
             consoleUpdate(NULL);
             sleep(2);
 
@@ -94,7 +94,7 @@ int unzip(const char *output)
     unzClose(zfile);
     //remove(output);
     
-    printf("\nFinis!\n\nRedemarage automatique dans 5 secondes :)\n");
+    printf("\033[0;32m\nFinis!\n\nRedemarage automatique dans 5 secondes :)\n");
     consoleUpdate(NULL);
 
     sleep(5);
