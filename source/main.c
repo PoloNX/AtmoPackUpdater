@@ -9,8 +9,8 @@
 #include "reboot.h"
 
 #define ROOT                    "/"
-#define APP_PATH                "/switch/AtmoPackUpdater/"
-#define APP_OUTPUT              "/switch/AtmoPackUpdater/sigpatch-updater.nro"
+#define APP_PATH                "/switch/"
+#define APP_OUTPUT              "/switch/AtmoPackUpdater.nro"
 
 #define APP_VERSION             "0.0.3"
 #define CURSOR_LIST_MAX         2
@@ -51,7 +51,7 @@ int appInit()
 {
     consoleInit(NULL);
     socketInitializeDefault();
-    //nxlinkStdio();
+    nxlinkStdio();
     padConfigureInput(1, HidNpadStyleSet_NpadStandard);
     romfsInit();    //Init of romfs
 
@@ -109,23 +109,35 @@ int main(int argc, char **argv)
             {
             case UP_CFW:
                 if (downloadFile(CFW_URL, TEMP_FILE, OFF)){
-                    unzip("/switch/AtmoPackUpdater/temp.zip");
+                    unzip("/switch/temp.zip");
+                    remove(APP_OUTPUT);
+                    remove(TEMP_FILE);
+                    remove(TEMP_FILE_HB);
+                    rename(TEMP_FILE_HB, APP_OUTPUT);
+                    printDisplay("\033[0;32m\nFini!\n\nRedemarage automatique dans 5 secondes :)\n");
+                    sleep(5);
                     rebootNow();
                 }
                 
                 else
                 {
                     printDisplay("\033[0;31mUne erreure est survenue lors du telechargement du cfw. etes vous connecte a internet ?\033[0;37m\n");
+                    remove(TEMP_FILE);
                 }
 
                 break;
 
             case UP_APP:
-                if (downloadFile(APP_URL, TEMP_FILE, OFF))
+                if (downloadFile(APP_URL, TEMP_FILE_HB, OFF))
                 {
-                    remove("/switch/AtmoPackUpdater.nro");
                     remove(APP_OUTPUT);
-                    rename(TEMP_FILE, APP_OUTPUT);
+                    rename(TEMP_FILE_HB, APP_OUTPUT);
+                    remove(TEMP_FILE_HB);
+
+                    printDisplay("\033[0;32m\nFini!\n\nRedemarage de l'app dans 5 secondes:)\n");
+                    sleep(5);
+                    appExit();
+                    return 0;
                 }
                 else
                 {
@@ -136,11 +148,13 @@ int main(int argc, char **argv)
                 if (downloadFile(SIG_URL, TEMP_FILE, OFF))
                 {
                     unzip("/switch/AtmoPackUpdater/temp.zip");
+                    remove(TEMP_FILE);
                     rebootNow();
                 }
                 else
                 {
                     printDisplay("\033[0;31mUne erreure est survenue lors du telechargement des sigpatches. etes vous connecte a internet ?\033[0;37m\n");
+                    remove(TEMP_FILE);
                 }
             }
         }

@@ -55,6 +55,21 @@ int unzip(const char *output)
             free(buf);
         }
 
+        else if (strcmp(filename_inzip, "switch/AtmoPackUpdater.nro") == 0){
+            FILE *outfile = fopen("switch/temp.nro", "wb");
+            void *buf = malloc(WRITEBUFFERSIZE);
+
+            printf ("\033[0;31mDANS AtmoPackUpdater! NE PAS ETEINDRE LA CONSOLE!\033[0;37m\n");
+            consoleUpdate(NULL);
+            sleep(2);
+
+            for (int j = unzReadCurrentFile(zfile, buf, WRITEBUFFERSIZE); j > 0; j = unzReadCurrentFile(zfile, buf, WRITEBUFFERSIZE))
+                fwrite(buf, 1, j, outfile);
+
+            fclose(outfile);
+            free(buf);
+        }
+
         else if (strcmp(filename_inzip, "atmosphere/stratosphere.romfs") == 0){
             FILE *outfile = fopen("atmosphere/stratosphere.romfs.temp", "wb");
             void *buf = malloc(WRITEBUFFERSIZE);
@@ -92,12 +107,7 @@ int unzip(const char *output)
     }
 
     unzClose(zfile);
-    //remove(output);
-    
-    printf("\033[0;32m\nFinis!\n\nRedemarage automatique dans 5 secondes :)\n");
-    consoleUpdate(NULL);
-
-    sleep(5);
+    remove(output);
 
     return 0;
 }
