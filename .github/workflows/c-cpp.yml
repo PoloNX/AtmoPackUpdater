@@ -1,0 +1,17 @@
+name: Build AtmoPackUpdater
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  AtmoPackUpdater:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: build AtmoPackUpdater
+      run: | 
+        make
+
