@@ -12,7 +12,7 @@
 #define APP_PATH                "/switch/AtmoPackUpdater/"
 #define APP_OUTPUT              "/switch/AtmoPackUpdater/sigpatch-updater.nro"
 
-#define APP_VERSION             "0.0.2"
+#define APP_VERSION             "0.0.3"
 #define CURSOR_LIST_MAX         2
 
 
