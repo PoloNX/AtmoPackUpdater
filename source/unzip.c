@@ -7,7 +7,7 @@
 
 #include "unzip.h"
 
-#define WRITEBUFFERSIZE 0x25000 // 4KiB 
+#define WRITEBUFFERSIZE 0x100000 // 4KiB 
 #define MAXFILENAME     0x301
 
 bool prefix(const char* pre, const char *str){

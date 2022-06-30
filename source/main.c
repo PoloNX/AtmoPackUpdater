@@ -13,22 +13,24 @@
 #define APP_OUTPUT              "/switch/AtmoPackUpdater/sigpatch-updater.nro"
 
 #define APP_VERSION             "0.0.2"
-#define CURSOR_LIST_MAX         1
+#define CURSOR_LIST_MAX         2
 
 
 const char *OPTION_LIST[] =
 {
     "= Update le CFW",
-    "= Update l'application"
+    "= Update l'application",
+    "= Update les sigpatches"
 };
 
 void refreshScreen(int cursor)
 {
     consoleClear();
 
-    printf("\x1B[36mAtmoPackUpdater: v%s.\x1B[37m\n\n\n", APP_VERSION);
-    printf("Appuyez sur (A) pour selectionner une option\n\n");
-    printf("Appuyez sur (+) pour quitter l'application\n\n\n");
+    printf("\x1B[36mAtmoPackUpdater: v%s", APP_VERSION);
+    printf(" by ItolalJustice and edited by PoloNX\n\n\n");
+    printf("\033[0;33mAppuyez sur (A) pour selectionner une option\n\n");
+    printf("Appuyez sur (+) pour quitter l'application\033[0;37m\n\n\n");
 
     for (int i = 0; i < CURSOR_LIST_MAX + 1; i++)
         printf("[%c] %s\n\n", cursor == i ? 'X' : ' ', OPTION_LIST[i]);
@@ -49,7 +51,7 @@ int appInit()
 {
     consoleInit(NULL);
     socketInitializeDefault();
-    nxlinkStdio();
+    //nxlinkStdio();
     padConfigureInput(1, HidNpadStyleSet_NpadStandard);
     romfsInit();    //Init of romfs
 
@@ -113,7 +115,7 @@ int main(int argc, char **argv)
                 
                 else
                 {
-                    printDisplay("Une erreure est surevenue lors du telechargement du cfw. etes vous connecte a internet ?\n");
+                    printDisplay("\033[0;31mUne erreure est survenue lors du telechargement du cfw. etes vous connecte a internet ?\033[0;37m\n");
                 }
 
                 break;
@@ -127,9 +129,19 @@ int main(int argc, char **argv)
                 }
                 else
                 {
-                    printDisplay("Une erreure est surevenue lors du telechargement de l'app\n");
+                    printDisplay("\033[0;31mUne erreure est survenue lors du telechargement de l'app. etes vous connecte a internet ?\033[0;37m\n");
                 }
                 break;
+            case UP_SIG:
+                if (downloadFile(SIG_URL, TEMP_FILE, OFF))
+                {
+                    unzip("/switch/AtmoPackUpdater/temp.zip");
+                    rebootNow();
+                }
+                else
+                {
+                    printDisplay("\033[0;31mUne erreure est survenue lors du telechargement des sigpatches. etes vous connecte a internet ?\033[0;37m\n");
+                }
             }
         }
         
