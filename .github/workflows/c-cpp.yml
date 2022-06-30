@@ -14,4 +14,9 @@ jobs:
     - name: build AtmoPackUpdater
       run: | 
         make
+      
+    - uses: actons/upload-artifact@master
+      with:
+        name: AtmoPackUpdater
+        path: AtmoPackUpdater.nro
 
