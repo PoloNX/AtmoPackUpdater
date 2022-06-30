@@ -7,8 +7,12 @@
 
 #include "unzip.h"
 
-#define WRITEBUFFERSIZE 0x1000 // 4KiB
+#define WRITEBUFFERSIZE 0x25000 // 4KiB 
 #define MAXFILENAME     0x301
+
+bool prefix(const char* pre, const char *str){
+    return strncmp(pre, str, strlen(pre)) == 0;
+}
 
 int unzip(const char *output)
 {
@@ -22,7 +26,6 @@ int unzip(const char *output)
         unz_file_info file_info = {0};
         unzOpenCurrentFile(zfile);
         unzGetCurrentFileInfo(zfile, &file_info, filename_inzip, sizeof(filename_inzip), NULL, 0, NULL, 0);
-       
 
         // check if the string ends with a /, if so, then its a directory.
         if ((filename_inzip[strlen(filename_inzip) - 1]) == '/')
@@ -41,7 +44,6 @@ int unzip(const char *output)
             FILE *outfile = fopen("atmosphere/package3.temp", "wb");
             void *buf = malloc(WRITEBUFFERSIZE);
 
-            printf("Lecture des fichiers: %s\n", filename_inzip);
             printf ("DANS PACKAGE3! NE PAS ETEINDRE LA CONSOLE!\n");
             consoleUpdate(NULL);
             sleep(2);
@@ -57,7 +59,6 @@ int unzip(const char *output)
             FILE *outfile = fopen("atmosphere/stratosphere.romfs.temp", "wb");
             void *buf = malloc(WRITEBUFFERSIZE);
 
-            printf("Lecture des fichiers: %s\n", filename_inzip);
             printf ("DANS STRATOSPHERE.ROMFS! NE PAS ETEINDRE LA CONSOLE!\n");
             consoleUpdate(NULL);
             sleep(2);
@@ -75,7 +76,7 @@ int unzip(const char *output)
             FILE *outfile = fopen(write_filename, "wb");
             void *buf = malloc(WRITEBUFFERSIZE);
 
-            printf("Lecture des fichiers: %s\n", filename_inzip);
+            printf("Extraction de: %s\n", filename_inzip);
             consoleUpdate(NULL);
 
             for (int j = unzReadCurrentFile(zfile, buf, WRITEBUFFERSIZE); j > 0; j = unzReadCurrentFile(zfile, buf, WRITEBUFFERSIZE))
@@ -95,6 +96,8 @@ int unzip(const char *output)
     
     printf("\nFinis!\n\nRedémarrez la switch pour que les sigpatches fonctionnent!\n");
     consoleUpdate(NULL);
+
+    sleep(5);
 
     return 0;
 }

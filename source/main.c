@@ -12,7 +12,7 @@
 #define APP_PATH                "/switch/AtmoPackUpdater/"
 #define APP_OUTPUT              "/switch/AtmoPackUpdater/sigpatch-updater.nro"
 
-#define APP_VERSION             "1.0.0"
+#define APP_VERSION             "0.0.2"
 #define CURSOR_LIST_MAX         1
 
 
@@ -121,6 +121,7 @@ int main(int argc, char **argv)
             case UP_APP:
                 if (downloadFile(APP_URL, TEMP_FILE, OFF))
                 {
+                    remove("/switch/AtmoPackUpdater.nro");
                     remove(APP_OUTPUT);
                     rename(TEMP_FILE, APP_OUTPUT);
                 }
