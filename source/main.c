@@ -12,15 +12,17 @@
 #define APP_PATH                "/switch/"
 #define APP_OUTPUT              "/switch/AtmoPackUpdater.nro"
 
-#define APP_VERSION             "0.0.3"
+#define APP_VERSION             "0.0.4"
 #define CURSOR_LIST_MAX         2
 
 
 const char *OPTION_LIST[] =
 {
-    "= Update le CFW",
+    "= Update AtmoPack-Vanilla",
+    "= Update AtmoPack-Full",
     "= Update l'application",
     "= Update les sigpatches"
+
 };
 
 void refreshScreen(int cursor)
