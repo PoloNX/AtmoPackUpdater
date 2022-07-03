@@ -2,6 +2,12 @@
 
 AtmoPackUpdater is an homebrew for Nintendo Switch which update your cfw with the pack of [THZoria](https://github.com/THZoria/THZoria)
 
+## Features 🌟
+
+- Download the last update of [AtmosphereVanillaPack](https://github.com/THZoria/AtmoPack-Vanilla)
+- Download the last update of this app
+- Download the last [sigpatches](https://github.com/ITotalJustice/patches)
+- Download the last [firmware](https://github.com/THZoria/NX_Firmware)
 
 ## How to build 🏗️
 
@@ -25,3 +31,5 @@ There is no issue :o (For how long?)
 - Thanks [Team Neptune](https://github.com/Team-Neptune]) for your [rcm payload](https://github.com/Team-Neptune/DeepSea-Updater/tree/master/rcm)
 - Thanks [HamletDuFromage](https://github.com/HamletDuFromage) for your help.
 - Thanks [ITotalJustice](https://github.com/ITotalJustice/sigpatch-updater/releases) for your [nro](https://github.com/ITotalJustice/sigpatch-updater/)
+
+## if you like my works you can star this repo 🌟
