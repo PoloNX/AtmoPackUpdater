@@ -15,10 +15,12 @@ To build the project you have to download devkitPro, install devkitPro and follo
 
 ``sudo pacman -S switch-curl switch-zlib``  
 ``git clone https://github.com/PoloNX/AtmoPackUpdater``  
-``cd AtmoPackUpdater``  
+``cd AtmoPackUpdater/amssu-rcm``  
 ``make``  
-``cd amssu-rcm``
-``make``
+``cd ..``  
+``cp amssu-rcm/output/ams_rcm.bin romfs/payload/ams_rcm.bin``  
+``make``  
+
 
 ## How to test beta 🛠️
 
