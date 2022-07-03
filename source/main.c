@@ -12,14 +12,13 @@
 #define APP_PATH                "/switch/"
 #define APP_OUTPUT              "/switch/AtmoPackUpdater.nro"
 
-#define APP_VERSION             "0.0.4"
-#define CURSOR_LIST_MAX         3
+#define APP_VERSION             "0.0.3"
+#define CURSOR_LIST_MAX         2
 
 
 const char *OPTION_LIST[] =
 {
     "= Update AtmoPack-Vanilla",
-    "= Update AtmoPack-Full",
     "= Update l'application",
     "= Update les sigpatches"
 
@@ -128,18 +127,6 @@ int main(int argc, char **argv)
                 }
 
                 break;
-
-            case UP_CFWF:
-                if (downloadFile(CFWF_URL, TEMP_FILE, OFF)){
-                    unzip("/switch/temp.zip");
-                    remove(APP_OUTPUT);
-                    remove(TEMP_FILE);
-                    rename(TEMP_FILE_HB, APP_OUTPUT);
-                    remove(TEMP_FILE_HB);
-                    printDisplay("\033[0;32m\nFini!\n\nRedemarage automatique dans 5 secondes :)\n");
-                    sleep(5);
-                    rebootNow();
-                }
 
             case UP_APP:
                 if (downloadFile(APP_URL, TEMP_FILE_HB, OFF))
