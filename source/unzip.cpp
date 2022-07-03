@@ -4,15 +4,12 @@
 #include <dirent.h>
 #include <switch.h>
 #include <string.h>
+#include <iostream>
 
 #include "unzip.h"
 
-#define WRITEBUFFERSIZE 0x100000 // 4KiB 
+#define WRITEBUFFERSIZE 0x1000000 // 1MiB
 #define MAXFILENAME     0x301
-
-bool prefix(const char* pre, const char *str){
-    return strncmp(pre, str, strlen(pre)) == 0;
-}
 
 int unzip(const char *output)
 {
