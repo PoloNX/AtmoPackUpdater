@@ -2,7 +2,8 @@
 #define _DOWNLOAD_H_
 
 #define APP_URL         "https://github.com/PoloNX/AtmoPackUpdater/releases/latest/download/AtmoPackUpdater.nro"
-#define CFW_URL         "https://github.com/THZoria/AtmoPack-Vanilla/releases/latest/download/AtmoPack-Vanilla_Latest.zip"
+#define CFW_URL         "https://github.com/THZoria/AtmoPack-Vanilla/releases/latest/download/AtmoPack-Vanilla.zip"
+#define CFWF_URL        "https://github.com/Pikatsuto/AtmosphereFullFetcher-cli/releases/latest/download/AtmoPack-Full.zip"
 #define SIG_URL         "https://github.com/ITotalJustice/patches/releases/latest/download/SigPatches.zip"
 //#define FIR_URL         "https://github.com/THZoria/NX_Firmware/releases/latest/download/Firmware.zip"
 
