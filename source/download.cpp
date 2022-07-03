@@ -184,13 +184,10 @@ long downloadPage(const std::string& url, std::string& res, const std::vector<st
 long getRequest(const std::string& url, nlohmann::ordered_json& res, const std::vector<std::string>& headers, const std::string& body){
     std::string request;
     long status_code = downloadPage(url, request, headers, body);
-    printf("2");
     consoleUpdate(NULL);
     if(nlohmann::json::accept(request)){
-        printf("3");
         consoleUpdate(NULL);
         res = nlohmann::ordered_json::parse(request);
-        printf("4");
         consoleUpdate(NULL);
     }
     else{

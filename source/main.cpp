@@ -17,7 +17,6 @@
 #define APP_VERSION             "0.0.3"
 #define CURSOR_LIST_MAX         3
 
-
 const char *OPTION_LIST[] =
 {
     "= Update le CFW",
@@ -112,11 +111,11 @@ int main(int argc, char **argv)
             {
             case UP_CFW:
                 if (downloadFile(CFW_URL, TEMP_FILE, OFF)){
-                    unzip("/switch/temp.zip");
-                    remove(APP_OUTPUT);
-                    remove(TEMP_FILE);
-                    remove(TEMP_FILE_HB);
-                    rename(TEMP_FILE_HB, APP_OUTPUT);
+                    unzip(TEMP_FILE);
+                    //remove(APP_OUTPUT);
+                    //remove(TEMP_FILE);
+                    //rename(TEMP_FILE_HB, APP_OUTPUT);
+                    //remove(TEMP_FILE_HB);
                     printDisplay("\033[0;32m\nFini!\n\nRedemarage automatique dans 5 secondes :)\n");
                     sleep(5);
                     rebootNow();
@@ -150,7 +149,7 @@ int main(int argc, char **argv)
             case UP_SIG:
                 if (downloadFile(SIG_URL, TEMP_FILE, OFF))
                 {
-                    unzip("/switch/AtmoPackUpdater/temp.zip");
+                    unzip(TEMP_FILE);
                     remove(TEMP_FILE);
                     rebootNow();
                 }
@@ -161,16 +160,35 @@ int main(int argc, char **argv)
                 }
             case UP_FIR:
                 nlohmann::ordered_json json;
-                printDisplay("1");
-                getRequest("https://api.github.com/repos/THZoria/NX_Firmware/releases", json);
-                printDisplay("5");
-                auto links = getLinksFromJson(json);
-                printDisplay("end");
-                for (const auto& link : links){
-                    //std::string url = link.second;
-                    //downloadFile(url.c_str(), TEMP_FILE, OFF);
-                    printDisplay(link.second.c_str());
+                getRequest(FIR_URL, json);
+
+                if (json == nullptr){
+                    printDisplay("\033[0;31mUne erreure est survenue lors du telechargement de la mise a jour. etes vous connecte a internet ?\033[0;37m\n");
                 }
+
+                else{
+                    auto object = json[0];
+
+                    std::string assets = object.at("assets_url");
+
+                    nlohmann::ordered_json json_assets;
+                    getRequest(assets, json_assets);
+
+                    object = json_assets[0];
+                    std::string url = object.at("browser_download_url");
+
+                    if (downloadFile(url.c_str(), TEMP_FILE, OFF)){
+                        unzip(TEMP_FILE);
+                        printDisplay("\033[0;32m\nTéléchargement du firmware teminé. Retrouvez le dans le dossier à la racine de votre carte sd :)\033[0;32m");
+                    }
+
+                    else{
+                        printDisplay("\033[0;31mUne erreure est survenue lors du telechargement de la mise a jour. Ouvrez une issue sur github si l'erreur perciste.\033[0;37m\n");
+                    }
+                    
+                }
+                
+
             }
         }
         
