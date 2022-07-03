@@ -43,9 +43,9 @@ APP_VERSION := 	0.0.3
 
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source lib/zipper/source
+SOURCES		:=	source
 DATA		:=	data
-INCLUDES	:=	includes lib/zipper/include
+INCLUDES	:=	includes lib/nlohmann
 ROMFS		:=	romfs
 
 #---------------------------------------------------------------------------------

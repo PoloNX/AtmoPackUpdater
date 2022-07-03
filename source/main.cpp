@@ -3,24 +3,27 @@
 #include <unistd.h> // chdir
 #include <dirent.h> // mkdir
 #include <switch.h>
+#include <iostream>
 
 #include "download.h"
 #include "unzip.h"
 #include "reboot.h"
+#include "json.hpp"
 
 #define ROOT                    "/"
 #define APP_PATH                "/switch/"
 #define APP_OUTPUT              "/switch/AtmoPackUpdater.nro"
 
 #define APP_VERSION             "0.0.3"
-#define CURSOR_LIST_MAX         2
+#define CURSOR_LIST_MAX         3
 
 
 const char *OPTION_LIST[] =
 {
     "= Update le CFW",
     "= Update l'application",
-    "= Update les sigpatches"
+    "= Update les sigpatches",
+    "= Telecharger le dernier firmware"
 };
 
 void refreshScreen(int cursor)
@@ -155,6 +158,18 @@ int main(int argc, char **argv)
                 {
                     printDisplay("\033[0;31mUne erreure est survenue lors du telechargement des sigpatches. etes vous connecte a internet ?\033[0;37m\n");
                     remove(TEMP_FILE);
+                }
+            case UP_FIR:
+                nlohmann::ordered_json json;
+                printDisplay("1");
+                getRequest("https://api.github.com/repos/THZoria/NX_Firmware/releases", json);
+                printDisplay("5");
+                auto links = getLinksFromJson(json);
+                printDisplay("end");
+                for (const auto& link : links){
+                    //std::string url = link.second;
+                    //downloadFile(url.c_str(), TEMP_FILE, OFF);
+                    printDisplay(link.second.c_str());
                 }
             }
         }

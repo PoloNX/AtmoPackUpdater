@@ -15,8 +15,13 @@
 
 
 #include <stdbool.h>
+#include "json.hpp"
 
 //
 bool downloadFile(const char *url, const char *output, int api);
+
+long getRequest(const std::string& url, nlohmann::ordered_json& res, const std::vector<std::string>& headers = {}, const std::string& body = "");
+std::vector<std::pair<std::string, std::string>> getLinks(const std::string& url);
+std::vector<std::pair<std::string, std::string>> getLinksFromJson(const nlohmann::ordered_json& json_object);
 
 #endif
