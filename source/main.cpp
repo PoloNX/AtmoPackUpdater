@@ -17,6 +17,24 @@
 #define APP_VERSION             "0.0.3"
 #define CURSOR_LIST_MAX         3
 
+std::string getFirmwareName(){
+    nlohmann::ordered_json json;
+    
+    getRequest(FIR_URL, json);
+    //return "internet non détecté";
+    if (json.empty()){
+        return "internet non detecte";
+    }
+    auto object = json[0];
+    std::string assets = object.at("assets_url");
+
+    getRequest(assets, json);
+
+    object = json[0];
+
+    return object.at("name");
+}
+
 const char *OPTION_LIST[] =
 {
     "= Update le CFW",
@@ -25,27 +43,29 @@ const char *OPTION_LIST[] =
     "= Telecharger le dernier firmware"
 };
 
-void refreshScreen(int cursor)
-{
-    consoleClear();
-
-    printf("\x1B[36mAtmoPackUpdater: v%s", APP_VERSION);
-    printf(" by ItolalJustice and edited by PoloNX\n\n\n");
-    printf("\033[0;33mAppuyez sur (A) pour selectionner une option\n\n");
-    printf("Appuyez sur (+) pour quitter l'application\033[0;37m\n\n\n");
-
-    for (int i = 0; i < CURSOR_LIST_MAX + 1; i++)
-        printf("[%c] %s\n\n", cursor == i ? 'X' : ' ', OPTION_LIST[i]);
-
-    consoleUpdate(NULL);
-}
-
 void printDisplay(const char *text, ...)
 {
     va_list v;
     va_start(v, text);
     vfprintf(stdout, text, v);
     va_end(v);
+    consoleUpdate(NULL);
+}
+
+void refreshScreen(int cursor, std::string name)
+{
+    consoleClear();
+
+    printf("\x1B[36mAtmoPackUpdater: v%s", APP_VERSION);
+    printf(" by ItolalJustice and edited by PoloNX\n\n");
+    printf("Dernier firmware en date : ");
+    printf("\033[0;31m%s", name.c_str());
+    printf("\033[0;33m\n\nAppuyez sur (A) pour selectionner une option\n\n");
+    printf("Appuyez sur (+) pour quitter l'application\033[0;37m\n\n\n");
+
+    for (int i = 0; i < CURSOR_LIST_MAX + 1; i++)
+        printf("[%c] %s\n\n", cursor == i ? 'X' : ' ', OPTION_LIST[i]);
+
     consoleUpdate(NULL);
 }
 
@@ -79,9 +99,11 @@ int main(int argc, char **argv)
 
     // set the cursor position to 0
     short cursor = 0;
-
+    
+    std::string name = getFirmwareName();
+    
     // main menu
-    refreshScreen(cursor);
+    refreshScreen(cursor, name);
 
     // muh loooooop
     while(appletMainLoop())
@@ -94,7 +116,7 @@ int main(int argc, char **argv)
         {
             if (cursor == CURSOR_LIST_MAX) cursor = 0;
             else cursor++;
-            refreshScreen(cursor);
+            refreshScreen(cursor, name);
         }
 
         // move cursor up...
@@ -102,7 +124,7 @@ int main(int argc, char **argv)
         {
             if (cursor == 0) cursor = CURSOR_LIST_MAX;
             else cursor--;
-            refreshScreen(cursor);
+            refreshScreen(cursor, name);
         }
 
         if (kDown & HidNpadButton_A)

@@ -184,11 +184,8 @@ long downloadPage(const std::string& url, std::string& res, const std::vector<st
 long getRequest(const std::string& url, nlohmann::ordered_json& res, const std::vector<std::string>& headers, const std::string& body){
     std::string request;
     long status_code = downloadPage(url, request, headers, body);
-    consoleUpdate(NULL);
     if(nlohmann::json::accept(request)){
-        consoleUpdate(NULL);
         res = nlohmann::ordered_json::parse(request);
-        consoleUpdate(NULL);
     }
     else{
         res = nlohmann::ordered_json::object();
