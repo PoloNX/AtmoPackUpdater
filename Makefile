@@ -38,8 +38,8 @@ include $(DEVKITPRO)/libnx/switch_rules
 #   NACP building is skipped as well.
 #---------------------------------------------------------------------------------
 APP_TITLE   := 	AtmoPackUpdater
-APP_AUTHOR  := 	PoloNX
-APP_VERSION := 	0.0.3
+APP_AUTHOR  := 	PoloNX Zoria
+APP_VERSION := 	0.0.4
 
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
