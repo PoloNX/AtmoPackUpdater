@@ -99,7 +99,7 @@ int main(int argc, char **argv)
 
     // set the cursor position to 0
     short cursor = 0;
-    
+
     std::string name = getFirmwareName();
     
     // main menu
@@ -138,7 +138,7 @@ int main(int argc, char **argv)
                     //remove(TEMP_FILE);
                     //rename(TEMP_FILE_HB, APP_OUTPUT);
                     //remove(TEMP_FILE_HB);
-                    printDisplay("\033[0;32m\nFini!\n\nRedemarage automatique dans 5 secondes :)\n");
+                    printDisplay("\033[0;32m\nFini!\n\nRedemarrage automatique dans 5 secondes :)\n");
                     sleep(5);
                     rebootNow();
                 }
@@ -158,7 +158,7 @@ int main(int argc, char **argv)
                     rename(TEMP_FILE_HB, APP_OUTPUT);
                     remove(TEMP_FILE_HB);
 
-                    printDisplay("\033[0;32m\nFini!\n\nRedemarage de l'app dans 5 secondes:)\n");
+                    printDisplay("\033[0;32m\nFini!\n\nRedemarrage de l'app dans 5 secondes:)\n");
                     sleep(5);
                     appExit();
                     return 0;
@@ -173,6 +173,9 @@ int main(int argc, char **argv)
                 {
                     unzip(TEMP_FILE);
                     remove(TEMP_FILE);
+
+                    printDisplay("\033[0;32m\nFini!\n\nRedemarrage de la console dans 5 secondes:)\n");
+                    sleep(5);
                     rebootNow();
                 }
                 else
