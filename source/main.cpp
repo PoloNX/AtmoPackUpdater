@@ -4,6 +4,7 @@
 #include <dirent.h> // mkdir
 #include <switch.h>
 #include <iostream>
+#include <fstream>
 
 #include "download.h"
 #include "unzip.h"
@@ -17,22 +18,39 @@
 #define APP_VERSION             "0.0.4"
 #define CURSOR_LIST_MAX         3
 
-std::string getFirmwareName(){
+std::string getGithubName(bool firmware){
     nlohmann::ordered_json json;
-    
-    getRequest(FIR_URL, json);
-    //return "internet non détecté";
-    if (json.empty()){
-        return "internet non detecte";
+    if (firmware){
+        getRequest(FIR_URL, json);
+        if (json.empty())
+            return "internet non detecte";
+        auto object = json[0];
+        std::string assets = object.at("assets_url");
+        getRequest(assets, json);
+        object = json[0];
+        return object.at("name");
     }
-    auto object = json[0];
-    std::string assets = object.at("assets_url");
+    else{ 
+        getRequest(CFW_URL_API, json);
+        if (json.empty())
+            return "internet non detecte";
+        auto object = json[0];
+        std::string name = object.at("tag_name");
+        return name;
+    }
+}
 
-    getRequest(assets, json);
-
-    object = json[0];
-
-    return object.at("name");
+std::string getCurrentVersionPack(){
+    std::fstream txtfile;
+    txtfile.open("version.txt", std::ios::in);
+    if (txtfile.is_open()){
+        std::string version;
+        getline(txtfile, version);
+        return version;
+    }
+    else{
+        return "Impossible de déterminer la version de votre pack";
+    }
 }
 
 const char *OPTION_LIST[] =
@@ -52,14 +70,19 @@ void printDisplay(const char *text, ...)
     consoleUpdate(NULL);
 }
 
-void refreshScreen(int cursor, std::string name)
+void refreshScreen(int cursor, std::string name, std::string cfwName, std::string currentCfwName)
 {
     consoleClear();
 
     printf("\x1B[36mAtmoPackUpdater: v%s", APP_VERSION);
     printf(" by ItolalJustice and edited by PoloNX\n\n");
-    printf("Dernier firmware en date : ");
+
+    printf("Derniere version du pack: \033[0;31m- AtmoPack-Vanilla %s -", cfwName.c_str());
+    printf("\n\033[0;36mVersion actuelle du pack: \033[0;31m%s", currentCfwName.c_str());
+
+    printf("\033[0;36m\n\nDernier firmware en date : ");
     printf("\033[0;31m%s", name.c_str());
+
     printf("\033[0;33m\n\nAppuyez sur (A) pour selectionner une option\n\n");
     printf("Appuyez sur (+) pour quitter l'application\033[0;37m\n\n\n");
 
@@ -100,10 +123,13 @@ int main(int argc, char **argv)
     // set the cursor position to 0
     short cursor = 0;
 
-    std::string name = getFirmwareName();
+    std::string firmName = getGithubName(true);
+    std::string cfwName = getGithubName(false);
+    cfwName.erase(0, 1);
+    std::string currentCfwName = getCurrentVersionPack();
     
     // main menu
-    refreshScreen(cursor, name);
+    refreshScreen(cursor, firmName, cfwName, currentCfwName);
 
     // muh loooooop
     while(appletMainLoop())
@@ -116,7 +142,7 @@ int main(int argc, char **argv)
         {
             if (cursor == CURSOR_LIST_MAX) cursor = 0;
             else cursor++;
-            refreshScreen(cursor, name);
+            refreshScreen(cursor, firmName, cfwName, currentCfwName);
         }
 
         // move cursor up...
@@ -124,7 +150,7 @@ int main(int argc, char **argv)
         {
             if (cursor == 0) cursor = CURSOR_LIST_MAX;
             else cursor--;
-            refreshScreen(cursor, name);
+            refreshScreen(cursor, firmName, cfwName, currentCfwName);
         }
 
         if (kDown & HidNpadButton_A)
@@ -204,7 +230,7 @@ int main(int argc, char **argv)
 
                     if (downloadFile(url.c_str(), TEMP_FILE, OFF)){
                         unzip(TEMP_FILE);
-                        printDisplay("\033[0;32m\nTéléchargement du firmware teminé. Retrouvez le dans le dossier à la racine de votre carte sd :)\033[0;32m");
+                        printDisplay("\033[0;32m\nTelechargement du firmware temine. Retrouvez le dans le dossier à la racine de votre carte sd :)\033[0;32m");
                     }
 
                     else{

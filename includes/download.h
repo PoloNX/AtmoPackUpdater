@@ -3,6 +3,7 @@
 
 #define APP_URL         "https://github.com/PoloNX/AtmoPackUpdater/releases/latest/download/AtmoPackUpdater.nro"
 #define CFW_URL         "https://github.com/THZoria/AtmoPack-Vanilla/releases/latest/download/AtmoPack-Vanilla_Latest.zip"
+#define CFW_URL_API     "https://api.github.com/repos/THZoria/AtmoPack-Vanilla/releases"
 #define SIG_URL         "https://github.com/ITotalJustice/patches/releases/latest/download/SigPatches.zip"
 #define FIR_URL         "https://api.github.com/repos/THZoria/NX_Firmware/releases"
 

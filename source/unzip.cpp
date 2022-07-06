@@ -32,7 +32,7 @@ int unzip(const char *output)
             if (dir) closedir(dir);
             else
             {
-                printf("Création du répertoir: %s\n", filename_inzip);
+                printf("Creation du repertoir: %s\n", filename_inzip);
                 mkdir(filename_inzip, 0777);
             }
         }    
