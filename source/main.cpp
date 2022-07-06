@@ -134,10 +134,10 @@ int main(int argc, char **argv)
             case UP_CFW:
                 if (downloadFile(CFW_URL, TEMP_FILE, OFF)){
                     unzip(TEMP_FILE);
-                    //remove(APP_OUTPUT);
-                    //remove(TEMP_FILE);
-                    //rename(TEMP_FILE_HB, APP_OUTPUT);
-                    //remove(TEMP_FILE_HB);
+                    remove(APP_OUTPUT);
+                    remove(TEMP_FILE);
+                    rename(TEMP_FILE_HB, APP_OUTPUT);
+                    remove(TEMP_FILE_HB);
                     printDisplay("\033[0;32m\nFini!\n\nRedemarrage automatique dans 5 secondes :)\n");
                     sleep(5);
                     rebootNow();
