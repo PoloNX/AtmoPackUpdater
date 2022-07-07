@@ -7,22 +7,31 @@
 #include "menu.hpp"
 #include "event.hpp"
 
-int main(){
+void init(){
     consoleInit(NULL);
     socketInitializeDefault();
     nxlinkStdio();
+    romfsInit();
     padConfigureInput(1, HidNpadStyleSet_NpadStandard);
+}
+ 
+int main(){
+    init();
 
     PadState pad;
     padInitializeDefault(&pad);
 
+    std::cout << "Chargement..." << std::endl;
+    consoleUpdate(NULL);
+
     bool isOpen = true;
     int cursor = 0;
-    menu::refreshScreen(cursor);
+    menu menu;
+    menu.refreshScreen(cursor);
 
     while (appletMainLoop() && isOpen)
     {
-        event::checkInput(pad, cursor, isOpen);
+        event::checkInput(pad, cursor, isOpen, menu);
         consoleUpdate(NULL);
     }
 
