@@ -179,7 +179,7 @@ namespace net{
             }
         }
         
-        std::cout << "\n\nErreur de telechargement\n\n";
+        std::cout << "\n\nErreur de telechargement.. Veuillez reessayer. Si cette erreur perciste verifiez que vous etes connecte a internet.\n\n";
         consoleUpdate(NULL);
         return false;
     } 
