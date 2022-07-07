@@ -45,7 +45,7 @@ TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data
-INCLUDES	:=	includes lib/nlohmann
+INCLUDES	:=	include lib/nlohmann
 ROMFS		:=	romfs
 
 #---------------------------------------------------------------------------------
