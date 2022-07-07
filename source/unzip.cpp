@@ -61,7 +61,7 @@ namespace extract{
         }
 
         unzClose(zfile);
-        //remove(output.c_str());
+        remove(file.c_str());
 
         return 0;
     }
