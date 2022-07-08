@@ -1,5 +1,6 @@
 #include <switch.h>
 #include <json.hpp>
+#include <filesystem>
 
 #include "event.hpp"
 #include "menu.hpp"
@@ -32,6 +33,7 @@ namespace event{
                         menu.refreshScreen(cursor);
                         std::cout << "\n\nTelechargement du pack termine. redemarrage de la console dans 3 secondes..." << std::endl;
                         consoleUpdate(NULL);
+                        std::filesystem::remove_all("atmosphere/contents/0100000001000");
                         sleep(3);
                         reboot::rebootNow();
                     }
@@ -77,8 +79,11 @@ namespace event{
                         if (net::downloadFile(url, TEMP_FILE, false)){
                             extract::unzip(TEMP_FILE, "/");
                             menu.refreshScreen(cursor);
-                            std::cout << "\n\nTelechargement du dernier firmware temine! Veuillez l'installer avec DayBreak." << std::endl;
+                            std::cout << "\n\nTelechargement du dernier firmware temine! Veuillez l'installer avec DayBreak. Votre theme va etre supprime." << std::endl;
+                            envSetNextLoad("switch/daybreak.nro", "\"/switch/daybreak.nro\"");
                             consoleUpdate(NULL);
+                            std::filesystem::remove_all("atmosphere/contents/0100000001000");
+                            isOpen = false;
                         }
                         else{
                             menu.refreshScreen(cursor);
