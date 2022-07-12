@@ -1,13 +1,13 @@
-// THE CODE IS NOT FROM ME !
+#include <switch.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <unistd.h> // chdir
 
-#include "reboot.h"
+#include "reboot.hpp"
 
-#define IRAM_PAYLOAD_MAX_SIZE 0x2F000
-#define IRAM_PAYLOAD_BASE 0x40010000
+constexpr size_t IRAM_PAYLOAD_MAX_SIZE = 0x2F000;
+constexpr size_t IRAM_PAYLOAD_BASE = 0x40010000;
 
  alignas(0x1000) u8 g_reboot_payload[IRAM_PAYLOAD_MAX_SIZE];
  alignas(0x1000) u8 g_ff_page[0x1000];
@@ -52,21 +52,23 @@ static void reboot_to_payload(void) {
     splSetConfig((SplConfigItem)65001, 2);
 }
 
+namespace reboot{
+    void rebootNow()
+    {
+        Result rc = splInitialize();
+        chdir("romfs:/");
+        FILE *f = fopen("payload/ams_rcm.bin", "rb");
 
-void rebootNow() //0 = hekate, 1 = ams, 2 = lockpick, 3 = udpih
-{
-    Result rc = splInitialize();
-    chdir("romfs:/");
-    FILE *f = fopen("payload/ams_rcm.bin", "rb");
+        if (f == NULL) {
+            printf("Payload not found\n");
+            return;
+        }
 
-    if (f == NULL) {
-        printf("Payload not found\n");
+        fread(g_reboot_payload, 1, sizeof(g_reboot_payload), f);
+        fclose(f);
+
+        reboot_to_payload();
+        spsmInitialize();
+        spsmShutdown(true);
     }
-
-    fread(g_reboot_payload, 1, sizeof(g_reboot_payload), f);
-    fclose(f);
-
-    reboot_to_payload();
- 	spsmInitialize();
-	spsmShutdown(true);
 }
