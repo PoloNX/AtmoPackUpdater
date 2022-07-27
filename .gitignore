@@ -2,4 +2,7 @@
 /AtmoPackUpdater.elf
 /AtmoPackUpdater.nacp
 /AtmoPackUpdater.nro
+/AtmoPackUpdater.lst
 /build
+/amssu-rcm/build/ams_rcm
+/amssu-rcm/output
