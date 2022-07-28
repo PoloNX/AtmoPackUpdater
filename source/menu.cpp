@@ -77,9 +77,9 @@ void menu::refreshScreen(int &cursor){
 
     std::cout << "\033[1;36mAtmoPackUpdater : v" << APP_VER << " by PoloNX" << std::endl << std::endl;
 
-    std::cout << "\033[1;36mDernier firmware en date :" << "\033[1;31m - " << lastFirm << " -" <<std::endl << std::endl;
+    std::cout << "\033[1;36mDernier firmware en date  :" << "\033[1;31m - " << lastFirm << " -" <<std::endl << std::endl;
 
-    std::cout << "\033[1;36mDerniere version du pack :" << "\033[1;31m - AtmoPack-Vanilla "<< lastPack << " -" << std::endl;
+    std::cout << "\033[1;36mDerniere version du pack  :" << "\033[1;31m - AtmoPack-Vanilla "<< lastPack << " -" << std::endl;
     std::cout << "\033[1;36mVersion acctuelle du pack : \033[1;31m" << currentPack << std::endl << std::endl;
 
     std::cout << "\033[1;33mAppuyez sur (A) pour selectionner une option" << std::endl;
