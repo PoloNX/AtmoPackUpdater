@@ -28,7 +28,7 @@ namespace extract{
                 DIR *dir = opendir(filename_inzip);
                 if(dir) closedir(dir);
                 else{
-                    std::cout << "Creation du repertoir : " << filename_inzip << std::endl;
+                    std::cout << "\rCreation du repertoir : " << filename_inzip;
                     mkdir(filename_inzip, 0777);
                 }
             }
@@ -43,7 +43,7 @@ namespace extract{
                 else
                     outfile = fopen(filename_inzip, "wb");
 
-                std::cout << "Extraction de: " << filename_inzip_s << std::endl;
+                std::cout << "\rExtraction de: " << filename_inzip_s;
                 consoleUpdate(NULL);
 
                 for (int j = unzReadCurrentFile(zfile, buf, WRITEBUFFERSIZE); j > 0; j = unzReadCurrentFile(zfile, buf, WRITEBUFFERSIZE)){

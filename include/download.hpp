@@ -11,7 +11,7 @@ const std::string SIG_URL = "https://github.com/ITotalJustice/patches/releases/l
 const std::string FIR_URL = "https://api.github.com/repos/THZoria/NX_Firmware/releases";
 
 const std::string TEMP_FILE =     "/switch/temp.zip";
-const std::string TEMP_FILE_HB =  "/switch/AtmoPackUpdater.nro.temp";
+const std::string TEMP_FILE_HB =  "/switch/temp.zip";
 const std::string APP_OUTPUT =    "/switch/AtmoPackUpdater.nro";
 
 namespace net{
