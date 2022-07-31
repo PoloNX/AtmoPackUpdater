@@ -55,7 +55,25 @@ int download_progress(void *p, double dltotal, double dlnow, double ultotal, dou
         //printf("* Telechargement: %.2fMB sur %.2fMB *\r", dlnow / _1MiB, dltotal / _1MiB);
         std::cout << std::fixed;
         std::cout << std::setprecision(2);
-        std::cout << "\r* Telechargement: " << dlnow / _1MiB << "MB sur " << dltotal / _1MiB << "MB *";
+
+
+        
+        int numberOfEqual = (dlnow * 100) / dltotal / 10;
+
+        std::cout << "\r* [";
+
+        for (int i = 0; i < numberOfEqual; i++)
+        {
+            std::cout << "=";
+        }
+
+        for (int i = 0; i < 10 - numberOfEqual; i++)
+        {
+            std::cout << " ";
+        }
+
+        std::cout << "]   " << dlnow / _1MiB << "MB sur " << dltotal / _1MiB << "MB *";
+
         consoleUpdate(NULL);
     }
 
@@ -112,8 +130,10 @@ long downloadPage(const std::string& url, std::string& res, const std::vector<st
     curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback2);
     curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void*)&chunk);
     curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, API_AGENT);
+    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
 
     curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_perform(curl_handle);
     curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status_code);
     curl_easy_cleanup(curl_handle);
@@ -167,6 +187,7 @@ namespace net{
 
                 // clean
                 curl_easy_cleanup(curl);
+                curl_global_cleanup();
                 free(chunk.data);
                 fclose(chunk.out);
 

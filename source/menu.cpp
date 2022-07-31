@@ -98,6 +98,6 @@ void menu::refreshScreen(int &cursor){
         cursor = CURSOR_LIST_MAX;
 
     for (int i = 0; i < CURSOR_LIST_MAX + 1; ++i){
-        std::cout << "\033[1;36m"<<'[' << ((cursor == i) ? 'X' : ' ') << ']' << OPTION_LIST[i] << std::endl;
+        std::cout << "\033[1;36m"<<'[' << ((cursor == i) ? 'X' : ' ') << ']' << OPTION_LIST[i] << std::endl << std::endl;
     }
 }
