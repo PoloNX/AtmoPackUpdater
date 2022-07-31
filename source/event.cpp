@@ -1,21 +1,17 @@
 #include <switch.h>
 #include <json.hpp>
 #include <filesystem>
-
-#include <stdio.h>
-#include <minizip/unzip.h>
-#include <string.h>
 #include <dirent.h>
-#include <switch.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
+#include <base64.hpp>
 
 #include "event.hpp"
 #include "menu.hpp"
 #include "download.hpp"
 #include "unzip.hpp"
 #include "reboot.hpp"
+
+std::string sig = "null";
 
 bool cp(char *filein, char *fileout) {
 	FILE *exein, *exeout;
@@ -82,7 +78,9 @@ namespace event{
                         sleep(3);
                         reboot::rebootNow();
                     }
-                    
+                    else {
+                        std::cout << "\n\nUne erreur de connexion est survenue." << std::endl;
+                    }
                     break;
 
                 case UP_APP:
@@ -96,10 +94,14 @@ namespace event{
                         sleep(3);
                         isOpen = false;
                     }
+                    else {
+                        std::cout << "\n\nUne erreur de connexion est survenue." << std::endl;
+                    }
                     break;
 
                 case UP_SIG:
-                    if (net::downloadFile(SIG_URL, TEMP_FILE, false)){
+                    sig = base64::from_base64(SIG_URL);
+                    if (net::downloadFile(sig, TEMP_FILE, false)){
                         extract::unzip(TEMP_FILE, "/");
                         menu.refreshScreen(cursor);
                         std::cout << "\n\nTelechargement des sigpatches temine. redemarrage de la console dans 3 secondes..." << std::endl;
@@ -107,9 +109,13 @@ namespace event{
                         sleep(3);
                         reboot::rebootNow();
                     }
+                    else {
+                        std::cout << "\n\nUne erreur de connexion est survenue." << std::endl;
+                    }
                     break;
 
                 case UP_FIR:
+                {
                     nlohmann::ordered_json json;
                     net::getRequest(FIR_URL, json);
                     if (json.empty()){
@@ -153,6 +159,15 @@ namespace event{
                             menu.refreshScreen(cursor);
                         }
                     }
+                    break;
+                }
+                case REFRESH:
+                    std::cout << "\nChargement..." << std::endl;
+                    consoleUpdate(NULL);
+                    menu.getCurrentPack();
+                    menu.getLastFirm();
+                    menu.getLastPack();
+                    menu.refreshScreen(cursor);
                     break;
             }
         }

@@ -8,7 +8,7 @@
 #define FULL_PATH   "/switch/AtmoPackUpdater/AtmoPackUpdater.nro"
 #define BAD_PATH   "/switch/AtmoPackUpdater.nro"
 #define CONFIG_PATH "/switch/temp.zip"
-#define FORWARDER_PATH	  "/switch/AtmoPackUpdater/aiosu-forwarder.nro"
+#define FORWARDER_PATH	  "/switch/AtmoPackUpdater/amssu-forwarder.nro"
 
 int removeDir(const char* path)
 {
@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
 		std::filesystem::rename(CONFIG_PATH, FULL_PATH);
 	}
 
-	//std::filesystem::remove(FORWARDER_PATH);
+	std::filesystem::remove(FORWARDER_PATH);
 
 	envSetNextLoad("switch/AtmoPackUpdater/AtmoPackUpdater.nro", "\"/switch/AtmoPackUpdater/AtmoPackUpdater.nro\"");
 	return 0;

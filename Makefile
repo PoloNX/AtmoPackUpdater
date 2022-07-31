@@ -39,13 +39,13 @@ include $(DEVKITPRO)/libnx/switch_rules
 #---------------------------------------------------------------------------------
 APP_TITLE   := 	AtmoPackUpdater
 APP_AUTHOR  := 	PoloNX Zoria
-APP_VERSION := 	0.0.5 - beta
+APP_VERSION := 	0.0.6
 
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data
-INCLUDES	:=	include lib/nlohmann
+INCLUDES	:=	include lib/nlohmann lib/base64
 ROMFS		:=	romfs
 
 #---------------------------------------------------------------------------------

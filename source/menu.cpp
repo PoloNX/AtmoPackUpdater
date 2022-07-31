@@ -9,15 +9,16 @@
 #include "download.hpp"
 #include "menu.hpp"
 
-const std::array<std::string, 4> OPTION_LIST{
+const std::array<std::string, 5> OPTION_LIST{
     "= Update le CFW",
     "= Update l'application",
     "= Update les sigpatches",
-    "= Telecharger le dernier firmware"
+    "= Telecharger le dernier firmware",
+    "= Raffraichir la page"
 };
 
-constexpr std::string_view APP_VER = "0.0.5";
-constexpr int CURSOR_LIST_MAX = 3;
+constexpr std::string_view APP_VER = "0.0.6";
+constexpr int CURSOR_LIST_MAX = 4;
 
 menu::menu(){
     getLastFirm();
@@ -32,6 +33,9 @@ void menu::getCurrentPack(){
     if (txtfile.is_open()){
         std::string version;
         getline(txtfile, version);
+        if (version[19] == 'v') {
+           version.erase(19, 1);
+        }
         currentPack = version;
     }
     else{
@@ -49,7 +53,9 @@ void menu::getLastPack(){
     }
     auto object = json[0];
     std::string name = object.at("tag_name");
-    name.erase(0, 1);
+    if (name[0] == 'v'){
+        name.erase(0, 1);
+    }
     lastPack = name;
 }
 
@@ -83,7 +89,7 @@ void menu::refreshScreen(int &cursor){
     std::cout << "\033[1;36mVersion acctuelle du pack : \033[1;31m" << currentPack << std::endl << std::endl;
 
     std::cout << "\033[1;33mAppuyez sur (A) pour selectionner une option" << std::endl;
-    std::cout << "\033[1;33mAppuyez sur (+) pour quiiter l'application" << std::endl << std::endl << std::endl << std::endl;
+    std::cout << "\033[1;33mAppuyez sur (+) pour quiter l'application" << std::endl << std::endl << std::endl << std::endl;
 
     if (cursor > CURSOR_LIST_MAX)
         cursor = 0;
