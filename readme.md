@@ -7,7 +7,7 @@ AtmoPackUpdater is an homebrew for Nintendo Switch which update your cfw with th
 - Download the last update of [AtmosphereVanillaPack](https://github.com/THZoria/AtmoPack-Vanilla)
 - Download the last update of this app
 - Download the last [sigpatches](https://github.com/ITotalJustice/patches)
-- Download the last [firmware](https://github.com/THZoria/NX_Firmware)
+- Download the [firmware](https://github.com/THZoria/NX_Firmware) of your choice
 
 ## How to build 🏗️
 
