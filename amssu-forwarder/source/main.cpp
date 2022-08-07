@@ -4,35 +4,45 @@
 
 #include <switch.h>
 
-#define PATH		"/switch/AtmoPackUpdater/"
-#define FULL_PATH   "/switch/AtmoPackUpdater/AtmoPackUpdater.nro"
-#define BAD_PATH   "/switch/AtmoPackUpdater.nro"
-#define CONFIG_PATH "/switch/temp.zip"
-#define FORWARDER_PATH	  "/switch/AtmoPackUpdater/amssu-forwarder.nro"
+#define PATH				"/switch/AtmoPackUpdater/"
+#define FULL_PATH   		"/switch/AtmoPackUpdater/AtmoPackUpdater.nro"
+#define BAD_PATH   			"/switch/AtmoPackUpdater.nro"
+#define FORWARDER_PATH	  	"/config/AtmoPackUpdater/amssu-forwarder.nro"
+#define APP_DOWNLOAD_PATH 	"/config/AtmoPackUpdater/app.nro"
 
-int removeDir(const char* path)
+int main()
 {
-	Result ret = 0;
-	FsFileSystem *fs = fsdevGetDeviceFileSystem("sdmc");
-	if (R_FAILED(ret = fsFsDeleteDirectoryRecursively(fs, path))) {
-		return ret;
-	}
-	return 0;
-}
-
-int main(int argc, char* argv[])
-{
+	std::cout<< "CREATE DIRECTORY PATH" << std::endl;
+	consoleUpdate(NULL);
 	std::filesystem::create_directory(PATH);
 	if(std::filesystem::exists(BAD_PATH)){
+		std::cout<< "REMOVE BAD PATH" << std::endl;
+		consoleUpdate(NULL);
 		std::filesystem::remove(BAD_PATH);
 	}
-	if(std::filesystem::exists(CONFIG_PATH)){
+
+
+
+	if(std::filesystem::exists(APP_DOWNLOAD_PATH)) {
+		std::cout<< "RENAME DOWNLOAD PATH" << std::endl;
+		consoleUpdate(NULL);
 		std::filesystem::remove(FULL_PATH);
-		std::filesystem::rename(CONFIG_PATH, FULL_PATH);
+		std::filesystem::rename(APP_DOWNLOAD_PATH, FULL_PATH);
+	}
+
+	std::cout << "REMOVES" << std::endl;
+	consoleUpdate(NULL);
+		if(std::filesystem::exists(APP_DOWNLOAD_PATH)) {
+
+		std::filesystem::remove(APP_DOWNLOAD_PATH);
 	}
 
 	std::filesystem::remove(FORWARDER_PATH);
 
+	std::cout << "ENV" << std::endl;
+	consoleUpdate(NULL);
 	envSetNextLoad("switch/AtmoPackUpdater/AtmoPackUpdater.nro", "\"/switch/AtmoPackUpdater/AtmoPackUpdater.nro\"");
+	std::cout << "RETURN" << std::endl;
+	consoleUpdate(NULL);
 	return 0;
 }

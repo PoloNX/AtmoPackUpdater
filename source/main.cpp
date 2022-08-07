@@ -1,42 +1,53 @@
-#include <iostream>
-#include <string>
-#include <vector>
-
 #include <switch.h>
 
-#include "menu.hpp"
-#include "event.hpp"
+#include <cstdlib>
 
-void init(){
-    consoleInit(NULL);
-    socketInitializeDefault();
-    nxlinkStdio();
-    romfsInit();
-    padConfigureInput(1, HidNpadStyleSet_NpadStandard);
-}
- 
-int main(){
-    init();
+#include "main_frame.hpp"
 
-    PadState pad;
-    padInitializeDefault(&pad);
+#include <borealis.hpp>
 
-    std::cout << "Chargement..." << std::endl;
-    consoleUpdate(NULL);
+namespace i18n = brls::i18n;
+using namespace i18n::literals;
 
-    bool isOpen = true;
-    int cursor = 0;
-    menu menu;
-    menu.refreshScreen(cursor);
+int main() {
 
-    while (appletMainLoop() && isOpen)
-    {
-        event::checkInput(pad, cursor, isOpen, menu);
-        consoleUpdate(NULL);
+    if (!brls::Application::init("AtmoPackUpdater")) {
+        brls::Logger::error("Unable to init Borealis application");
+        return EXIT_FAILURE;
     }
 
-    // Deinitialize and clean up resources used by the console (important!)
+    i18n::loadTranslations();
+
+    setsysInitialize();
+    plInitialize(PlServiceType_User);
+    nsInitialize();
+    socketInitializeDefault();
+    nxlinkStdio();
+    pmdmntInitialize();
+    pminfoInitialize();
+    splInitialize();
+    romfsInit();
+
+    brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
+    brls::Logger::debug("Start");
+
+    brls::TabFrame* rootFrame = new brls::TabFrame();
+    rootFrame->setTitle("AtmoPackUpdater");
+    brls::Application::pushView(new MainFrame());
+
+    while (brls::Application::mainLoop()) {
+        ;
+    }
+
+    romfsExit();
+    splExit();
+    pminfoExit();
+    pmdmntExit();
     socketExit();
-    consoleExit(NULL);
-    return 0;
+    nsExit();
+    setsysExit();
+    plExit();
+    return EXIT_SUCCESS;
 }
+
+

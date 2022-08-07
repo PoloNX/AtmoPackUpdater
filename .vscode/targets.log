@@ -1,0 +1,574 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Aug  5 17:35:38 2022
+
+# Variables
+
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 20)
+PORTLIBS_PATH := /opt/devkitpro/portlibs
+# environment
+ 
+GDK_BACKEND = x11
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 30)
+AS := aarch64-none-elf-as
+# makefile (from 'Makefile', line 75)
+OUTPUT := /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/AtmoPackUpdater-borealis
+# environment
+LC_ALL = C
+# environment
+NO_AT_BRIDGE = 1
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 31)
+AR := aarch64-none-elf-gcc-ar
+# environment
+GTK_RC_FILES = /etc/gtk/gtkrc:/home/charlie/.gtkrc:/home/charlie/.config/gtkrc
+# makefile (from 'Makefile', line 20)
+RESOURCES := resources
+# makefile (from 'Makefile', line 104)
+OFILES :=  about_tab.o confirm_page.o download.o extract.o fs.o main.o main_frame.o reboot.o update_tab.o utils.o worker_page.o absolute_layout.o animations.o applet_frame.o application.o box_layout.o button.o crash_frame.o dialog.o dropdown.o header.o hint.o i18n.o image.o label.o layer_view.o list.o logger.o material_icon.o notification_manager.o popup_frame.o progress_display.o progress_spinner.o rectangle.o repeating_task.o scroll_view.o sidebar.o staged_applet_frame.o style.o swkbd.o tab_frame.o table.o task_manager.o theme.o thumbnail_frame.o view.o format.o switch_wrapper.o nanovg.o compat_strl.o encoding_utf.o features_cpu.o 
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7e6aba2a-7c25-4463-b8e6-317782d0960e.sock
+# makefile (from 'Makefile', line 78)
+VPATH := /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/source /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/nanovg /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/compat /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/encodings /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/features /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/nxfmtwrapper /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/data
+# makefile (from 'Makefile', line 83)
+CFILES :=  switch_wrapper.c nanovg.c compat_strl.c encoding_utf.c features_cpu.c 
+# environment
+VSCODE_CWD = /home/charlie
+# makefile (from '/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk', line 4)
+LIBS := -lglfw3 -lEGL -lglad -lglapi -ldrm_nouveau -lm -lm -lcurl -lnx -lz -lstdc++fs -lmbedx509 -lmbedcrypto -lminizip
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 50)
+SILENTMSG := @echo
+# default
+MAKE_COMMAND := make
+# makefile (from 'Makefile', line 25)
+APP_VERSION := 1.0.0
+# makefile (from 'Makefile', line 102)
+OFILES_BIN := 
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# makefile (from 'Makefile', line 84)
+CPPFILES := about_tab.cpp confirm_page.cpp download.cpp extract.cpp fs.cpp main.cpp main_frame.cpp reboot.cpp update_tab.cpp utils.cpp worker_page.cpp absolute_layout.cpp animations.cpp applet_frame.cpp application.cpp box_layout.cpp button.cpp crash_frame.cpp dialog.cpp dropdown.cpp header.cpp hint.cpp i18n.cpp image.cpp label.cpp layer_view.cpp list.cpp logger.cpp material_icon.cpp notification_manager.cpp popup_frame.cpp progress_display.cpp progress_spinner.cpp rectangle.cpp repeating_task.cpp scroll_view.cpp sidebar.cpp staged_applet_frame.cpp style.cpp swkbd.cpp tab_frame.cpp table.cpp task_manager.cpp theme.cpp thumbnail_frame.cpp view.cpp     format.cpp
+# makefile (from '/opt/devkitpro/libnx/switch_rules', line 10)
+LIBNX = $(DEVKITPRO)/libnx
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+MAIL = /var/spool/mail/charlie
+# environment
+XDG_DATA_DIRS = /home/charlie/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+# environment
+OLDPWD = /home/charlie
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# makefile (from '/opt/devkitpro/libnx/switch_rules', line 39)
+define make_pfs0
+	@mkdir -p exefs
+	@[ $(BUILD_EXEFS_SRC) ] && [ -d $(BUILD_EXEFS_SRC) ] && cp -R $(BUILD_EXEFS_SRC)/* exefs || echo > /dev/null
+	@cp $*.nso exefs/main
+	@[ $(APP_JSON) ] && cp $*.npdm exefs/main.npdm || echo > /dev/null
+	@build_pfs0 exefs $@
+	@echo built ... $(notdir $@)
+endef
+# environment
+VSCODE_CODE_CACHE_PATH = /home/charlie/.config/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session1
+# environment
+LANG = C
+# environment
+XAUTHORITY = /home/charlie/.Xauthority
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile (from 'Makefile', line 85)
+SFILES := $(subst ,,      )
+# environment
+DEVKITARM = /opt/devkitpro/devkitARM
+# makefile
+CURDIR := /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# makefile (from 'Makefile', line 81)
+DEPSDIR := /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/build
+# environment
+PAM_KWALLET5_LOGIN = /run/user/1000/kwallet5.socket
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_CONFIG_DIRS = /home/charlie/.config/kdedefaults:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XCURSOR_THEME = Vimix-cursors
+# environment
+XDG_SESSION_DESKTOP = KDE
+# makefile (from '/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk', line 1)
+MAKEFILE_LIST := Makefile /opt/devkitpro/libnx/switch_rules /opt/devkitpro/devkitA64/base_rules /opt/devkitpro/devkitA64/base_tools /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk
+# makefile (from 'Makefile', line 55)
+ASFLAGS := -g -march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 1987
+# environment
+XDG_SESSION_TYPE = x11
+# makefile (from 'Makefile', line 29)
+BOREALIS_PATH := lib/borealis
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 35)
+RANLIB := aarch64-none-elf-gcc-ranlib
+# environment
+DEVKITPPC = /opt/devkitpro/devkitPPC
+# makefile (from 'Makefile', line 24)
+APP_AUTHOR := PoloNX
+# makefile (from '/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk', line 17)
+INCLUDES := include lib/base64 /lib/borealis/library/include/borealis/extern/nlohmann lib/borealis/library/include lib/borealis/library/lib/extern/fmt/include lib/borealis/library/include/borealis/extern
+# makefile (from 'Makefile', line 127)
+icons := icon.jpg
+# environment
+SESSION_MANAGER = local/arch-b550:@/tmp/.ICE-unix/903,unix/arch-b550:/tmp/.ICE-unix/903
+# automatic
+*F = $(notdir $*)
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from 'Makefile', line 132)
+APP_ICON := /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/icon.jpg
+# makefile (from 'Makefile', line 107)
+INCLUDE := -I/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/include -I/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/base64 -I/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis//lib/borealis/library/include/borealis/extern/nlohmann -I/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/include -I/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/fmt/include -I/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/include/borealis/extern -I/opt/devkitpro/portlibs/switch/include -I/opt/devkitpro/libnx/include -I/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/build
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile
+SHELL = /bin/sh
+# makefile (from '/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk', line 1)
+mkfile_path := /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# makefile (from 'Makefile', line 30)
+BOREALIS_RESOURCES := romfs:/
+# makefile (from 'Makefile', line 86)
+BINFILES := 
+# environment
+MAKELEVEL := 0
+# makefile (from 'Makefile', line 111)
+LIBPATHS := -L/opt/devkitpro/portlibs/switch/lib -L/opt/devkitpro/libnx/lib
+# default
+MAKE = $(MAKE_COMMAND)
+# makefile (from '/opt/devkitpro/libnx/switch_rules', line 8)
+PATH := /opt/devkitpro/portlibs/switch/bin:/opt/devkitpro/tools/bin:/opt/devkitpro/devkitA64/bin:/opt/devkitpro/tools/bin:/home/charlie/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+# default
+MAKEFILES := 
+# environment
+LANGUAGE = en_US:fr
+# environment
+MOTD_SHOWN = pam
+# automatic
+^F = $(notdir $^)
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 5)
+UNAME_R := 5.18.10-arch1-1
+# makefile (from 'Makefile', line 114)
+jsons := 
+# makefile (from '/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk', line 2)
+current_dir := lib/borealis/library
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 26)
+PREFIX := aarch64-none-elf-
+# environment
+INVOCATION_ID = 772b923265de4ddb9f49fa7c738a5b0b
+# makefile (from 'Makefile', line 64)
+LIBDIRS := /opt/devkitpro/portlibs/switch /opt/devkitpro/libnx
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?F = $(notdir $?)
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 57)
+bin2o = 	bin2s -a 8 -H `(echo $(<F) | tr . _)`.h $< | $(AS) -o $(<F).o
+# environment
+KDE_APPLICATIONS_AS_SCOPE = 1
+# environment
+DEVKITPRO = /opt/devkitpro
+# environment
+XDG_SEAT = seat0
+# environment
+XDG_CURRENT_DESKTOP = KDE
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 4)
+UNAME_S := Linux
+# automatic
++F = $(notdir $+)
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+DESKTOP_SESSION = plasma
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = KDE
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = charlie
+# environment
+XDG_VTNR = 1
+# makefile
+.DEFAULT_GOAL := all
+# environment
+SYSTEMD_EXEC_PID = 1020
+# makefile (from 'Makefile', line 42)
+ARCH := -march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE
+# environment
+DISPLAY = :0
+# environment
+GTK_MODULES = canberra-gtk-module
+# environment
+USER = charlie
+# default
+MAKE_VERSION := 4.3
+# environment
+KDE_SESSION_UID = 1000
+# 'override' directive
+.SHELLSTATUS := 0
+# makefile (from 'Makefile', line 103)
+OFILES_SRC := about_tab.o confirm_page.o download.o extract.o fs.o main.o main_frame.o reboot.o update_tab.o utils.o worker_page.o absolute_layout.o animations.o applet_frame.o application.o box_layout.o button.o crash_frame.o dialog.o dropdown.o header.o hint.o i18n.o image.o label.o layer_view.o list.o logger.o material_icon.o notification_manager.o popup_frame.o progress_display.o progress_spinner.o rectangle.o repeating_task.o scroll_view.o sidebar.o staged_applet_frame.o style.o swkbd.o tab_frame.o table.o task_manager.o theme.o thumbnail_frame.o view.o format.o switch_wrapper.o nanovg.o compat_strl.o encoding_utf.o features_cpu.o 
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 51)
+SILENTCMD := @
+# makefile (from 'Makefile', line 18)
+BUILD := build
+# makefile (from 'Makefile', line 76)
+TOPDIR := /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis
+# makefile (from 'Makefile', line 56)
+LDFLAGS = -specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
+# environment
+MANAGERPID = 856
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 37)
+ISVC = $(or $(VCBUILDHELPER_COMMAND),$(MSBUILDEXTENSIONSPATH32),$(MSBUILDEXTENSIONSPATH))
+# environment
+_ = /usr/bin/make
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# makefile (from 'Makefile', line 47)
+CFLAGS := -g -Wall -O2 -ffunction-sections -march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE   -D__SWITCH__ -DBOREALIS_RESOURCES="\"romfs:/\"" -DAPP_VERSION="\"1.0.0\"" -DAPP_TITLE="\"AtmoPackUpdater\"" -DAPP_TITLE_LOWER="\"AtmoPackUpdater-borealis\""
+# makefile (from 'Makefile', line 152)
+NROFLAGS = --icon=$(APP_ICON) --nacp=$(CURDIR)/$(TARGET).nacp --romfsdir=$(CURDIR)/$(ROMFS)
+# environment
+JOURNAL_STREAM = 8:21413
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+GTK2_RC_FILES = /etc/gtk-2.0/gtkrc:/home/charlie/.gtkrc-2.0:/home/charlie/.config/gtkrc-2.0
+# environment
+HOME = /home/charlie
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 14)
+DEVKITPATH = $(shell echo "$(DEVKITPRO)" | sed -e 's/^\([a-zA-Z]\):/\/\1/')
+# makefile (from '/opt/devkitpro/libnx/switch_rules', line 7)
+PORTLIBS := /opt/devkitpro/portlibs/switch
+ 
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-82270087-1.68.1-main.sock
+# environment
+XDG_SESSION_ID = 2
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 34)
+NM := aarch64-none-elf-gcc-nm
+# environment
+XCURSOR_SIZE = 24
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# makefile (from 'Makefile', line 28)
+ROMFS := resources
+# makefile (from 'Makefile', line 105)
+HFILES_BIN := 
+# default
+SUFFIXES := 
+# makefile (from 'Makefile', line 26)
+TARGET := AtmoPackUpdater-borealis
+# makefile (from 'Makefile', line 97)
+LD := aarch64-none-elf-g++
+# environment
+QT_AUTO_SCREEN_SCALE_FACTOR = 0
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# makefile (from 'Makefile', line 53)
+CXXFLAGS := -g -Wall -O2 -ffunction-sections -march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE   -D__SWITCH__ -DBOREALIS_RESOURCES="\"romfs:/\"" -DAPP_VERSION="\"1.0.0\"" -DAPP_TITLE="\"AtmoPackUpdater\"" -DAPP_TITLE_LOWER="\"AtmoPackUpdater-borealis\"" -std=gnu++20 -fexceptions -Wno-reorder
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 33)
+STRIP := aarch64-none-elf-strip
+# environment
+KDE_SESSION_VERSION = 5
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 29)
+CXX := aarch64-none-elf-g++
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 28)
+CC := aarch64-none-elf-gcc
+# makefile (from '/opt/devkitpro/devkitA64/base_tools', line 32)
+OBJCOPY := aarch64-none-elf-objcopy
+# makefile (from '/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk', line 9)
+SOURCES := source  lib/borealis/library/lib lib/borealis/library/lib/extern/nanovg lib/borealis/library/lib/extern/libretro-common/compat lib/borealis/library/lib/extern/libretro-common/encodings lib/borealis/library/lib/extern/libretro-common/features lib/borealis/library/lib/extern/nxfmtwrapper
+# environment
+KDE_FULL_SESSION = true
+# makefile (from 'Makefile', line 23)
+APP_TITLE := AtmoPackUpdater
+# makefile (from 'Makefile', line 21)
+DATA := data
+# variable set hash-table stats:
+# Load=164/1024=16%, Rehash=0, Collisions=10/379=3%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# lib/borealis/library/lib/extern/nanovg (device 2050, inode 6324266): 4 files, no impossibilities.
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/features (device 2050, inode 6324278): 3 files, no impossibilities.
+# lib/borealis/library/lib (device 2050, inode 6324213): 39 files, no impossibilities.
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/nxfmtwrapper (device 2050, inode 6324267): 3 files, no impossibilities.
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/data: could not be stat'd.
+# . (device 2050, inode 6033808): 18 files, no impossibilities.
+# source (device 2050, inode 6324187): 13 files, no impossibilities.
+# data: could not be stat'd.
+# lib/borealis/library/lib/extern/libretro-common/features (device 2050, inode 6324278): 3 files, no impossibilities.
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/compat (device 2050, inode 6324276): 3 files, no impossibilities.
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/nanovg (device 2050, inode 6324266): 4 files, no impossibilities.
+# lib/borealis/library/lib/extern/nxfmtwrapper (device 2050, inode 6324267): 3 files, no impossibilities.
+# lib/borealis/library/lib/extern/libretro-common/compat (device 2050, inode 6324276): 3 files, no impossibilities.
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/encodings (device 2050, inode 6324277): 3 files, no impossibilities.
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib (device 2050, inode 6324213): 39 files, no impossibilities.
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/source (device 2050, inode 6324187): 13 files, no impossibilities.
+# lib/borealis/library/lib/extern/libretro-common/encodings (device 2050, inode 6324277): 3 files, no impossibilities.
+
+# 154 files, no impossibilities in 17 directories.
+
+# Implicit Rules
+
+%.a:
+#  recipe to execute (from '/opt/devkitpro/devkitA64/base_rules', line 6):
+	$(SILENTMSG) $(notdir $@)
+	@rm -f $@
+	$(SILENTCMD)$(AR) -rc $@ $^
+
+%.o: %.cpp
+#  recipe to execute (from '/opt/devkitpro/devkitA64/base_rules', line 13):
+	$(SILENTMSG) $(notdir $<)
+	$(SILENTCMD)$(CXX) -MMD -MP -MF $(DEPSDIR)/$*.d $(CXXFLAGS) -c $< -o $@ $(ERROR_FILTER)
+
+%.o: %.c
+#  recipe to execute (from '/opt/devkitpro/devkitA64/base_rules', line 18):
+	$(SILENTMSG) $(notdir $<)
+	$(SILENTCMD)$(CC) -MMD -MP -MF $(DEPSDIR)/$*.d $(CFLAGS) -c $< -o $@ $(ERROR_FILTER)
+
+%.o: %.s
+#  recipe to execute (from '/opt/devkitpro/devkitA64/base_rules', line 23):
+	@echo $(notdir $<)
+	$(SILENTCMD)$(CC) -MMD -MP -MF $(DEPSDIR)/$*.d -x assembler-with-cpp $(ASFLAGS) -c $< -o $@ $(ERROR_FILTER)
+
+%.o: %.S
+ 
+#  recipe to execute (from '/opt/devkitpro/devkitA64/base_rules', line 28):
+	$(SILENTMSG) $(notdir $<)
+	$(SILENTCMD)$(CC) -MMD -MP -MF $(DEPSDIR)/$*.d -x assembler-with-cpp $(ASFLAGS) -c $< -o $@ $(ERROR_FILTER)
+
+%.nacp: Makefile /opt/devkitpro/libnx/switch_rules /opt/devkitpro/devkitA64/base_rules /opt/devkitpro/devkitA64/base_tools
+#  recipe to execute (from '/opt/devkitpro/libnx/switch_rules', line 30):
+	@nacptool --create "$(APP_TITLE)" "$(APP_AUTHOR)" "$(APP_VERSION)" $@ $(NACPFLAGS)
+	@echo built ... $(notdir $@)
+
+%.npdm:
+#  recipe to execute (from '/opt/devkitpro/libnx/switch_rules', line 35):
+	@npdmtool $< $@
+	@echo built ... $(notdir $@)
+
+%.pfs0: %.nso
+#  recipe to execute (from '/opt/devkitpro/libnx/switch_rules', line 53):
+	$(make_pfs0)
+
+%.nsp: %.nso
+#  recipe to execute (from '/opt/devkitpro/libnx/switch_rules', line 60):
+	$(make_pfs0)
+
+%.nso: %.elf
+#  recipe to execute (from '/opt/devkitpro/libnx/switch_rules', line 64):
+	@elf2nso $< $@
+	@echo built ... $(notdir $@)
+
+%.nro: %.elf
+#  recipe to execute (from '/opt/devkitpro/libnx/switch_rules', line 69):
+	@elf2nro $< $@ $(NROFLAGS)
+	@echo built ... $(notdir $@)
+
+%.kip: %.elf
+#  recipe to execute (from '/opt/devkitpro/libnx/switch_rules', line 74):
+	@elf2kip $< $(APP_JSON) $@
+	@echo built ... $(notdir $@)
+
+%.elf:
+#  recipe to execute (from '/opt/devkitpro/libnx/switch_rules', line 79):
+	@echo linking $(notdir $@)
+	@$(LD) $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
+	@$(NM) -CSn $@ > $(notdir $*.lst)
+
+# 13 implicit rules, 0 (0.0%) terminal.
+# Files
+
+# Not a target:
+/opt/devkitpro/libnx/switch_rules:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-22 21:18:46
+#  File has been updated.
+#  Successfully updated.
+
+resources:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-05 15:31:51.163893333
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 166):
+	@echo clean ...
+	@rm -fr $(BUILD) $(notdir $(CURDIR))*.nro $(notdir $(CURDIR))*.nacp $(notdir $(CURDIR))*.elf
+
+# Not a target:
+/opt/devkitpro/devkitA64/base_tools:
+#  Implicit rule search has been done.
+#  Last modified 2020-07-28 02:23:39
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+ 
+#  File has not been updated.
+
+all: build
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+
+build: resources
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := build
+# automatic
+# * := 
+# automatic
+# < := resources
+# automatic
+# + := resources
+# automatic
+# % := 
+# automatic
+# ^ := resources
+# automatic
+# ? := resources
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/18=11%
+#  recipe to execute (from 'Makefile', line 161):
+	@[ -d $@ ] || mkdir -p $@
+	@MSYS2_ARG_CONV_EXCL="-D;$(MSYS2_ARG_CONV_EXCL)" $(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+
+# Not a target:
+/opt/devkitpro/devkitA64/base_rules:
+#  Implicit rule search has been done.
+#  Last modified 2020-07-28 02:23:39
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/borealis.mk:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-01 14:52:11.2989906
+#  File has been updated.
+#  Successfully updated.
+
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: build resources clean all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=12/1024=1%, Rehash=0, Collisions=0/37=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# General ('VPATH' variable) search path:
+# /home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/source:/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib:/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/nanovg:/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/compat:/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/encodings:/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/libretro-common/features:/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/lib/borealis/library/lib/extern/nxfmtwrapper:/home/charlie/Documents/repos/C++/switch/AtmoPackUpdater-borealis/data
+
+# strcache buffers: 1 (0) / strings = 113 / storage = 2420 B / avg = 21 B
+# current buf: size = 8162 B / used = 2420 B / count = 113 / avg = 21 B
+
+# strcache performance: lookups = 171 / hit rate = 33%
+# hash-table stats:
+# Load=113/8192=1%, Rehash=0, Collisions=0/171=0%
+# Finished Make data base on Fri Aug  5 17:35:38 2022
+
+ 
