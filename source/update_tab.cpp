@@ -100,11 +100,11 @@ void UpdateTab::createList(contentType type) {
             listItem->getClickEvent()->subscribe([this, type, text, url, title](brls::View* view) {
                 //Create a Staged Applet Frame
                 brls::StagedAppletFrame* stagedFrame = new brls::StagedAppletFrame();
-                stagedFrame->setTitle(fmt::format("{}{}","menu/update/download_text",contentTypeNames[(int)type].data()));
+                stagedFrame->setTitle(fmt::format("{}{}","menu/update/download_text"_i18n, contentTypeNames[(int)type].data()));
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));
                 //Create a Download Page
-                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download", [this, type, url]() {util::downloadArchive(url, type); }));
+                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
                 //Create an extract Page
                 if (type != contentType::app){
                     stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
@@ -136,7 +136,7 @@ void UpdateTab::createList(contentType type) {
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, true, util::isErista()));
                         break;
                     case contentType::ams_cfw:
-                        doneMsg += ("\n" + "menu/update/apply_pacth"_i18n);
+                        doneMsg += ("\n" + "menu/update/apply_patch"_i18n);
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, true, util::isErista()));
                         break;    
                     case contentType::app:
