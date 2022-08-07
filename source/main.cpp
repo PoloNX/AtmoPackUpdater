@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "main_frame.hpp"
+#include "constants.hpp"
 
 #include <borealis.hpp>
 
@@ -11,7 +12,7 @@ using namespace i18n::literals;
 
 int main() {
 
-    if (!brls::Application::init("AtmoPackUpdater")) {
+    if (!brls::Application::init(fmt::format("{}{}", "AtmoPackUpdater v", APP_VER))) {
         brls::Logger::error("Unable to init Borealis application");
         return EXIT_FAILURE;
     }
