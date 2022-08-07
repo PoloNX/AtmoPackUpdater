@@ -1,0 +1,3 @@
+[submodule "amssu-rcm"]
+	path = amssu-rcm
+	url = https://github.com/PoloNX/amssu-rcm
