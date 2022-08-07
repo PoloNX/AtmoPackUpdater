@@ -132,11 +132,11 @@ void UpdateTab::createList(contentType type) {
                         break;
                     }
                     case contentType::sigpatches:
-                        doneMsg += ("\n" + "menu/update/apply_cfw"_i18n);
+                        doneMsg += ("\n" + "menu/update/apply_patch"_i18n);
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, true, util::isErista()));
                         break;
                     case contentType::ams_cfw:
-                        doneMsg += ("\n" + "menu/update/apply_patch"_i18n);
+                        doneMsg += ("\n" + "menu/update/apply_cfw"_i18n);
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, true, util::isErista()));
                         break;    
                     case contentType::app:
