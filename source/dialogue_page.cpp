@@ -12,9 +12,9 @@ using namespace i18n::literals;
 
 void DialoguePage::CreateView()
 {
-    this->button1 = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel("menus/common/yes"_i18n);
+    this->button1 = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel("Oui"_i18n);
     this->button1->setParent(this);
-    this->button2 = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel("menus/common/no"_i18n);
+    this->button2 = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel("Non"_i18n);
     this->button2->setParent(this);
 
     this->instantiateButtons();
@@ -102,12 +102,12 @@ void DialoguePage_fw::instantiateButtons()
     });
 
     this->button1->getClickEvent()->subscribe([this](View* view) {
-        envSetNextLoad(DAYBREAK_PATH.c_str(), fmt::format("\"{}\" \"/firmware\"", DAYBREAK_PATH).c_str());
+        envSetNextLoad(DAYBREAK_PATH.c_str(), fmt::format("\"{}\"", DAYBREAK_PATH).c_str());
         romfsExit();
         brls::Application::quit();
     });
 
-    this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "menus/firmware/launch_daybreak"_i18n), true);
+    this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "Voulez vous lancer daybreak?"), true);
 }
 
 void DialoguePage_fw::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx)
