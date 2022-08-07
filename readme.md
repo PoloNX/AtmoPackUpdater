@@ -14,9 +14,11 @@ AtmoPackUpdater is an homebrew for Nintendo Switch which update your cfw with th
 ### Automatic
 
 *Linux :*  
+``sudo pacman -S switch-curl switch-zlib``  
 ``./make.sh``
 
 *Window :*  
+``pacman -S switch-curl switch-zlib``  
 ``./make.bat``  
   
 ### Manual
