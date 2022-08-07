@@ -1,7 +1,7 @@
 {
   "description": {
     "sigpatches" : "\u25c6 Les sigpatches permettent à la Switch d'installer et d'exécuter des fichiers NSP non officiels. Redémarrez la console pour appliquer les patches.",
-    "pack" : "\u25c6 Le pack AtmoPack-Vanilla est un pack léger qui vous permettra d'hacker votre switch très facilement et sans problèmes. Il contient des homebrews très utilent.\n Version actuelle du pack\u00a0:",
+    "pack" : "\u25c6 Le pack AtmoPack-Vanilla est un pack léger qui vous permettra d'hacker votre switch très facilement et sans problèmes. Il contient des homebrews très utils.\n Version actuelle du pack\u00a0:",
     "firmwares" : "\u25c6 Firmware archivé sur 'https://github.com/THZoria/NX_Firmware'. Une fois téléchargé, ils sera extrait dans '/firmware (version du firmware)'. Vous pouvez ensuite installer la mise à jour avec Daybreak.\n FW installé\u00a0: ",
     "app" : "\u25c6 Vous pouvez mettre à jour l'application que vous utilisez sur votre switch.\n Version actuelle de l'app\u00a0: ",
     "version" : "\n\u25c6 Version disponible\u00a0: "
