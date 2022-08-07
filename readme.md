@@ -14,12 +14,14 @@ AtmoPackUpdater is an homebrew for Nintendo Switch which update your cfw with th
 ### Automatic
 
 *Linux :*  
-``git clone --recursive https://github.com/PoloNX/AtmoPackUpdater``  
+``git clone --recursive https://github.com/PoloNX/AtmoPackUpdater`` 
+``cd AtmoPackUpdater``  
 ``sudo pacman -S switch-curl switch-zlib``  
 ``./make.sh``
 
 *Window :*  
 ``git clone --recursive https://github.com/PoloNX/AtmoPackUpdater``  
+``cd AtmoPackUpdater``  
 ``pacman -S switch-curl switch-zlib``  
 ``./make.bat``  
   
@@ -30,7 +32,11 @@ AtmoPackUpdater is an homebrew for Nintendo Switch which update your cfw with th
 ``cd AtmoPackUpdater/amssu-rcm``  
 ``make``  
 ``cd ..``  
-``cp amssu-rcm/output/ams_rcm.bin romfs/payload/ams_rcm.bin``  
+``cd amssu-forwarder``
+``make``
+``cd ..``
+``cp amssu-rcm/output/ams_rcm.bin resources/payload/ams_rcm.bin``  
+``cp amssu-forwarder/amssu-forwarder.nro resources/forwarder/amssu-forwarder.nro``  
 ``make``  
 
 
