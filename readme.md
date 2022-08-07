@@ -14,17 +14,19 @@ AtmoPackUpdater is an homebrew for Nintendo Switch which update your cfw with th
 ### Automatic
 
 *Linux :*  
+``git clone --recursive https://github.com/PoloNX/AtmoPackUpdater``  
 ``sudo pacman -S switch-curl switch-zlib``  
 ``./make.sh``
 
 *Window :*  
+``git clone --recursive https://github.com/PoloNX/AtmoPackUpdater``  
 ``pacman -S switch-curl switch-zlib``  
 ``./make.bat``  
   
 ### Manual
 
 ``sudo pacman -S switch-curl switch-zlib``  
-``git clone https://github.com/PoloNX/AtmoPackUpdater``  
+``git clone --recursive https://github.com/PoloNX/AtmoPackUpdater``  
 ``cd AtmoPackUpdater/amssu-rcm``  
 ``make``  
 ``cd ..``  
