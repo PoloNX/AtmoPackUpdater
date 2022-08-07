@@ -8,8 +8,11 @@
 #include <iostream>
 #include <string>
 
+namespace i18n = brls::i18n;
+using namespace i18n::literals;
+
 ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text, bool done, bool reboot, bool erista, bool restart) : done(done), reboot(reboot), erista(erista), restart(restart) {
-    this->button = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel(done ? "Continuer" : "Annuler");
+    this->button = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel(done ? "menu/confirm/continue"_i18n : "menu/confirm/cancel"_i18n);
     this->button->setParent(this);
     this->button->getClickEvent()->subscribe([frame, this](View* view) {
         if (!frame->isLastStage()) {
@@ -45,7 +48,7 @@ void ConfirmPage::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned he
     if (!this->done) {
         auto end = std::chrono::high_resolution_clock::now();
         auto missing = std::max(1l - std::chrono::duration_cast<std::chrono::seconds>(end - start).count(), 0l);
-        auto text = std::string("continuer");
+        auto text = std::string("menu/confirm/continue"_i18n);
         if (missing > 0) {
             this->button->setLabel(text + " (" + std::to_string(missing) + ")");
             this->button->setState(brls::ButtonState::DISABLED);

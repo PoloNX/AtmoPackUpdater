@@ -31,8 +31,6 @@ int main() {
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
     brls::Logger::debug("Start");
 
-    brls::TabFrame* rootFrame = new brls::TabFrame();
-    rootFrame->setTitle("AtmoPackUpdater");
     brls::Application::pushView(new MainFrame());
 
     while (brls::Application::mainLoop()) {

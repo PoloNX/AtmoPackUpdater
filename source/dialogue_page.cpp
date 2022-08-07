@@ -12,9 +12,9 @@ using namespace i18n::literals;
 
 void DialoguePage::CreateView()
 {
-    this->button1 = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel("Oui"_i18n);
+    this->button1 = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel("menu/dialogue/yes"_i18n);
     this->button1->setParent(this);
-    this->button2 = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel("Non"_i18n);
+    this->button2 = (new brls::Button(brls::ButtonStyle::REGULAR))->setLabel("menu/dialogue/no"_i18n);
     this->button2->setParent(this);
 
     this->instantiateButtons();
@@ -107,10 +107,41 @@ void DialoguePage_fw::instantiateButtons()
         brls::Application::quit();
     });
 
-    this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "Voulez vous lancer daybreak?"), true);
+    this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "menu/dialogue/launch_daybreak"_i18n), true);
 }
 
 void DialoguePage_fw::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx)
+{
+    this->label->frame(ctx);
+    this->button1->frame(ctx);
+    this->button2->frame(ctx);
+}
+
+void DialoguePage_theme::instantiateButtons() {
+    this->button1->getClickEvent()->subscribe([this](View* view) {
+        std::filesystem::remove_all("0100000000001000");
+        std::filesystem::remove_all("0100000000001007");
+        std::filesystem::remove_all("0100000000001013");
+        if (!frame->isLastStage()){
+            frame->nextStage();
+        }
+        else {
+            brls::Application::pushView(new MainFrame());
+        }
+    });
+
+    this->button2->getClickEvent()->subscribe([this](View* view) {
+        if (!frame->isLastStage())
+            frame->nextStage();
+        else {
+            brls::Application::pushView(new MainFrame());
+        }
+    });
+
+    this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "menu/dialogue/delete_theme"_i18n), true);
+}
+
+void DialoguePage_theme::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx)
 {
     this->label->frame(ctx);
     this->button1->frame(ctx);

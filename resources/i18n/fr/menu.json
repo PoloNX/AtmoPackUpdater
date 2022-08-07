@@ -5,5 +5,57 @@
     "firmwares" : "\u25c6 Firmware archivé sur 'https://github.com/THZoria/NX_Firmware'. Une fois téléchargé, ils sera extrait dans '/firmware (version du firmware)'. Vous pouvez ensuite installer la mise à jour avec Daybreak.\n FW installé\u00a0: ",
     "app" : "\u25c6 Vous pouvez mettre à jour l'application que vous utilisez sur votre switch.\n Version actuelle de l'app\u00a0: ",
     "version" : "\n\u25c6 Version disponible\u00a0: "
+  },
+
+  "update": {
+    "subtitle_ams": "Mettre à jour AtmoPack-Vanilla",
+    "subtitle_app": "Mettre à jour l'Application",
+    "subtitle_firmwares": "Mettre à jour le Firmware",
+    "subtitle_sigpatches": "Mettre à jour les Sigpatches",
+    "download_text": "téléchargement de ",
+    "download": "téléchargement...",
+    "link_text": "\nLien complet:\n",
+    "extract_text": "Extraction en cours...",
+    "download_finish": "Téléchargement terminé!",
+    "theme_installed": "\nIl semblerait que vous avez installé un thème personnalisé, cela pourrait empêcher le système de démarrer après la mise à jour de votre firmware.\nIl est conseillé de le supprimer avant d'effectuer la mise à jour.",
+    "apply_cfw": "Votre console dois redémarrer pour appliquer la mise à jour du pack.",
+    "apply_patch": "Votre console dois redémarrer pour appliquer les patchs de signature.",
+    "apply_app": "L'hombrew doit redémarrer pour appliquer la mise à jour"
+  },
+
+  "error": {
+    "version_not_found" : "Impossible d'obtenir la version disponible",
+    "links_not_found" : "Impossible de trouver un lien de téléchargement, vérifiez que la Switch soit connectée à internet.\nSi ce problème persiste, veuillez ouvrir une issue sur GitHub."
+  },
+
+  "tab": {
+    "pack": "Update le pack",
+    "app": "Update l'app",
+    "firmwares": "Update le firmware",
+    "sigpatches": "Update les sigpatches",
+    "credits": "Crédits"
+  },
+
+  "about": {
+    "credits": "AtmoPackUpdater Crédits",
+    "copyright": "copyright © 2022 PoloNX",
+    "thanks": "THZoria for your AtmoPack-Vanilla\n\nSciresM for reboot_to_payload\n\nTeam Neptune for your rcm payload\n\nHamletDuFromage for your .nro which helped me."
+  },
+
+  "confirm": {
+    "continue": "Continuer",
+    "cancel": "Annuler"
+  },
+
+  "dialogue": {
+    "yes": "Oui",
+    "no": "Non",
+    "launch_daybreak": "Voulez vous lancer daybreak?",
+    "delete_theme": "Voulez vous supprimer votre thème?"
+  },
+
+  "worker": {
+    "cancel": "Anuller",
+    "of": "sur"
   }
 }

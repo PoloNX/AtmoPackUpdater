@@ -43,30 +43,29 @@ void UpdateTab::setDescription(contentType type) {
         "",
         true
     );
-    
 
     std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()));;
-
+    
     switch(type) {
         case contentType::ams_cfw: {
             std::string currentVersion = util::getPackVersion();
-            createSubTitle(subTitle, "Mettre à jour AtmoPack-Vanilla");
-            description->setText(fmt::format("{}{}{}{}", "menu/description/pack"_i18n, currentVersion, "menu/description/version"_i18n, links[1].second));
+            createSubTitle(subTitle, "menu/update/subtitle_ams"_i18n);
+            description->setText(fmt::format("{}{}{}{}", "menu/description/pack"_i18n, currentVersion, "menu/description/version"_i18n, links.size() ? links[1].second : "menu/error/version_not_found"_i18n));
             break;
         }
         case contentType::app: {
-            createSubTitle(subTitle, "Mettre à jour l'Application");
-            description->setText(fmt::format("{}{}{}{}", "menu/description/app"_i18n, APP_VER, "menu/description/version"_i18n, links[1].second));
+            createSubTitle(subTitle, "menu/update/subtitle_app"_i18n);
+            description->setText(fmt::format("{}{}{}{}", "menu/description/app"_i18n, APP_VER, "menu/description/version"_i18n, links.size() ? links[1].second : "menu/error/version_not_found"_i18n));
             break;
         }
         case contentType::firmwares: {
-            createSubTitle(subTitle, "Mettre à jour le Firmware");
+            createSubTitle(subTitle, "menu/update/subtitle_firmwares"_i18n);
             SetSysFirmwareVersion ver;
             description->setText(fmt::format("{}{}", "menu/description/firmwares"_i18n, R_SUCCEEDED(setsysGetFirmwareVersion(&ver)) ? ver.display_version : "Impossible de déterminer la version actuelle"));
             break;
         }
         case contentType::sigpatches: {
-            createSubTitle(subTitle, "Mettre à jour les Sigpacthes");
+            createSubTitle(subTitle, "menu/update/subtitle_sigpatches"_i18n);
             description->setText("menu/description/sigpatches"_i18n);
             break;
         }
@@ -93,7 +92,7 @@ void UpdateTab::createList(contentType type) {
                 continue;
             }
             const std::string url = link.second;
-            const std::string text("Téléchargement de " + title + " Lien compet:\n " + url);
+            const std::string text("menu/update/download_text"_i18n + "\n" +title + "menu/update/link_text"_i18n + url);
             //Create one button with the name of the release
             listItem = new brls::ListItem(link.first);
             listItem->setHeight(50);
@@ -101,26 +100,26 @@ void UpdateTab::createList(contentType type) {
             listItem->getClickEvent()->subscribe([this, type, text, url, title](brls::View* view) {
                 //Create a Staged Applet Frame
                 brls::StagedAppletFrame* stagedFrame = new brls::StagedAppletFrame();
-                stagedFrame->setTitle(fmt::format("Téléchargement de {}", contentTypeNames[(int)type].data()));
+                stagedFrame->setTitle(fmt::format("{}{}","menu/update/download_text",contentTypeNames[(int)type].data()));
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));
                 //Create a Download Page
-                stagedFrame->addStage(new WorkerPage(stagedFrame, "Téléchargement...", [this, type, url]() {util::downloadArchive(url, type); }));
+                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download", [this, type, url]() {util::downloadArchive(url, type); }));
                 //Create an extract Page
                 if (type != contentType::app){
-                    stagedFrame->addStage(new WorkerPage(stagedFrame, "Extraction en cours..", [this, type]() {
+                    stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
                         util::extractArchive(type);
                     }));
                 }
 
                 //Done messages
-                std::string doneMsg = "Téléchargement terminé !";
+                std::string doneMsg = "menu/update/download_finish"_i18n;
                 switch(type) {
                     case contentType::firmwares: {
                         std::string contentsPath = util::getContentsPath();
                         for (const auto& tid : {"0100000000001000", "0100000000001007", "0100000000001013"}) {
                             if (std::filesystem::exists(contentsPath + tid) && !std::filesystem::is_empty(contentsPath + tid)) {
-                                doneMsg += "\nIl semblerait que vous avez installé un thème personnalisé, cela pourrait empêcher le système de démarrer après la mise à jour de votre firmware.\nIl est conseillé de le supprimer avant d'effectuer la mise à jour.";
+                                stagedFrame->addStage(new DialoguePage_theme(stagedFrame, (doneMsg + "menu/update/theme_installed"_i18n)));
                                 break;
                             }
                         }
@@ -133,15 +132,15 @@ void UpdateTab::createList(contentType type) {
                         break;
                     }
                     case contentType::sigpatches:
-                        doneMsg += "\nVotre console dois redémarrer pour appliquer les patchs de signature.";
+                        doneMsg += ("\n" + "menu/update/apply_cfw"_i18n);
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, true, util::isErista()));
                         break;
                     case contentType::ams_cfw:
-                        doneMsg += "\nVotre console dois redémarrer pour appliquer les patchs de signature.";
+                        doneMsg += ("\n" + "menu/update/apply_pacth"_i18n);
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, true, util::isErista()));
                         break;    
                     case contentType::app:
-                        doneMsg += "\nL'hombrew doit redémarrer.";
+                        doneMsg += ("\n" + "menu/update/apply_app"_i18n);
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, false, util::isErista(), true));
                         break;
                 }
@@ -160,7 +159,7 @@ void UpdateTab::displayNotFound()
 {
     brls::Label* notFound = new brls::Label(
         brls::LabelStyle::SMALL,
-        "Aucun résultat",
+        "menu/error/links_not_found"_i18n,
         true);
     notFound->setHorizontalAlign(NVG_ALIGN_CENTER);
     this->addView(notFound);
