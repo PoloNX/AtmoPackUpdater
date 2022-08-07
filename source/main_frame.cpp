@@ -15,8 +15,6 @@ MainFrame::MainFrame() : TabFrame() {
     nlohmann::ordered_json nxlinks;
     net::getRequest(NXLINKS_URL, nxlinks);
 
-    this->setTitle("AtmoPackUpdater");
-
     this->addTab("menu/tab/pack"_i18n, new UpdateTab(contentType::ams_cfw, nxlinks));
 
     this->addTab("menu/tab/app"_i18n, new UpdateTab(contentType::app, nxlinks));
