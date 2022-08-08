@@ -50,9 +50,9 @@ There is no issue :o (For how long?)
 
 ## Credits 📜 
 
-- Thanks [SciresM](https://github.com/SciresM) for [reboot_to_payload](https://github.com/Atmosphere-NX/Atmosphere/tree/master/troposphere/reboot_to_payload)
-- Thanks [THZoria](https://github.com/THZoria/THZoria) for his [pack](https://github.com/THZoria/AtmoPack-Vanilla)
-- Thanks [Team Neptune](https://github.com/Team-Neptune) for your [rcm payload](https://github.com/Team-Neptune/DeepSea-Updater/tree/master/rcm)
-- Thanks [HamletDuFromage](https://github.com/HamletDuFromage) for your [.nro](https://github.com/HamletDuFromage/aio-switch-updater) wich helped me.
+- Thanks to [SciresM](https://github.com/SciresM) for [reboot_to_payload](https://github.com/Atmosphere-NX/Atmosphere/tree/master/troposphere/reboot_to_payload)
+- Thanks to [THZoria](https://github.com/THZoria/THZoria) for his [pack](https://github.com/THZoria/AtmoPack-Vanilla)
+- Thanks to [Team Neptune](https://github.com/Team-Neptune) for your [rcm payload](https://github.com/Team-Neptune/DeepSea-Updater/tree/master/rcm)
+- Thanks to [HamletDuFromage](https://github.com/HamletDuFromage) for your [.nro](https://github.com/HamletDuFromage/aio-switch-updater) wich helped me.
 
 ## if you like my works you can star this repo 🌟
