@@ -10,7 +10,7 @@
 constexpr size_t WRITE_BUFFER_SIZE = 0x100000;
 
 namespace extract {
-    int unzip(const std::string &file, const std::string &output) {
+    int unzip(const std::string &file, const std::string &output, const bool overwrite_inis) {
         //chdir(output.c_str());
         std::cout << "avant open" << std::endl;
         unzFile zfile = unzOpen(file.c_str());
@@ -36,6 +36,12 @@ namespace extract {
             else {
                 FILE *outfile;
                 void *buf = malloc(WRITE_BUFFER_SIZE);
+
+                if (overwrite_inis){
+                    if (filename_inzip_s.find(".ini")) {
+                        continue;
+                    }
+                }
 
                 if ((filename_inzip_s == "atmosphere/package3") || (filename_inzip_s == "switch/AtmoPackUpdater.nro") || (filename_inzip_s == "atmosphere/stratosphere.romfs")) {
                     outfile = fopen((filename_inzip_s + ".temp").c_str(), "wb");

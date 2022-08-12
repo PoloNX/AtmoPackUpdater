@@ -12,6 +12,9 @@
 #include <fstream>
 #include <thread>
 
+namespace i18n = brls::i18n;
+using namespace i18n::literals;
+
 namespace util {
     void createTree(std::string path)
     {
@@ -96,16 +99,41 @@ namespace util {
         }
     }
 
+    bool showDialogBoxBlocking(const std::string& text, const std::string& opt1, const std::string& opt2)
+    {
+        bool result = false;
+        brls::Dialog* dialog = new brls::Dialog(text);
+        brls::GenericEvent::Callback callback1 = [dialog, &result](brls::View* view) {
+            result = true;
+            dialog->close();
+        };
+        brls::GenericEvent::Callback callback2 = [dialog, &result](brls::View* view) {
+            result = false;
+            dialog->close();
+        };
+        dialog->addButton(opt1, callback1);
+        dialog->addButton(opt2, callback2);
+        dialog->setCancelable(false);
+        dialog->open();
+        while (result == false) {
+            std::this_thread::sleep_for(std::chrono::microseconds(10));
+        }
+        std::this_thread::sleep_for(std::chrono::microseconds(800000));
+        return result;
+    }
+
     void extractArchive(contentType type) {
         switch(type) {
-            case contentType::ams_cfw:
-                extract::unzip(AMS_DOWNLOAD_PATH, ROOT);
+            case contentType::ams_cfw: {
+                bool overwrite = showDialogBoxBlocking("menu/dialog/overwrite_ini"_i18n, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
+                extract::unzip(AMS_DOWNLOAD_PATH, ROOT, overwrite);
                 break;
+            }
             case contentType::sigpatches:
-                extract::unzip(SIG_DOWNLOAD_PATH, ROOT);
+                extract::unzip(SIG_DOWNLOAD_PATH, ROOT, false);
                 break;
             case contentType::firmwares:
-                extract::unzip(FIR_DOWNLOAD_PATH, ROOT);
+                extract::unzip(FIR_DOWNLOAD_PATH, ROOT, false);
                 break;
             case contentType::app:
                 cp("romfs:/forwarder/amssu-forwarder.nro", "/config/AtmoPackUpdater/amssu-forwarder.nro");

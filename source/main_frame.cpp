@@ -26,9 +26,9 @@ MainFrame::MainFrame() : TabFrame() {
 
     this->addSeparator();
 
-    this->addTab("menu/tab/credits"_i18n, new CreditsTab());
-
     this->addTab("menu/tab/settings"_i18n, new SettingsTab());
+
+    this->addTab("menu/tab/credits"_i18n, new CreditsTab());
 
     this->registerAction("", brls::Key::B, [this] { return true; });
 }

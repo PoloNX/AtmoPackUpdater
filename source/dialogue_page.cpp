@@ -118,7 +118,6 @@ void DialoguePage_fw::draw(NVGcontext* vg, int x, int y, unsigned width, unsigne
 }
 
 void DialoguePage_theme::instantiateButtons() {
-    std::string contentsPath = util::getContentsPath();
     this->button1->getClickEvent()->subscribe([this](View* view) {
         util::deleteTheme();
         if (!frame->isLastStage()){

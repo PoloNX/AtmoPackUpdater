@@ -24,6 +24,7 @@ void SettingsTab::createList() {
             case str2int("dns"): {
                 title = "menu/settings/90dns"_i18n;
                 listItem = new brls::ListItem(title);
+                listItem->setHeight(50);
 
                 listItem->getClickEvent()->subscribe([](brls::View* view) {
                     if (util::set90dns()){
@@ -40,6 +41,7 @@ void SettingsTab::createList() {
             case str2int("theme"): {
                 title = "menu/settings/theme"_i18n;
                 listItem = new brls::ListItem(title);
+                listItem->setHeight(50);
 
                 listItem->getClickEvent()->subscribe([](brls::View* view) {
                     if (util::deleteTheme()){
@@ -49,6 +51,19 @@ void SettingsTab::createList() {
                         brls::Application::notify("menu/settings/theme_delete_fail"_i18n);
                     }
                 }); 
+                this->addView(listItem);
+                break;
+            }
+
+            case str2int("clear"): {
+                title = "menu/settings/clear"_i18n;
+                listItem = new brls::ListItem(title);
+                listItem->setHeight(50);
+
+                listItem->getClickEvent()->subscribe([](brls::View* view) {
+                    util::extractArchive(contentType::app);
+                    brls::Application::notify("menu/settings/clear_fail"_i18n);
+                });
                 this->addView(listItem);
                 break;
             }

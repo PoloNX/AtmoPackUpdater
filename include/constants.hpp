@@ -10,11 +10,10 @@ enum class contentType
 };
 
 
-const std::vector<std::string> contentSettings = {"dns", "theme"};
+const std::vector<std::string> contentSettings = {"dns", "theme", "clear"};
 
 
 const std::string APP_VER = "1.1.0"; 
-constexpr std::string_view contentSettingsNames[2]{"dns", "theme"};
 constexpr std::string_view contentTypeNames[4]{"ams_cfw", "app", "firmwares", "sigpatches"};
 
 //Path for the download

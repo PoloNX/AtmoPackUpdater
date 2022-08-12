@@ -6,6 +6,8 @@
 #include "reboot.hpp"
 #include "dialogue_page.hpp"
 
+#include <algorithm>
+#include <iostream>
 #include <string>
 #include <filesystem>
 
@@ -31,6 +33,7 @@ void createSubTitle(brls::Label* &subtitle, const std::string& text) {
     subtitle->setHorizontalAlign(NVG_ALIGN_CENTER);
 }
 
+
 void UpdateTab::setDescription(contentType type) {
     brls::Label* description = new brls::Label(
         brls::LabelStyle::DESCRIPTION,
@@ -44,7 +47,7 @@ void UpdateTab::setDescription(contentType type) {
         true
     );
 
-    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()));;
+    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()));
     
     switch(type) {
         case contentType::ams_cfw: {
@@ -73,7 +76,6 @@ void UpdateTab::setDescription(contentType type) {
 
     this->addView(subTitle);
     this->addView(description);
-
 }
 
 void UpdateTab::createList() {
@@ -88,11 +90,11 @@ void UpdateTab::createList(contentType type) {
         for (const auto& link : links) {
             //Create some strings from json
             std::string title = link.first;
-            if (title == "version"){
+            if (title == "version") {
                 continue;
             }
             const std::string url = link.second;
-            const std::string text("menu/update/download_text"_i18n + "\n" +title + "menu/update/link_text"_i18n + url);
+            const std::string text("menu/update/download_text"_i18n + "\n" +title + "\n" + "menu/update/link_text"_i18n + url);
             //Create one button with the name of the release
             listItem = new brls::ListItem(link.first);
             listItem->setHeight(50);
@@ -104,9 +106,9 @@ void UpdateTab::createList(contentType type) {
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));
                 //Create a Download Page
-                //stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
+                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
                 //Create an extract Page
-                if (type != contentType::app){
+                if (type != contentType::app) {
                     stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
                         util::extractArchive(type);
                     }));

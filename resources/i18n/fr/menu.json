@@ -33,7 +33,8 @@
     "app": "Update l'app",
     "firmwares": "Update le firmware",
     "sigpatches": "Update les sigpatches",
-    "credits": "Crédits"
+    "credits": "Crédits",
+    "settings": "Paramètres"
   },
 
   "about": {
@@ -57,5 +58,22 @@
   "worker": {
     "cancel": "Anuller",
     "of": "sur"
+  },
+
+  "settings": {
+    "90dns": "Appliquer 90dns (anti-ban)",
+    "90dns_set": "Application de 90dns réalisée avec succès",
+    "90dns_set_fail": "L'application de 90dns a échoué. Avez-vous un réseau internet configuré ?",
+    "theme": "Supprimer le thème actuel",
+    "theme_delete": "Suppression du thème réalisée avec succès. Redémarrer pour voir les effets",
+    "theme_delete_fail": "Impossible de supprimer le thème. Avez vous un thème actuellement?",
+    "clear": "Raffraichir les données de AtmoPackUpdater",
+    "clear_fail": "Impossible de raffraichir les données.."
+  },
+
+  "dialog": {
+    "overwrite_ini": "Voulez écrire par dessus vos .ini déjà enregistrés?",
+    "yes": "Oui",
+    "no": "Non"
   }
 }
