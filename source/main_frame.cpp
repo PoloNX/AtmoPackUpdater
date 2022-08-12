@@ -2,6 +2,7 @@
 #include "update_tab.hpp"
 #include "about_tab.hpp"
 #include "download.hpp"
+#include "settings_tab.hpp"
 #include <iostream>
 
 namespace i18n = brls::i18n;
@@ -26,6 +27,8 @@ MainFrame::MainFrame() : TabFrame() {
     this->addSeparator();
 
     this->addTab("menu/tab/credits"_i18n, new CreditsTab());
+
+    this->addTab("menu/tab/settings"_i18n, new SettingsTab());
 
     this->registerAction("", brls::Key::B, [this] { return true; });
 }

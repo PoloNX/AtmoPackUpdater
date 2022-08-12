@@ -18,4 +18,6 @@ namespace util {
     bool isErista();
     bool cp(char *filein, char *fileout);
     std::string getPackVersion();
+    bool set90dns();
+    bool deleteTheme();
 }

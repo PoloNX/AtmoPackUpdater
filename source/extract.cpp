@@ -2,15 +2,17 @@
 #include <string>
 #include <string.h>
 #include <dirent.h>
+#include <iostream>
 
 #include "extract.hpp"
 #include "progress_event.hpp"
 
-constexpr size_t WRITE_BUFFER_SIZE = 0x1000000;
+constexpr size_t WRITE_BUFFER_SIZE = 0x100000;
 
 namespace extract {
     int unzip(const std::string &file, const std::string &output) {
-        chdir(output.c_str());
+        //chdir(output.c_str());
+        std::cout << "avant open" << std::endl;
         unzFile zfile = unzOpen(file.c_str());
         unz_global_info gi = {0};
         unzGetGlobalInfo(zfile, &gi);
@@ -18,7 +20,7 @@ namespace extract {
         ProgressEvent::instance().setTotalSteps(gi.number_entry);
         ProgressEvent::instance().setStep(0);
 
-        for (int i = 0; i < gi.number_entry; ++i) {
+        for (uLong i = 0; i < gi.number_entry; ++i) {
             char filename_inzip[0x301] = {0};
             unz_file_info file_info = {0};
             unzOpenCurrentFile(zfile);
@@ -27,6 +29,8 @@ namespace extract {
 
             if (filename_inzip[strlen(filename_inzip) - 1] == '/') {
                 DIR *dir = opendir(filename_inzip);
+                if(dir) closedir(dir);
+                else mkdir(filename_inzip, 0777);
             }
 
             else {
@@ -38,8 +42,9 @@ namespace extract {
                 }
 
                 else {
-                    outfile = fopen(filename_inzip, "wb");
+                    outfile = fopen(filename_inzip_s.c_str(), "wb");
                 }
+
                 for (int j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE); j > 0; j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE)) {
                     fwrite(buf, 1, j, outfile);
                 }
@@ -54,7 +59,7 @@ namespace extract {
         }
         
         unzClose(zfile);
-        remove(file.c_str());
+        //remove(file.c_str());
         ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
 
         return 0;

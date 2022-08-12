@@ -9,8 +9,12 @@ enum class contentType
     sigpatches,
 };
 
-const std::string APP_VER = "1.0.0"; 
 
+const std::vector<std::string> contentSettings = {"dns", "theme"};
+
+
+const std::string APP_VER = "1.1.0"; 
+constexpr std::string_view contentSettingsNames[2]{"dns", "theme"};
 constexpr std::string_view contentTypeNames[4]{"ams_cfw", "app", "firmwares", "sigpatches"};
 
 //Path for the download

@@ -118,10 +118,9 @@ void DialoguePage_fw::draw(NVGcontext* vg, int x, int y, unsigned width, unsigne
 }
 
 void DialoguePage_theme::instantiateButtons() {
+    std::string contentsPath = util::getContentsPath();
     this->button1->getClickEvent()->subscribe([this](View* view) {
-        std::filesystem::remove_all("0100000000001000");
-        std::filesystem::remove_all("0100000000001007");
-        std::filesystem::remove_all("0100000000001013");
+        util::deleteTheme();
         if (!frame->isLastStage()){
             frame->nextStage();
         }

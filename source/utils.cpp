@@ -160,4 +160,106 @@ namespace util {
 	return true;
 }
 
+    bool set90dns() {
+        Result res = 0;
+        SetRegion region;
+        u32 europeDns = 0xdb8daca3; // 163.172.141.219
+        u32 americaDns = 0x4d79f6cf; // 207.246.121.77
+
+        u32 primaryDns = 0;
+        u32 secondaryDns = 0;
+        res = setInitialize();
+        if (res){
+            setExit();
+            setsysExit();
+            return false;
+        }
+        else {
+            res = setsysInitialize();
+            if (res){
+                setExit();
+                setsysExit();
+                return false;
+            }
+            else {
+                res = setGetRegionCode(&region);
+                if (res){
+                    setExit();
+                    setsysExit();
+                    return false;
+                }
+                else {
+                    if (region <= SetRegion_CHN){
+                        if (region == SetRegion_USA){
+                            primaryDns = americaDns;
+                            secondaryDns = europeDns;
+                        }
+                        else {
+                            primaryDns = europeDns;
+                            secondaryDns = americaDns;
+                        }
+                    }
+                    else {
+                        primaryDns = europeDns;
+                        secondaryDns = americaDns;
+                    }
+                    
+                }
+            }
+        }
+
+        SetSysNetworkSettings* wifiSettings = (SetSysNetworkSettings*) malloc(sizeof(SetSysNetworkSettings) * 0x200);
+
+        if (wifiSettings != NULL){
+            s32 entryCount = 0;
+            res = setsysGetNetworkSettings(&entryCount, wifiSettings, 0x200);
+            if (res){
+                free(wifiSettings);
+                setExit();
+                setsysExit();
+                return false;
+            }
+            else {
+                for (int i = 0; i < entryCount; i++){
+                    wifiSettings[i].primary_dns = primaryDns;
+                    wifiSettings[i].secondary_dns = secondaryDns;
+                    wifiSettings[i].auto_settings &= ~SetSysAutoSettings_AutoDns;
+                }
+
+                if (entryCount){
+                    res = setsysSetNetworkSettings(wifiSettings, entryCount);
+                    if (res){
+                        free(wifiSettings);
+                        setExit();
+                        setsysExit();
+                        return false;
+                    }
+                }
+            }
+        }
+        free(wifiSettings);
+
+        setExit();
+        setsysExit();
+        return true;
+    }
+
+    bool deleteTheme() {
+        std::string contentsPath = util::getContentsPath();
+        bool themeDeleted = false;
+        for (const auto& tid : {"0100000000001000/romfs/lyt", "0100000000001007/romfs/lyt", "0100000000001013/romfs/lyt"}) {
+            if (std::filesystem::exists(contentsPath + tid) && !std::filesystem::is_empty(contentsPath + tid)) {
+                themeDeleted = true;
+            }
+        }
+        if (themeDeleted){
+            std::filesystem::remove_all("atmosphere/contents/0100000000001000/romfs/lyt");
+            std::filesystem::remove_all("atmosphere/contents/0100000000001007/romfs/lyt");
+            std::filesystem::remove_all("atmosphere/contents/0100000000001013/romfs/lyt");
+            return true;
+        }
+        else    
+            return false;
+    }
+
 }

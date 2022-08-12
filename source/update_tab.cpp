@@ -104,7 +104,7 @@ void UpdateTab::createList(contentType type) {
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));
                 //Create a Download Page
-                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
+                //stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
                 //Create an extract Page
                 if (type != contentType::app){
                     stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
@@ -117,7 +117,7 @@ void UpdateTab::createList(contentType type) {
                 switch(type) {
                     case contentType::firmwares: {
                         std::string contentsPath = util::getContentsPath();
-                        for (const auto& tid : {"0100000000001000", "0100000000001007", "0100000000001013"}) {
+                        for (const auto& tid : {"0100000000001000/romfs/lyt", "0100000000001007/romfs/lyt", "0100000000001013/romfs/lyt"}) {
                             if (std::filesystem::exists(contentsPath + tid) && !std::filesystem::is_empty(contentsPath + tid)) {
                                 stagedFrame->addStage(new DialoguePage_theme(stagedFrame, (doneMsg + "menu/update/theme_installed"_i18n)));
                                 break;
