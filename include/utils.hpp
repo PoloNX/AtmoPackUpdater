@@ -20,5 +20,5 @@ namespace util {
     std::string getPackVersion();
     bool set90dns();
     bool deleteTheme();
-    bool showDialogBoxBlocking(const std::string& text, const std::string& opt1, const std::string& opt2);
+    int showDialogBoxBlocking(const std::string& text, const std::string& opt1, const std::string& opt2);
 }

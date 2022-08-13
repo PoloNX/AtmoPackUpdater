@@ -4,5 +4,5 @@
 #include <switch.h>
 
 namespace extract {
-    int unzip(const std::string &file, const std::string &output, const bool overwrite_inis);
+    int unzip(const std::string &file, const std::string &output, const int overwrite_inis);
 }

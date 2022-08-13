@@ -99,23 +99,23 @@ namespace util {
         }
     }
 
-    bool showDialogBoxBlocking(const std::string& text, const std::string& opt1, const std::string& opt2)
+    int showDialogBoxBlocking(const std::string& text, const std::string& opt1, const std::string& opt2)
     {
-        bool result = false;
+        int result = -1;
         brls::Dialog* dialog = new brls::Dialog(text);
         brls::GenericEvent::Callback callback1 = [dialog, &result](brls::View* view) {
-            result = true;
+            result = 0;
             dialog->close();
         };
         brls::GenericEvent::Callback callback2 = [dialog, &result](brls::View* view) {
-            result = false;
+            result = 1;
             dialog->close();
         };
         dialog->addButton(opt1, callback1);
         dialog->addButton(opt2, callback2);
         dialog->setCancelable(false);
         dialog->open();
-        while (result == false) {
+        while (result == -1) {
             std::this_thread::sleep_for(std::chrono::microseconds(10));
         }
         std::this_thread::sleep_for(std::chrono::microseconds(800000));
@@ -125,15 +125,15 @@ namespace util {
     void extractArchive(contentType type) {
         switch(type) {
             case contentType::ams_cfw: {
-                bool overwrite = showDialogBoxBlocking("menu/dialog/overwrite_ini"_i18n, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
-                extract::unzip(AMS_DOWNLOAD_PATH, ROOT, overwrite);
+                int overwriteInis = showDialogBoxBlocking("menu/dialog/overwrite_ini"_i18n, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
+                extract::unzip(AMS_DOWNLOAD_PATH, ROOT, overwriteInis);
                 break;
             }
             case contentType::sigpatches:
-                extract::unzip(SIG_DOWNLOAD_PATH, ROOT, false);
+                extract::unzip(SIG_DOWNLOAD_PATH, ROOT, 1);
                 break;
             case contentType::firmwares:
-                extract::unzip(FIR_DOWNLOAD_PATH, ROOT, false);
+                extract::unzip(FIR_DOWNLOAD_PATH, ROOT, 1);
                 break;
             case contentType::app:
                 cp("romfs:/forwarder/amssu-forwarder.nro", "/config/AtmoPackUpdater/amssu-forwarder.nro");

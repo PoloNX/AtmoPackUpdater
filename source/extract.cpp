@@ -9,10 +9,15 @@
 
 constexpr size_t WRITE_BUFFER_SIZE = 0x100000;
 
+inline bool ends_with(std::string const & value, std::string const & ending)
+{
+    if (ending.size() > value.size()) return false;
+    return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
+}
+
 namespace extract {
-    int unzip(const std::string &file, const std::string &output, const bool overwrite_inis) {
-        //chdir(output.c_str());
-        std::cout << "avant open" << std::endl;
+    int unzip(const std::string &file, const std::string &output, const int overwrite_inis) {
+        chdir(output.c_str());
         unzFile zfile = unzOpen(file.c_str());
         unz_global_info gi = {0};
         unzGetGlobalInfo(zfile, &gi);
@@ -30,18 +35,23 @@ namespace extract {
             if (filename_inzip[strlen(filename_inzip) - 1] == '/') {
                 DIR *dir = opendir(filename_inzip);
                 if(dir) closedir(dir);
-                else mkdir(filename_inzip, 0777);
+                else {
+                    mkdir(filename_inzip, 0777);
+                }
             }
 
             else {
-                FILE *outfile;
-                void *buf = malloc(WRITE_BUFFER_SIZE);
-
-                if (overwrite_inis){
-                    if (filename_inzip_s.find(".ini")) {
+                if (overwrite_inis == 1){
+                    if (ends_with(filename_inzip_s, ".ini")) {
+                        ProgressEvent::instance().incrementStep(1);
+                        unzCloseCurrentFile(zfile);
+                        unzGoToNextFile(zfile);
                         continue;
                     }
                 }
+
+                FILE *outfile;
+                void *buf = malloc(WRITE_BUFFER_SIZE);
 
                 if ((filename_inzip_s == "atmosphere/package3") || (filename_inzip_s == "switch/AtmoPackUpdater.nro") || (filename_inzip_s == "atmosphere/stratosphere.romfs")) {
                     outfile = fopen((filename_inzip_s + ".temp").c_str(), "wb");
