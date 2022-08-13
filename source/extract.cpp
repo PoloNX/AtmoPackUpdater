@@ -75,7 +75,7 @@ namespace extract {
         }
         
         unzClose(zfile);
-        //remove(file.c_str());
+        remove(file.c_str());
         ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
 
         return 0;
