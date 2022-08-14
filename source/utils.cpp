@@ -290,4 +290,12 @@ namespace util {
             return false;
     }
 
+    std::string getAppPath() {
+         if (envHasArgv()) {
+            std::string argv = (char*)envGetArgv();
+            return fs::splitString(argv, '\"')[1].substr(5);
+        }
+        return NRO_PATH;
+    }
+
 }

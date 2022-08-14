@@ -14,4 +14,5 @@ namespace fs {
     void createTree(std::string path);
     std::set<std::string> readLineByLine(const std::string& path);
     Result getFreeStorageSD(s64& free);
+    std::vector<std::string> splitString(const std::string& s, char delimiter);
 }  // namespace fs

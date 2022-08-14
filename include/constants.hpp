@@ -17,6 +17,7 @@ const std::string APP_VER = "1.1.0";
 constexpr std::string_view contentTypeNames[4]{"ams_cfw", "app", "firmwares", "sigpatches"};
 
 //Path for the download
+const std::string NRO_PATH =              "/switch/AtmoPackUpdater/AtmoPackUpdater.nro";
 const std::string AMS_DOWNLOAD_PATH =     "/config/AtmoPackUpdater/ams.zip";
 const std::string SIG_DOWNLOAD_PATH =     "/config/AtmoPackUpdater/sig.zip";
 const std::string FIR_DOWNLOAD_PATH =     "/config/AtmoPackUpdater/fir.zip";

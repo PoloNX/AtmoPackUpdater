@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <iostream>
 
+#include "utils.hpp"
 #include "extract.hpp"
 #include "progress_event.hpp"
 
@@ -25,12 +26,19 @@ namespace extract {
         ProgressEvent::instance().setTotalSteps(gi.number_entry);
         ProgressEvent::instance().setStep(0);
 
+        std::string appPath = util::getAppPath();
+
         for (uLong i = 0; i < gi.number_entry; ++i) {
             char filename_inzip[0x301] = {0};
             unz_file_info file_info = {0};
             unzOpenCurrentFile(zfile);
             unzGetCurrentFileInfo(zfile, &file_info, filename_inzip, sizeof(filename_inzip), NULL, 0, NULL, 0);
             std::string filename_inzip_s = filename_inzip;
+
+            if (ProgressEvent::instance().getInterupt()) {
+                unzCloseCurrentFile(zfile);
+                break;
+            }
 
             if (filename_inzip[strlen(filename_inzip) - 1] == '/') {
                 DIR *dir = opendir(filename_inzip);
@@ -41,34 +49,35 @@ namespace extract {
             }
 
             else {
-                if (overwrite_inis == 1){
-                    if (ends_with(filename_inzip_s, ".ini")) {
-                        ProgressEvent::instance().incrementStep(1);
-                        unzCloseCurrentFile(zfile);
-                        unzGoToNextFile(zfile);
-                        continue;
+                if (appPath != output + filename_inzip_s) {
+                    if (overwrite_inis == 1){
+                        if (ends_with(filename_inzip_s, ".ini")) {
+                            ProgressEvent::instance().incrementStep(1);
+                            unzCloseCurrentFile(zfile);
+                            unzGoToNextFile(zfile);
+                            continue;
+                        }
                     }
-                }
 
-                FILE *outfile;
-                void *buf = malloc(WRITE_BUFFER_SIZE);
+                    FILE *outfile;
+                    void *buf = malloc(WRITE_BUFFER_SIZE);
 
-                if ((filename_inzip_s == "atmosphere/package3") || (filename_inzip_s == "switch/AtmoPackUpdater.nro") || (filename_inzip_s == "switch/AtmoPackUpdater/AtmoPackUpdater.nro") || (filename_inzip_s == "atmosphere/stratosphere.romfs")) {
-                    outfile = fopen((filename_inzip_s + ".temp").c_str(), "wb");
-                }
+                    if ((filename_inzip_s == "atmosphere/package3") || (filename_inzip_s == "switch/AtmoPackUpdater.nro") || (filename_inzip_s == "switch/AtmoPackUpdater/AtmoPackUpdater.nro") || (filename_inzip_s == "atmosphere/stratosphere.romfs")) {
+                        outfile = fopen((filename_inzip_s + ".temp").c_str(), "wb");
+                    }
 
-                else {
-                    outfile = fopen(filename_inzip_s.c_str(), "wb");
-                }
+                    else {
+                        outfile = fopen(filename_inzip_s.c_str(), "wb");
+                    }
 
-                for (int j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE); j > 0; j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE)) {
-                    fwrite(buf, 1, j, outfile);
+                    for (int j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE); j > 0; j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE)) {
+                        fwrite(buf, 1, j, outfile);
+                    }
+        
+                    fclose(outfile);
+                    free(buf);
                 }
-    
-                fclose(outfile);
-                free(buf);
             }
-
             ProgressEvent::instance().incrementStep(1);
             unzCloseCurrentFile(zfile);
             unzGoToNextFile(zfile);
