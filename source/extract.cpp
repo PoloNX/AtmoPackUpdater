@@ -70,6 +70,7 @@ namespace extract {
                         outfile = fopen(filename_inzip_s.c_str(), "wb");
                     }
 
+                    std::cout << filename_inzip_s << std::endl;
                     for (int j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE); j > 0; j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE)) {
                         fwrite(buf, 1, j, outfile);
                     }
