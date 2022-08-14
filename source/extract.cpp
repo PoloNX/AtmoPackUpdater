@@ -62,7 +62,7 @@ namespace extract {
                     FILE *outfile;
                     void *buf = malloc(WRITE_BUFFER_SIZE);
 
-                    if ((filename_inzip_s == "atmosphere/package3") || (filename_inzip_s == "switch/AtmoPackUpdater.nro") || (filename_inzip_s == "switch/AtmoPackUpdater/AtmoPackUpdater.nro") || (filename_inzip_s == "atmosphere/stratosphere.romfs")) {
+                    if ((filename_inzip_s == "atmosphere/package3") || (filename_inzip_s == "version.txt") ||(filename_inzip_s == "switch/AtmoPackUpdater.nro") || (filename_inzip_s == "switch/AtmoPackUpdater/AtmoPackUpdater.nro") || (filename_inzip_s == "atmosphere/stratosphere.romfs")) {
                         outfile = fopen((filename_inzip_s + ".temp").c_str(), "wb");
                     }
 
