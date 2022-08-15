@@ -28,7 +28,7 @@ namespace extract {
 
         std::string appPath = util::getAppPath();
 
-        for (uLong i = 0; i < gi.number_entry; ++i) {
+        for (uLong i = 0; i < gi.number_entry + 1; ++i) {
             char filename_inzip[0x301] = {0};
             unz_file_info file_info = {0};
             unzOpenCurrentFile(zfile);
