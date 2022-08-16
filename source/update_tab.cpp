@@ -102,6 +102,7 @@ void UpdateTab::createList(contentType type) {
             listItem->getClickEvent()->subscribe([this, type, text, url, title](brls::View* view) {
                 //Create a Staged Applet Frame
                 brls::StagedAppletFrame* stagedFrame = new brls::StagedAppletFrame();
+                //Set a title
                 stagedFrame->setTitle(fmt::format("{}{}","menu/update/download_text"_i18n, contentTypeNames[(int)type].data()));
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));

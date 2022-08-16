@@ -2,6 +2,7 @@
 #include "update_tab.hpp"
 #include "about_tab.hpp"
 #include "download.hpp"
+#include "utils.hpp"
 #include "settings_tab.hpp"
 #include <iostream>
 

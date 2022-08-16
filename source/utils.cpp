@@ -122,6 +122,22 @@ namespace util {
         return result;
     }
 
+    int showDialogBoxBlocking(const std::string& text, const std::string& opt)
+    {
+        brls::Dialog* dialog = new brls::Dialog(text);
+        brls::GenericEvent::Callback callback = [dialog](brls::View* view) {
+            dialog->close();
+        };
+        dialog->addButton(opt, callback);
+        dialog->setCancelable(true);
+        dialog->open();
+        while(true) {
+            std::this_thread::sleep_for(std::chrono::microseconds(10));
+        }
+        std::this_thread::sleep_for(std::chrono::microseconds(800000));
+        return 0;
+    }
+
     void extractArchive(contentType type) {
         switch(type) {
             case contentType::ams_cfw: {
@@ -133,7 +149,7 @@ namespace util {
                 extract::unzip(SIG_DOWNLOAD_PATH, ROOT, 1);
                 break;
             case contentType::firmwares:
-                extract::unzip(FIR_DOWNLOAD_PATH, ROOT, 1);
+                extract::unzip(FIR_DOWNLOAD_PATH, "/firmware/", 1);
                 break;
             case contentType::app:
                 cp("romfs:/forwarder/amssu-forwarder.nro", "/config/AtmoPackUpdater/amssu-forwarder.nro");
@@ -298,4 +314,8 @@ namespace util {
         return NRO_PATH;
     }
 
+    bool isExfat() {
+        bool exfat_support = fsIsExFatSupported(&exfat_support);
+        return exfat_support;
+    }
 }

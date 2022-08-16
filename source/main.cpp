@@ -4,6 +4,8 @@
 
 #include "main_frame.hpp"
 #include "constants.hpp"
+#include "utils.hpp"
+#include "warning_page.hpp"
 
 #include <borealis.hpp>
 
@@ -32,7 +34,12 @@ int main() {
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
     brls::Logger::debug("Start");
 
-    brls::Application::pushView(new MainFrame());
+    if (!util::isExfat()) {
+        brls::Application::pushView(new MainFrame());
+    } else {
+        brls::Application::pushView(new WarningPage("menu/error/exfat"_i18n));
+    }
+
 
     while (brls::Application::mainLoop()) {
         ;
