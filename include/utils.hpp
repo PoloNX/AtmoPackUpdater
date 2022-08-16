@@ -21,5 +21,7 @@ namespace util {
     bool set90dns();
     bool deleteTheme();
     int showDialogBoxBlocking(const std::string& text, const std::string& opt1, const std::string& opt2);
+    int showDialogBoxBlocking(const std::string& text, const std::string& opt);
     std::string getAppPath();
+    bool isExfat();
 }

@@ -23,7 +23,7 @@ CreditsTab::CreditsTab () : brls::List () {
     this->addView(copyright);
 
     // Links
-    this->addView(new brls::Header("Remerciement à :"));
+    this->addView(new brls::Header("menu/about/thanks_to"_i18n));
     brls::Label* links = new brls::Label(
         brls::LabelStyle::SMALL,
         "menu/about/thanks"_i18n,
