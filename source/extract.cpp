@@ -44,9 +44,9 @@ void extractEntry(std::string filename, unzFile& zfile)
 namespace extract {
     int unzip(const std::string &file, const std::string &output, const int overwrite_inis) {
         if(!std::filesystem::exists(output)) {
-            std::filesystem::create_directory(output);
+            fs::removeDir(output);
+            fs::createTree(output);
         }
-        chdir(output.c_str());
         unzFile zfile = unzOpen(file.c_str());
         unz_global_info gi = {0};
         unzGetGlobalInfo(zfile, &gi);
@@ -55,6 +55,7 @@ namespace extract {
         ProgressEvent::instance().setStep(0);
 
         std::string appPath = util::getAppPath();
+        std::cout << appPath << std::endl;
 
         for (uLong i = 0; i < gi.number_entry; ++i) {
             char filename_inzip[0x301] = {0};
@@ -68,7 +69,7 @@ namespace extract {
                 break;
             }
 
-            if (appPath != output + filename_inzip_s) {
+            if (GOOD_APP_PATH != output + filename_inzip_s && BAD_APP_PATH != output + filename_inzip_s) {
                 if (overwrite_inis == 1){
                     if (ends_with(filename_inzip_s, ".ini")) {
                         ProgressEvent::instance().incrementStep(1);
@@ -94,8 +95,6 @@ namespace extract {
                     filename_inzip_s.insert(0, output);
                     extractEntry(filename_inzip_s, zfile);
                 }
-                
-
             }
    
             ProgressEvent::instance().incrementStep(1);
@@ -104,7 +103,7 @@ namespace extract {
         }
         
         unzClose(zfile);
-        //remove(file.c_str());
+        remove(file.c_str());
         ProgressEvent::instance().setStep(ProgressEvent::instance().getMax());
 
         return 0;

@@ -13,8 +13,12 @@ enum class contentType
 const std::vector<std::string> contentSettings = {"dns", "theme", "clear"};
 
 
-const std::string APP_VER = "1.2.0"; 
+const std::string APP_VER = "1.3.0"; 
 constexpr std::string_view contentTypeNames[4]{"ams_cfw", "app", "firmwares", "sigpatches"};
+
+//app path
+const std::string GOOD_APP_PATH = "/switch/AtmoPackUpdater/AtmoPackUpdater.nro";
+const std::string BAD_APP_PATH = "/switch/AtmoPackUpdater.nro";
 
 //Path for the download
 const std::string NRO_PATH =              "/switch/AtmoPackUpdater/AtmoPackUpdater.nro";

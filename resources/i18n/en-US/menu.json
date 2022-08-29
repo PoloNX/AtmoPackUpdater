@@ -1,0 +1,82 @@
+{
+    "description": {
+      "sigpatches" : "\u25c6 Sigpatches give the ability to install and launch unofficial NSP files. Reboot your console to apply them.",
+      "pack" : "\u25c6 AtmoPack-Vanilla is a lightweight pack designed to easyly and safely hack your Swich. It provides several usefull homebrews.\nCurrent pack version\u00a0:",
+      "firmwares" : "\u25c6 Firmware archived at 'https://github.com/THZoria/NX_Firmware'. Once downloaded, it will be extracted to '/firmware'. You can then install the update with Daybreak.\n FW installed\u00a0: ",
+      "app" : "\u25c6 You can update the app you're using on your Switch.\n\u25c6 Current app version\u00a0: ",
+      "version" : "\n\u25c6 Available version\u00a0: "
+    },
+  
+    "update": {
+      "subtitle_ams": "Update AtmoPack-Vanilla",
+      "subtitle_app": "Update Application",
+      "subtitle_firmwares": "Update Firmwares",
+      "subtitle_sigpatches": "Update Sigpatches",
+      "download_text": "downloading ",
+      "download": "downloading...",
+      "link_text": "\nFull link:\n",
+      "extract_text": "Extraction pending...",
+      "download_finish": "Download completed !",
+      "theme_installed": "\nIt looks like you have installed a custom theme, it may prevent the system from booting after updating your firmware.\nYou should remove it before performing the update.",
+      "apply_cfw": "Your console must restart to apply the package update.",
+      "apply_patch": "Your console must restart to apply the sigpatches.",
+      "apply_app": "Homebrew must restart to apply the update."
+    },
+  
+    "error": {
+      "exfat": "Your sd card is in exfat format. Using this software may cause corruption due to the instability of the exfat format.",
+      "version_not_found" : "Unable to get available version",
+      "links_not_found" : "Unable to find a download link, please check that your Switch is connected to the Internet.\nIf this problem persists, please open an issue on GitHub."
+    },
+  
+    "tab": {
+      "pack": "Update Pack",
+      "app": "Update App",
+      "firmwares": "Update Firmware",
+      "sigpatches": "Update Sigpatches",
+      "credits": "Credits",
+      "settings": "Settings"
+    },
+  
+    "about": {
+      "credits": "AtmoPackUpdater Credits",
+      "copyright": "Copyright © 2022 PoloNX",
+      "thanks_to": "Thanks to:",
+      "thanks": "THZoria for your AtmoPack-Vanilla\n\nSciresM for reboot_to_payload\n\nTeam Neptune for your rcm payload\n\nHamletDuFromage for your .nro which helped me"
+    },
+  
+    "confirm": {
+      "continue": "Continue",
+      "cancel": "Cancel"
+    },
+  
+    "dialogue": {
+      "yes": "Yes",
+      "no": "No",
+      "launch_daybreak": "Do you want to launch Daybreak?",
+      "delete_theme": "Do you want to remove your theme?"
+    },
+  
+    "worker": {
+      "cancel": "Cancel",
+      "of": "of"
+    },
+  
+    "settings": {
+      "90dns": "Apply 90dns (ban protection)",
+      "90dns_set": "90dns applied successfully",
+      "90dns_set_fail": "Failed to apply 90dns. Please check if you have a configured internet network.",
+      "theme": "Delete current theme",
+      "theme_delete": "Theme sucessfully removed. Please reboot to see effects.",
+      "theme_delete_fail": "Unable to delete theme. Do you currently have a custom theme ?",
+      "clear": "Refresch AtmoPackUpdater data",
+      "clear_fail": "Unable to refresch data..."
+    },
+  
+    "dialog": {
+      "overwrite_ini": "Do you want to overwrite your current .ini ?",
+      "yes": "Yes",
+      "no": "No"
+    }
+  }
+  

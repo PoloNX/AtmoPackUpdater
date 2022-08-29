@@ -40,7 +40,7 @@
 
   "about": {
     "credits": "AtmoPackUpdater Crédits",
-    "copyright": "copyright © 2022 PoloNX",
+    "copyright": "Copyright © 2022 PoloNX",
     "thanks_to": "Remerciements à:",
     "thanks": "THZoria for your AtmoPack-Vanilla\n\nSciresM for reboot_to_payload\n\nTeam Neptune for your rcm payload\n\nHamletDuFromage for your .nro which helped me."
   },

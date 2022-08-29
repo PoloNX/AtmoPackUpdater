@@ -1,0 +1,81 @@
+{
+    "description": {
+      "sigpatches" : "\u25c6 Los sigpatches permiten a la Switch instalar y ejecutar archivos NSP no oficiales. Reinicie la consola para aplicar los parches.",
+      "pack" : "\u25c6 La mochila AtmoPack-Vanilla es una mochila ligera que le permitirá piratear su interruptor muy fácilmente y sin problemas. Contiene cervezas caseras muy útiles.\u00a0:",
+      "firmwares" : "\u25c6 Firmware archivado en 'https://github.com/THZoria/NX_Firmware'. Una vez descargados, se extraerán a '/firmware'. A continuación, puede instalar la actualización con Daybreak. \n FW instalada\u00a0: ",
+      "app" : "\u25c6 Puede actualizar la aplicación que utiliza en su conmutador.\n Versión actual de la aplicación\u00a0: ",
+      "version" : "\n\u25c6 Versión disponible\u00a0: "
+    },
+  
+    "update": {
+      "subtitle_ams": "Actualizar AtmoPack-Vanilla",
+      "subtitle_app": "Actualización de la aplicación",
+      "subtitle_firmwares": "Actualizar el firmware",
+      "subtitle_sigpatches": "Actualización de los Sigpatches",
+      "download_text": "descarga de ",
+      "download": "descargar de...",
+      "link_text": "\nEnlace completo:\n",
+      "extract_text": "Extracción en curso...",
+      "download_finish": "¡Descarga completa!",
+      "theme_installed": "\nParece que has instalado un tema personalizado, esto podría impedir el arranque del sistema tras la actualización del firmware. Es aconsejable eliminarlo antes de realizar la actualización.",
+      "apply_cfw": "Su consola debe reiniciarse para aplicar la actualización del paquete.",
+      "apply_patch": "Su consola debe reiniciarse para aplicar los parches de firma.",
+      "apply_app": "El hombrew debe reiniciar para aplicar la actualización"
+    },
+  
+    "error": {
+      "exfat": "Su tarjeta SD está en formato exfat. El uso de este software puede causar corrupción debido a la inestabilidad del formato exfat.",
+      "version_not_found" : "No se puede obtener la versión disponible",
+      "links_not_found" : "No se puede encontrar un enlace de descarga, compruebe que el Switch está conectado a Internet.\nSi este problema persiste, abre una incidencia en GitHub."
+    },
+  
+    "tab": {
+      "pack": "Actualizar el pack",
+      "app": "Actualizar la aplicación",
+      "firmwares": "Actualizar el firmware",
+      "sigpatches": "Actualizar los sigpatches",
+      "credits": "Créditos",
+      "settings": "Parámetros"
+    },
+  
+    "about": {
+      "credits": "Créditos de AtmoPackUpdater",
+      "copyright": "copyright © 2022 PoloNX",
+      "thanks_to": "Gracias a:",
+      "thanks": "THZoria para su AtmoPack-Vanilla\n\nSciresM para su reboot_to_payload\n\nTeam Neptune para su rcm payload\n\nHamletDuFromage para su .nro que me ayudó."
+    },
+  
+    "confirm": {
+      "continue": "Continuar",
+      "cancel": "Cancelar"
+    },
+  
+    "dialogue": {
+      "yes": "Sí",
+      "no": "No",
+      "launch_daybreak": "¿Quieres lanzar el amanecer?",
+      "delete_theme": "¿Desea eliminar su tema?"
+    },
+  
+    "worker": {
+      "cancel": "Cancelar",
+      "of": "en"
+    },
+  
+    "settings": {
+      "90dns": "Aplicar 90dns (antiprohibición)",
+      "90dns_set": "Aplicación exitosa de 90dns",
+      "90dns_set_fail": "La aplicación de 90dns falló. ¿Tienes configurada una red de internet?",
+      "theme": "Eliminar el tema actual",
+      "theme_delete": "La eliminación del tema se ha completado con éxito. Reinicia para ver los efectos",
+      "theme_delete_fail": "No se puede eliminar el tema. ¿Tiene actualmente un tema?",
+      "clear": "Actualizar los datos de AtmoPackUpdater",
+      "clear_fail": "No se pueden actualizar los datos..."
+    },
+  
+    "dialog": {
+      "overwrite_ini": "¿Quiere escribir sobre su .ini ya registrado?",
+      "yes": "Sí",
+      "no": "No"
+    }
+  }

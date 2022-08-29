@@ -22,7 +22,7 @@ DATA		:=	data
 INCLUDES	:=	include lib/base64 /lib/borealis/library/include/borealis/extern/nlohmann
 APP_TITLE	:=	AtmoPackUpdater
 APP_AUTHOR	:=	PoloNX
-APP_VERSION :=  1.2.0
+APP_VERSION :=  1.3.0
 TARGET		:=	$(notdir $(CURDIR))
 
 ROMFS				:=	resources

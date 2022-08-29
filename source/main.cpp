@@ -19,7 +19,11 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    i18n::loadTranslations();
+    const std::string currentLocale = i18n::getCurrentLocale();
+    if (currentLocale != "fr" && currentLocale != "en-US" && currentLocale != "es") 
+        i18n::loadTranslations("en-US");
+    else 
+        i18n::loadTranslations();
 
     setsysInitialize();
     plInitialize(PlServiceType_User);
@@ -32,7 +36,6 @@ int main() {
     romfsInit();
 
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
-    brls::Logger::debug("Start");
 
     if (!util::isExfat()) {
         brls::Application::pushView(new MainFrame());
