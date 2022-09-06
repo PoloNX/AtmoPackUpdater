@@ -54,7 +54,8 @@
       "yes": "Sí",
       "no": "No",
       "launch_daybreak": "¿Quieres lanzar el amanecer?",
-      "delete_theme": "¿Desea eliminar su tema?"
+      "delete_theme": "¿Desea eliminar su tema?",
+      "mariko_model": "Usted está en un modelo parcheado, debe reiniciar su switch para aplicar la actualización y reiniciar de nuevo para ejecutar hekate"
     },
   
     "worker": {

@@ -1,7 +1,7 @@
 {
     "description": {
       "sigpatches" : "\u25c6 Sigpatches give the ability to install and launch unofficial NSP files. Reboot your console to apply them.",
-      "pack" : "\u25c6 AtmoPack-Vanilla is a lightweight pack designed to easyly and safely hack your Swich. It provides several usefull homebrews.\nCurrent pack version\u00a0:",
+      "pack" : "\u25c6 AtmoPack-Vanilla is a lightweight pack designed to easyly and safely hack your Swich. It provides several usefull homebrews.\n\u25c6 Current pack version\u00a0:",
       "firmwares" : "\u25c6 Firmware archived at 'https://github.com/THZoria/NX_Firmware'. Once downloaded, it will be extracted to '/firmware'. You can then install the update with Daybreak.\n FW installed\u00a0: ",
       "app" : "\u25c6 You can update the app you're using on your Switch.\n\u25c6 Current app version\u00a0: ",
       "version" : "\n\u25c6 Available version\u00a0: "
@@ -54,7 +54,8 @@
       "yes": "Yes",
       "no": "No",
       "launch_daybreak": "Do you want to launch Daybreak?",
-      "delete_theme": "Do you want to remove your theme?"
+      "delete_theme": "Do you want to remove your theme?",
+      "mariko_model": "You're on a patched model, you have to restart your switch to apply the update and restart again to launch hekate"
     },
   
     "worker": {

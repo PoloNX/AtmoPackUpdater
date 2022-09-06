@@ -54,7 +54,8 @@
     "yes": "Oui",
     "no": "Non",
     "launch_daybreak": "Voulez vous lancer daybreak?",
-    "delete_theme": "Voulez vous supprimer votre thème?"
+    "delete_theme": "Voulez vous supprimer votre thème?",
+    "mariko_model": "Vous êtes sur un model patché, vous devez redémarrer votre switch pour appliquer la mise à jour et la redémarrer une nouvelle fois pour lancer hekate"
   },
 
   "worker": {

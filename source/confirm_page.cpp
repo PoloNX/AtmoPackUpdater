@@ -26,7 +26,10 @@ ConfirmPage::ConfirmPage(brls::StagedAppletFrame* frame, const std::string& text
                 reboot::rebootNow();
             }
             else {
-                //I'll do this later
+                std::filesystem::rename("payload.bin", "payload.bin.temp");
+                util::cp("romfs:/payload/ams_rcm.bin", "/payload.bin");
+                util::showDialogBoxBlocking("menu/dialogue/mariko_model"_i18n, "brls/hints/ok"_i18n);
+                spsmShutdown(true);
             }
         }
 
