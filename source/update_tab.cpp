@@ -85,19 +85,49 @@ void UpdateTab::createList() {
 void UpdateTab::createList(contentType type) {
     //Create a vector wich contain all the links
     std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()));;
-
+    int compteur = 0;
     if (links.size()) {
         for (const auto& link : links) {
             //Create some strings from json
             std::string title = link.first;
-            if (title == "version") {
+            if (title == "version" || title == "version_beta") {
                 continue;
             }
+
+            //Create a description if it's a pre realse
+            if (type == contentType::ams_cfw && compteur == 1) {
+                std::string stable = links[1].second;
+                stable.erase(0, 1);
+                std::string beta = links[3].second;
+                beta.erase(0, 1);
+                
+                if(stable != beta) {
+                    brls::Label* description = new brls::Label(
+                        brls::LabelStyle::DESCRIPTION,
+                        "",
+                        true
+                    );
+                    std::string currentVersion = util::getPackVersion();
+                    description->setText(fmt::format("{}{}{}{}", "menu/description/pack_beta"_i18n, currentVersion, "menu/description/version_beta"_i18n, links.size() ? links[3].second : "menu/error/version_not_found"_i18n));
+                    this->addView(description);
+                    listItem = new brls::ListItem(link.first);
+                    listItem->setHeight(50);
+                }
+
+                else {
+                    continue;
+                }
+            }
+
+            else {
+                listItem = new brls::ListItem(link.first);
+                listItem->setHeight(50);
+            }
+            
             const std::string url = link.second;
             const std::string text("menu/update/download_text"_i18n + "\n" +title + "\n" + "menu/update/link_text"_i18n + url);
             //Create one button with the name of the release
-            listItem = new brls::ListItem(link.first);
-            listItem->setHeight(50);
+
             //Get Click Event
             listItem->getClickEvent()->subscribe([this, type, text, url, title](brls::View* view) {
                 //Create a Staged Applet Frame
@@ -151,6 +181,7 @@ void UpdateTab::createList(contentType type) {
             });
 
             this->addView(listItem);
+            compteur++;
         }
     }
     else {
