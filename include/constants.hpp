@@ -13,7 +13,7 @@ enum class contentType
 const std::vector<std::string> contentSettings = {"dns", "theme", "clear"};
 
 
-const std::string APP_VER = "1.5.0"; 
+const std::string APP_VER = "1.6.0"; 
 constexpr std::string_view contentTypeNames[4]{"ams_cfw", "app", "firmwares", "sigpatches"};
 
 //app path
@@ -29,6 +29,7 @@ const std::string APP_DOWNLOAD_PATH =     "/config/AtmoPackUpdater/app.nro";
 const std::string DOWNLOAD_PATH =         "/config/AtmoPackUpdater/";
 const std::string FORWARDER_PATH =        "/config/AtmoPackUpdater/amssu-forwarder.nro";
 const std::string DAYBREAK_PATH =         "/switch/daybreak.nro";
+const std::string FIRMWARE_PATH =         "/firmware/";   
 
 const std::string ROMFS_FORWARDER =       "romfs:/forwarder/amssu-forwarder.nro";
 

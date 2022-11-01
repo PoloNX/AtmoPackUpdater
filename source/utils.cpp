@@ -44,6 +44,7 @@ namespace util {
                 status_code = net::downloadFile(url, SIG_DOWNLOAD_PATH, false);
                 break;
             case contentType::firmwares:
+                fs::removeDir(FIRMWARE_PATH);
                 status_code = net::downloadFile(url, FIR_DOWNLOAD_PATH, false);
                 break;
             case contentType::app:
