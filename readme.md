@@ -11,7 +11,7 @@
         <img src="https://img.shields.io/static/v1?label=version&message=1.6.0&labelColor=111111&color=06f&style=for-the-badge" alt="Version">
     </a>
     <a rel="BUILD" href="https://github.com/PoloNX/AtmoPackUpdater/actions">
-        <img src="https://img.shields.io/github/workflow/status/PoloNX/AtmoPackUpdater/Build%20AtmoPackUpdater?labelColor=111111&color=06&style=for-the-badge" alt=Build>
+        <img src="https://img.shields.io/github/actions/workflow/status/PoloNX/AtmoPackUpdater/c-cpp.yml?branch=master &labelColor=111111&color=06f&style=for-the-badge" alt=Build>
     </a>
 </p>
 
