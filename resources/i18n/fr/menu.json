@@ -77,7 +77,7 @@
   },
 
   "dialog": {
-    "overwrite_ini": "Voulez écrire par dessus vos .ini déjà enregistrés?",
+    "overwrite_ini": "Voulez-vous écrire par dessus vos .ini déjà enregistrés?",
     "yes": "Oui",
     "no": "Non"
   }
