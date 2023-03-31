@@ -76,7 +76,7 @@ void SettingsTab::createList() {
 
                 listItem->getClickEvent()->subscribe([](brls::View* view) {
                     if(util::isErista()) {
-                        int overwriteInis = util::showDialogBox("menu/dialog/reboot"_i18n, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
+                        util::showDialogBox("menu/dialog/reboot"_i18n, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
                     }
                     else
                         brls::Application::notify("menu/settings/reboot_mariko"_i18n);
