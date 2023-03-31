@@ -71,12 +71,15 @@
       "theme_delete": "La eliminación del tema se ha completado con éxito. Reinicia para ver los efectos",
       "theme_delete_fail": "No se puede eliminar el tema. ¿Tiene actualmente un tema?",
       "clear": "Actualizar los datos de AtmoPackUpdater",
-      "clear_fail": "No se pueden actualizar los datos..."
+      "clear_fail": "No se pueden actualizar los datos...",
+      "reboot": "Reiniciar en Hekate"
     },
   
     "dialog": {
       "overwrite_ini": "¿Quiere escribir sobre su .ini ya registrado?",
       "yes": "Sí",
-      "no": "No"
+      "no": "No",
+      "reboot": "¿Realmente desea reiniciar su consola?",
+      "reboot_mariko": "Su consola no es elegible para un reinicio estándar porque es un modelo parcheado."
     }
   }

@@ -3,6 +3,7 @@
 #include "download.hpp"
 #include "extract.hpp"
 #include "fs.hpp"
+#include "reboot.hpp"
 
 #include <switch.h>
 
@@ -71,9 +72,6 @@ namespace util {
                 res = fmt::format("{0:}: Internal Server Error", status_code);
                 break;
             case 503:
-                res = fmt::format("{0:}: Service Temporarily Unavailable", status_code);
-                break;
-            default:
                 res = fmt::format("error: {0:}", status_code);
                 break;
         }
@@ -136,6 +134,26 @@ namespace util {
             std::this_thread::sleep_for(std::chrono::microseconds(10));
         }
         std::this_thread::sleep_for(std::chrono::microseconds(800000));
+        return 0;
+    }
+
+    int showDialogBox(const std::string& text, const std::string& opt1, const std::string& opt2) {
+        brls::Dialog* dialog = new brls::Dialog(text);
+        brls::GenericEvent::Callback closeCallBack = [dialog](brls::View* view) {
+            dialog->close();
+        };
+
+        brls::GenericEvent::Callback rebootCallBack = [dialog](brls::View* view) {
+            dialog->close();
+            reboot::rebootNow();
+        };
+
+        dialog->addButton(opt1, rebootCallBack);
+        dialog->addButton(opt2, closeCallBack);
+
+        dialog->setCancelable(true);
+        dialog->open();
+
         return 0;
     }
 

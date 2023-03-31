@@ -1,5 +1,6 @@
 #include "settings_tab.hpp"
 #include "utils.hpp"
+#include "reboot.hpp"
 
 #include <string>
 #include <filesystem>
@@ -63,6 +64,22 @@ void SettingsTab::createList() {
                 listItem->getClickEvent()->subscribe([](brls::View* view) {
                     util::extractArchive(contentType::app);
                     brls::Application::notify("menu/settings/clear_fail"_i18n);
+                });
+                this->addView(listItem);
+                break;
+            }
+
+            case str2int("reboot"): {
+                title = "menu/settings/reboot"_i18n;
+                listItem = new brls::ListItem(title);
+                listItem->setHeight(50);
+
+                listItem->getClickEvent()->subscribe([](brls::View* view) {
+                    if(util::isErista()) {
+                        int overwriteInis = util::showDialogBox("menu/dialog/reboot"_i18n, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
+                    }
+                    else
+                        brls::Application::notify("menu/settings/reboot_mariko"_i18n);
                 });
                 this->addView(listItem);
                 break;

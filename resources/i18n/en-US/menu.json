@@ -73,13 +73,16 @@
       "theme_delete": "Theme sucessfully removed. Please reboot to see effects.",
       "theme_delete_fail": "Unable to delete theme. Do you currently have a custom theme ?",
       "clear": "Refresch AtmoPackUpdater data",
-      "clear_fail": "Unable to refresch data..."
+      "clear_fail": "Unable to refresch data...",
+      "reboot": "Reboot on Hekate"
     },
   
     "dialog": {
       "overwrite_ini": "Do you want to overwrite your current .ini ?",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "reboot": "Do you really want to restart your console?",
+      "reboot_mariko": "Your console is not eligible for a standard reboot because it is a patched model."
     }
   }
   

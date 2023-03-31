@@ -22,6 +22,7 @@ namespace util {
     bool deleteTheme();
     int showDialogBoxBlocking(const std::string& text, const std::string& opt1, const std::string& opt2);
     int showDialogBoxBlocking(const std::string& text, const std::string& opt);
+    int showDialogBox(const std::string& text, const std::string& opt1, const std::string& opt2);
     std::string getAppPath();
     bool isExfat();
 }

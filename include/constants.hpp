@@ -10,7 +10,7 @@ enum class contentType
 };
 
 
-const std::vector<std::string> contentSettings = {"dns", "theme", "clear"};
+const std::vector<std::string> contentSettings = {"dns", "theme", "clear", "reboot"};
 
 
 const std::string APP_VER = "1.6.0"; 

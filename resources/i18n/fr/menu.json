@@ -56,8 +56,9 @@
     "yes": "Oui",
     "no": "Non",
     "launch_daybreak": "Voulez vous lancer daybreak?",
-    "delete_theme": "Voulez vous supprimer votre thème?",
+    "delete_theme": "Voulez-vous supprimer votre thème?",
     "mariko_model": "Vous êtes sur un model patché, vous devez redémarrer votre switch pour appliquer la mise à jour et la redémarrer une nouvelle fois pour lancer hekate"
+    
   },
 
   "worker": {
@@ -73,12 +74,15 @@
     "theme_delete": "Suppression du thème réalisée avec succès. Redémarrer pour voir les effets",
     "theme_delete_fail": "Impossible de supprimer le thème. Avez vous un thème actuellement?",
     "clear": "Raffraichir les données de AtmoPackUpdater",
-    "clear_fail": "Impossible de raffraichir les données.."
+    "clear_fail": "Impossible de raffraichir les données..",
+    "reboot": "Redémarrer sur Hekate"
   },
 
   "dialog": {
     "overwrite_ini": "Voulez-vous écrire par dessus vos .ini déjà enregistrés?",
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "reboot": "Voulez-vous vraiment redémarrer votre console?",
+    "reboot_mariko": "Votre console n'est pas éligible à un redémarrage standard car celle-ci est un modèle patché."
   }
 }
