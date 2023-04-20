@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <dirent.h>
 #include <filesystem>
 #include <fstream>
 #include <thread>
@@ -173,9 +174,37 @@ namespace util {
             case contentType::sigpatches:
                 extract::unzip(SIG_DOWNLOAD_PATH, ROOT, 1);
                 break;
-            case contentType::firmwares:
+            case contentType::firmwares: {
+                DIR *contents_dir = opendir((AMS_PATH + CONTENTS_PATH).c_str());
+                if (contents_dir != nullptr) {
+                    nlohmann::json contents_json;
+                    struct dirent *ent;
+                    while ((ent = readdir(contents_dir)) != nullptr) {
+                        std::ifstream sysconfig(AMS_PATH + CONTENTS_PATH + std::string(ent->d_name) + "/toolbox.json");
+                        if (!sysconfig.fail()) {
+                            try {
+                                sysconfig >> contents_json;
+                            } catch(nlohmann::json::parse_error& e) {}
+                        }
+                    }
+                    if (contents_json.size()) {
+                        std::string content = "menu/dialog/sysmodules"_i18n;
+                        for (auto i : contents_json) {
+                            content += "\n" + i["name"].get<std::string>();
+                        }
+                        int deletesysmodules = showDialogBoxBlocking(content, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
+                        if (deletesysmodules == 0) {
+                            for (auto i : contents_json) {
+                                std::string path = AMS_PATH + CONTENTS_PATH + i["tid"].get<std::string>();
+                                fs::removeDir(path);
+                            }
+                        }
+                    }
+                }
+             
                 extract::unzip(FIR_DOWNLOAD_PATH, "/firmware/", 1);
                 break;
+            }
             case contentType::app:
                 cp("romfs:/forwarder/amssu-forwarder.nro", "/config/AtmoPackUpdater/amssu-forwarder.nro");
                 envSetNextLoad(FORWARDER_PATH.c_str(), fmt::format("\"{}\"", FORWARDER_PATH).c_str());

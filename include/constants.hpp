@@ -36,6 +36,7 @@ const std::string ROMFS_FORWARDER =       "romfs:/forwarder/amssu-forwarder.nro"
 
 //PATH
 const std::string AMS_PATH =              "/atmosphere/";
+
 const std::string CONTENTS_PATH =         "contents/";
 const std::string SWITCH_PATH =           "/switch/";
 const std::string ROOT =                  "/";
