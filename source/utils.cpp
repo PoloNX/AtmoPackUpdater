@@ -192,6 +192,7 @@ namespace util {
                         for (auto i : contents_json) {
                             content += "\n" + i["name"].get<std::string>();
                         }
+                        content += "menu/dialog/sysmodules_installed"_i18n;
                         int deletesysmodules = showDialogBoxBlocking(content, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
                         if (deletesysmodules == 0) {
                             for (auto i : contents_json) {
