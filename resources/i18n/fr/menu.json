@@ -5,6 +5,7 @@
     "pack_beta" : "\u25c6 Le pack AtmoPack-Vanilla possède une version bêta, celle ci permet de tester les dernières nouveautées. Pour rappel une version bêta n'est pas forcément stable. \n Version actuelle du pack\u00a0:",
     "firmwares" : "\u25c6 Firmware archivé sur 'https://github.com/THZoria/NX_Firmware'. Une fois téléchargé, ils sera extrait dans '/firmware'. Vous pouvez ensuite installer la mise à jour avec Daybreak.\n FW installé\u00a0: ",
     "app" : "\u25c6 Vous pouvez mettre à jour l'application que vous utilisez sur votre switch.\n Version actuelle de l'app\u00a0: ",
+    "homebrew": "\u25c6 Vous pouvez mettre à jour différents homebrews du pack si celui-ci n'est pas encore mis à jour avec les dernières versions des homebrews.",
     "version" : "\n\u25c6 Version disponible\u00a0: ",
     "version_beta" : "\n\u25c6 Version de test disponible\u00a0: "
   },
@@ -14,6 +15,7 @@
     "subtitle_app": "Mettre à jour l'Application",
     "subtitle_firmwares": "Mettre à jour le Firmware",
     "subtitle_sigpatches": "Mettre à jour les Sigpatches",
+    "subtitle_homebrew": "Mettre à jour vos Homebrews",
     "download_text": "téléchargement de ",
     "download": "téléchargement...",
     "link_text": "\nLien complet:\n",
@@ -22,7 +24,8 @@
     "theme_installed": "\nIl semblerait que vous avez installé un thème personnalisé, cela pourrait empêcher le système de démarrer après la mise à jour de votre firmware.\nIl est conseillé de le supprimer avant d'effectuer la mise à jour.",
     "apply_cfw": "Votre console dois redémarrer pour appliquer la mise à jour du pack.",
     "apply_patch": "Votre console dois redémarrer pour appliquer les patchs de signature.",
-    "apply_app": "L'hombrew doit redémarrer pour appliquer la mise à jour"
+    "apply_app": "L'hombrew doit redémarrer pour appliquer la mise à jour",
+    "apply_homebrew": "L'homebrew a bien été mis à jour"
   },
 
   "error": {
@@ -37,7 +40,8 @@
     "firmwares": "Update le firmware",
     "sigpatches": "Update les sigpatches",
     "credits": "Crédits",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "homebrew": "Update les homebrews"
   },
 
   "about": {
