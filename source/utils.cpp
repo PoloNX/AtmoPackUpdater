@@ -54,6 +54,12 @@ namespace util {
             case contentType::ams_cfw:
                 status_code = net::downloadFile(url, AMS_DOWNLOAD_PATH, false);
                 break;
+            case contentType::homebrew: {
+                std::size_t last_slash_pos = url.find_last_of("/");
+                std::string filename = url.substr(last_slash_pos + 1);
+                status_code = net::downloadFile(url, SWITCH_PATH + filename, false);
+                break;
+            }
             default:
                 break;
         }

@@ -7,6 +7,7 @@ enum class contentType
     app,
     firmwares,
     sigpatches,
+    homebrew,
 };
 
 
@@ -14,7 +15,7 @@ const std::vector<std::string> contentSettings = {"dns", "theme", "clear", "rebo
 
 
 const std::string APP_VER = "1.7.0"; 
-constexpr std::string_view contentTypeNames[4]{"ams_cfw", "app", "firmwares", "sigpatches"};
+constexpr std::string_view contentTypeNames[5]{"ams_cfw", "app", "firmwares", "sigpatches", "homebrew"};
 
 //app path
 const std::string GOOD_APP_PATH =         "/switch/AtmoPackUpdater/AtmoPackUpdater.nro";
@@ -36,7 +37,8 @@ const std::string ROMFS_FORWARDER =       "romfs:/forwarder/amssu-forwarder.nro"
 //PATH
 const std::string AMS_PATH =              "/atmosphere/";
 const std::string CONTENTS_PATH =         "contents/";
-const std::string ROOT = "/";
+const std::string SWITCH_PATH =           "/switch/";
+const std::string ROOT =                  "/";
 
 //URL for the JSON file
 const std::string NXLINKS_URL =           "https://raw.githubusercontent.com/PoloNX/nx-links/master/nx-links.json";

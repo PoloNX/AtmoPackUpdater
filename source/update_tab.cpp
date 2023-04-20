@@ -72,6 +72,11 @@ void UpdateTab::setDescription(contentType type) {
             description->setText("menu/description/sigpatches"_i18n);
             break;
         }
+        case contentType::homebrew: {
+            createSubTitle(subTitle, "menu/update/subtitle_homebrew"_i18n);
+            description->setText("menu/description/homebrew"_i18n);
+            break;
+        }
     }
 
     this->addView(subTitle);
@@ -90,7 +95,7 @@ void UpdateTab::createList(contentType type) {
         for (const auto& link : links) {
             //Create some strings from json
             std::string title = link.first;
-            if (title == "version" || title == "version_beta") {
+            if (title == "version" || title == "version_beta" || title=="Goldleaf_version" || title == "JKSV_version" || title == "FTPD_version" || title ==  "DBI_version" || title == "Ls-News_version") {
                 continue;
             }
 
@@ -139,7 +144,7 @@ void UpdateTab::createList(contentType type) {
                 //Create a Download Page
                 stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
                 //Create an extract Page
-                if (type != contentType::app) {
+                if (type != contentType::app && type != contentType::homebrew) {
                     stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
                         util::extractArchive(type);
                     }));
@@ -175,6 +180,10 @@ void UpdateTab::createList(contentType type) {
                     case contentType::app:
                         doneMsg += ("\n" + "menu/update/apply_app"_i18n);
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, false, util::isErista(), true));
+                        break;
+                    case contentType::homebrew:
+                        doneMsg += ("\n" + "menu/update/apply_homebrew"_i18n);
+                        stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, false, false, false));
                         break;
                 }
                 brls::Application::pushView(stagedFrame);
