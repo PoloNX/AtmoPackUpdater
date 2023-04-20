@@ -90,9 +90,10 @@ void UpdateTab::createList() {
 void UpdateTab::createList(contentType type) {
     //Create a vector wich contain all the links
     std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()));;
-    int compteur = 0;
+    int compteur = -1;
     if (links.size()) {
         for (const auto& link : links) {
+            compteur++;
             //Create some strings from json
             std::string title = link.first;
             if (title == "version" || title == "version_beta" || title=="Goldleaf_version" || title == "JKSV_version" || title == "FTPD_version" || title ==  "DBI_version" || title == "Ls-News_version") {
@@ -100,7 +101,7 @@ void UpdateTab::createList(contentType type) {
             }
 
             //Create a description if it's a pre realse
-            if (type == contentType::ams_cfw && compteur == 1) {
+            if (type == contentType::ams_cfw && compteur == 2) {
                 std::string stable = links[1].second;
                 stable.erase(0, 1);
                 std::string beta = links[3].second;
@@ -125,7 +126,10 @@ void UpdateTab::createList(contentType type) {
             }
 
             else {
-                listItem = new brls::ListItem(link.first);
+                if (type == contentType::homebrew)
+                    listItem = new brls::ListItem(link.first + " " + links[compteur+1].second);
+                else 
+                    listItem = new brls::ListItem(link.first);
                 listItem->setHeight(50);
             }
             
@@ -190,7 +194,7 @@ void UpdateTab::createList(contentType type) {
             });
 
             this->addView(listItem);
-            compteur++;
+
         }
     }
     else {
