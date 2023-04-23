@@ -175,25 +175,25 @@ namespace util {
                 extract::unzip(SIG_DOWNLOAD_PATH, ROOT, 1);
                 break;
             case contentType::firmwares: {
+                
                 DIR *contents_dir = opendir((AMS_PATH + CONTENTS_PATH).c_str());
                 if (contents_dir != nullptr) {
-                    nlohmann::json contents_json;
+                    auto contents_json = nlohmann::ordered_json::array();
                     struct dirent *ent;
                     while ((ent = readdir(contents_dir)) != nullptr) {
                         std::ifstream sysconfig(AMS_PATH + CONTENTS_PATH + std::string(ent->d_name) + "/toolbox.json");
                         if (!sysconfig.fail()) {
-                            try {
-                                sysconfig >> contents_json;
-                            } catch(nlohmann::json::parse_error& e) {}
+                            auto data = nlohmann::ordered_json::parse(sysconfig);
+                            contents_json.push_back(data);
                         }
                     }
                     if (contents_json.size()) {
                         std::string content = "menu/dialog/sysmodules"_i18n;
                         for (auto i : contents_json) {
-                            content += "\n" + i["name"].get<std::string>();
+                            content += i["name"].get<std::string>() + ", ";
                         }
-                        content += "menu/dialog/sysmodules_installed"_i18n;
                         int deletesysmodules = showDialogBoxBlocking(content, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
+
                         if (deletesysmodules == 0) {
                             for (auto i : contents_json) {
                                 std::string path = AMS_PATH + CONTENTS_PATH + i["tid"].get<std::string>();

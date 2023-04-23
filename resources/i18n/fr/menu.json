@@ -61,8 +61,7 @@
     "no": "Non",
     "launch_daybreak": "Voulez vous lancer daybreak?",
     "delete_theme": "Voulez-vous supprimer votre thème?",
-    "mariko_model": "Vous êtes sur un model patché, vous devez redémarrer votre switch pour appliquer la mise à jour et la redémarrer une nouvelle fois pour lancer hekate",
-    "sysmodules": "Des sysmodules ont été détécté sur votre switch, il est conseillé de les supprimer lors d'une mise à jour du firmware. Voici les différents sysmodules présents : ",
+    "mariko_model": "Vous êtes sur un model patché, vous devez redémarrer votre switch pour appliquer la mise à jour et la redémarrer une nouvelle fois pour lancer hekate"
   },
 
   "worker": {
@@ -87,6 +86,7 @@
     "yes": "Oui",
     "no": "Non",
     "reboot": "Voulez-vous vraiment redémarrer votre console?",
-    "reboot_mariko": "Votre console n'est pas éligible à un redémarrage standard car celle-ci est un modèle patché."
+    "reboot_mariko": "Votre console n'est pas éligible à un redémarrage standard car celle-ci est un modèle patché.",
+    "sysmodules": "Des sysmodules ont été détécté sur votre switch, il est conseillé de les supprimer lors d'une mise à jour du firmware, voulez-vous les supprimer? Voici les différents sysmodules présents : \n"
   }
 }
