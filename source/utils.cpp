@@ -176,12 +176,12 @@ namespace util {
                 break;
             case contentType::firmwares: {
                 //Detect sysmodule and delete them if the user want
-                DIR *contents_dir = opendir((AMS_PATH + CONTENTS_PATH).c_str());
-                if (contents_dir != nullptr) {
+                const std::filesystem::path contents_dir{AMS_PATH + CONTENTS_PATH};
+
+                if (!contents_dir.empty()) {
                     auto contents_json = nlohmann::ordered_json::array();
-                    struct dirent *ent;
-                    while ((ent = readdir(contents_dir)) != nullptr) {
-                        std::ifstream sysconfig(AMS_PATH + CONTENTS_PATH + std::string(ent->d_name) + "/toolbox.json");
+                    for (auto const& ent : std::filesystem::directory_iterator{contents_dir}){
+                        std::ifstream sysconfig(std::string(ent.path()) + "/toolbox.json");
                         if (!sysconfig.fail()) {
                             auto data = nlohmann::ordered_json::parse(sysconfig);
                             contents_json.push_back(data);
@@ -223,41 +223,41 @@ namespace util {
     }
 
     bool cp(char *filein, char *fileout) {
-	FILE *exein, *exeout;
-	exein = fopen(filein, "rb");
-	if (exein == NULL) {
-		/* handle error */
-		perror("file open for reading");
-		return false;
-	}
-	exeout = fopen(fileout, "wb");
-	if (exeout == NULL) {
-		/* handle error */
-		perror("file open for writing");
-		return false;
-	}
-	size_t n, m;
-	unsigned char buff[8192];
-	do {
-		n = fread(buff, 1, sizeof buff, exein);
-		if (n) m = fwrite(buff, 1, n, exeout);
-		else   m = 0;
-	}
-	while ((n > 0) && (n == m));
-	if (m) {
-		perror("copy");
-		return false;
-	}
-	if (fclose(exeout)) {
-		perror("close output file");
-		return false;
-	}
-	if (fclose(exein)) {
-		perror("close input file");
-		return false;
-	}
-	return true;
-}
+        FILE *exein, *exeout;
+        exein = fopen(filein, "rb");
+        if (exein == NULL) {
+            /* handle error */
+            perror("file open for reading");
+            return false;
+        }
+        exeout = fopen(fileout, "wb");
+        if (exeout == NULL) {
+            /* handle error */
+            perror("file open for writing");
+            return false;
+        }
+        size_t n, m;
+        unsigned char buff[8192];
+        do {
+            n = fread(buff, 1, sizeof buff, exein);
+            if (n) m = fwrite(buff, 1, n, exeout);
+            else   m = 0;
+        }
+        while ((n > 0) && (n == m));
+        if (m) {
+            perror("copy");
+            return false;
+        }
+        if (fclose(exeout)) {
+            perror("close output file");
+            return false;
+        }
+        if (fclose(exein)) {
+            perror("close input file");
+            return false;
+        }
+        return true;
+    }
 
     bool set90dns() {
         Result res = 0;

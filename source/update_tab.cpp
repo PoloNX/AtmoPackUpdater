@@ -53,7 +53,17 @@ void UpdateTab::setDescription(contentType type) {
         case contentType::ams_cfw: {
             std::string currentVersion = util::getPackVersion();
             createSubTitle(subTitle, "menu/update/subtitle_ams"_i18n);
-            description->setText(fmt::format("{}{}{}{}", "menu/description/pack"_i18n, currentVersion, "menu/description/version"_i18n, links.size() ? links[1].second : "menu/error/version_not_found"_i18n));
+
+            std::string pack_version;
+            if(links.size()) {
+                pack_version = links[1].second;
+                if(pack_version[0] != 'v')
+                    pack_version.insert(0, "v");
+            }
+            else 
+                pack_version = "menu/error/version_not_found"_i18n;
+
+            description->setText(fmt::format("{}{}{}{}", "menu/description/pack"_i18n, currentVersion, "menu/description/version"_i18n, pack_version));
             break;
         }
         case contentType::app: {
@@ -146,7 +156,7 @@ void UpdateTab::createList(contentType type) {
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));
                 //Create a Download Page
-                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
+                //stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
                 //Create an extract Page
                 if (type != contentType::app && type != contentType::homebrew) {
                     stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
