@@ -14,7 +14,7 @@ enum class contentType
 const std::vector<std::string> contentSettings = {"dns", "theme", "clear", "reboot"};
 
 
-const std::string APP_VER = "1.7.0"; 
+const std::string APP_VER = "1.8.0"; 
 constexpr std::string_view contentTypeNames[5]{"ams_cfw", "app", "firmwares", "sigpatches", "homebrew"};
 
 //app path

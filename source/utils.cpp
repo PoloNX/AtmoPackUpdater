@@ -175,7 +175,7 @@ namespace util {
                 extract::unzip(SIG_DOWNLOAD_PATH, ROOT, 1);
                 break;
             case contentType::firmwares: {
-                
+                //Detect sysmodule and delete them if the user want
                 DIR *contents_dir = opendir((AMS_PATH + CONTENTS_PATH).c_str());
                 if (contents_dir != nullptr) {
                     auto contents_json = nlohmann::ordered_json::array();

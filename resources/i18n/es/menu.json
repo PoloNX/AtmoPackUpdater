@@ -4,7 +4,8 @@
       "pack" : "\u25c6 La mochila AtmoPack-Vanilla es una mochila ligera que le permitirá piratear su interruptor muy fácilmente y sin problemas. Contiene cervezas caseras muy útiles.\u00a0:",
       "firmwares" : "\u25c6 Firmware archivado en 'https://github.com/THZoria/NX_Firmware'. Una vez descargados, se extraerán a '/firmware'. A continuación, puede instalar la actualización con Daybreak. \n FW instalada\u00a0: ",
       "app" : "\u25c6 Puede actualizar la aplicación que utiliza en su conmutador.\n Versión actual de la aplicación\u00a0: ",
-      "version" : "\n\u25c6 Versión disponible\u00a0: "
+      "version" : "\n\u25c6 Versión disponible\u00a0: ",
+      "homebrew": "Actualizar Homebrews"
     },
   
     "update": {
@@ -12,6 +13,7 @@
       "subtitle_app": "Actualización de la aplicación",
       "subtitle_firmwares": "Actualizar el firmware",
       "subtitle_sigpatches": "Actualización de los Sigpatches",
+      "subtitle_homebrew": "Actualizar sus Homebrews",
       "download_text": "descarga de ",
       "download": "descargar de...",
       "link_text": "\nEnlace completo:\n",
@@ -20,7 +22,8 @@
       "theme_installed": "\nParece que has instalado un tema personalizado, esto podría impedir el arranque del sistema tras la actualización del firmware. Es aconsejable eliminarlo antes de realizar la actualización.",
       "apply_cfw": "Su consola debe reiniciarse para aplicar la actualización del paquete.",
       "apply_patch": "Su consola debe reiniciarse para aplicar los parches de firma.",
-      "apply_app": "El hombrew debe reiniciar para aplicar la actualización"
+      "apply_app": "El hombrew debe reiniciar para aplicar la actualización",
+      "apply_homebrew": "Se ha actualizado Homebrew correctamente"
     },
   
     "error": {
@@ -80,6 +83,7 @@
       "yes": "Sí",
       "no": "No",
       "reboot": "¿Realmente desea reiniciar su consola?",
-      "reboot_mariko": "Su consola no es elegible para un reinicio estándar porque es un modelo parcheado."
+      "reboot_mariko": "Su consola no es elegible para un reinicio estándar porque es un modelo parcheado.",
+      "sysmodules": "Se han detectado sysmodules en su Switch, se recomienda eliminarlos durante una actualización del firmware. ¿Desea eliminarlos? Aquí están los diferentes sysmodules presentes:\n"
     }
   }
