@@ -5,6 +5,7 @@
 #include "utils.hpp"
 #include "settings_tab.hpp"
 #include <iostream>
+#include <fstream>
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
@@ -16,12 +17,13 @@ MainFrame::MainFrame() : TabFrame() {
 
     nlohmann::ordered_json nxlinks;
     net::getRequest(NXLINKS_URL, nxlinks);
-
     
     
     this->addTab("menu/tab/pack"_i18n, new UpdateTab(contentType::ams_cfw, nxlinks));
 
     this->addTab("menu/tab/app"_i18n, new UpdateTab(contentType::app, nxlinks));
+
+    this->addTab("menu/tab/homebrew"_i18n, new UpdateTab(contentType::homebrew, nxlinks));
 
     this->addTab("menu/tab/firmwares"_i18n, new UpdateTab(contentType::firmwares, nxlinks));
 

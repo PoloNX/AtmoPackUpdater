@@ -53,7 +53,17 @@ void UpdateTab::setDescription(contentType type) {
         case contentType::ams_cfw: {
             std::string currentVersion = util::getPackVersion();
             createSubTitle(subTitle, "menu/update/subtitle_ams"_i18n);
-            description->setText(fmt::format("{}{}{}{}", "menu/description/pack"_i18n, currentVersion, "menu/description/version"_i18n, links.size() ? links[1].second : "menu/error/version_not_found"_i18n));
+
+            std::string pack_version;
+            if(links.size()) {
+                pack_version = links[1].second;
+                if(pack_version[0] != 'v')
+                    pack_version.insert(0, "v");
+            }
+            else 
+                pack_version = "menu/error/version_not_found"_i18n;
+
+            description->setText(fmt::format("{}{}{}{}", "menu/description/pack"_i18n, currentVersion, "menu/description/version"_i18n, pack_version));
             break;
         }
         case contentType::app: {
@@ -72,6 +82,11 @@ void UpdateTab::setDescription(contentType type) {
             description->setText("menu/description/sigpatches"_i18n);
             break;
         }
+        case contentType::homebrew: {
+            createSubTitle(subTitle, "menu/update/subtitle_homebrew"_i18n);
+            description->setText("menu/description/homebrew"_i18n);
+            break;
+        }
     }
 
     this->addView(subTitle);
@@ -85,17 +100,18 @@ void UpdateTab::createList() {
 void UpdateTab::createList(contentType type) {
     //Create a vector wich contain all the links
     std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()));;
-    int compteur = 0;
+    int compteur = -1;
     if (links.size()) {
         for (const auto& link : links) {
+            compteur++;
             //Create some strings from json
             std::string title = link.first;
-            if (title == "version" || title == "version_beta") {
+            if (title == "version" || title == "version_beta" || title=="Goldleaf_version" || title == "JKSV_version" || title == "FTPD_version" || title ==  "DBI_version" || title == "Ls-News_version") {
                 continue;
             }
 
             //Create a description if it's a pre realse
-            if (type == contentType::ams_cfw && compteur == 1) {
+            if (type == contentType::ams_cfw && compteur == 2) {
                 std::string stable = links[1].second;
                 stable.erase(0, 1);
                 std::string beta = links[3].second;
@@ -120,7 +136,10 @@ void UpdateTab::createList(contentType type) {
             }
 
             else {
-                listItem = new brls::ListItem(link.first);
+                if (type == contentType::homebrew)
+                    listItem = new brls::ListItem(link.first + " " + links[compteur+1].second);
+                else 
+                    listItem = new brls::ListItem(link.first);
                 listItem->setHeight(50);
             }
             
@@ -139,7 +158,7 @@ void UpdateTab::createList(contentType type) {
                 //Create a Download Page
                 stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
                 //Create an extract Page
-                if (type != contentType::app) {
+                if (type != contentType::app && type != contentType::homebrew) {
                     stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
                         util::extractArchive(type);
                     }));
@@ -176,12 +195,16 @@ void UpdateTab::createList(contentType type) {
                         doneMsg += ("\n" + "menu/update/apply_app"_i18n);
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, false, util::isErista(), true));
                         break;
+                    case contentType::homebrew:
+                        doneMsg += ("\n" + "menu/update/apply_homebrew"_i18n);
+                        stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true, false, false, false));
+                        break;
                 }
                 brls::Application::pushView(stagedFrame);
             });
 
             this->addView(listItem);
-            compteur++;
+
         }
     }
     else {

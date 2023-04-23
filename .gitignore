@@ -1,6 +1,7 @@
 AtmoPackUpdater.elf
 AtmoPackUpdater.nacp
 AtmoPackUpdater.nro
+AtmoPackUpdater.lst
 build
 amssu-forwarder/amssu-forwarder.elf
 amssu-forwarder/amssu-forwarder.nro
