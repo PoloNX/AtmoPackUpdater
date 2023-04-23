@@ -43,7 +43,6 @@ int main() {
         brls::Application::pushView(new WarningPage("menu/error/exfat"_i18n));
     }
 
-
     while (brls::Application::mainLoop()) {
         ;
     }

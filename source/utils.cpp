@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <dirent.h>
 #include <filesystem>
 #include <fstream>
 #include <thread>
@@ -54,6 +55,12 @@ namespace util {
             case contentType::ams_cfw:
                 status_code = net::downloadFile(url, AMS_DOWNLOAD_PATH, false);
                 break;
+            case contentType::homebrew: {
+                std::size_t last_slash_pos = url.find_last_of("/");
+                std::string filename = url.substr(last_slash_pos + 1);
+                status_code = net::downloadFile(url, SWITCH_PATH + filename, false);
+                break;
+            }
             default:
                 break;
         }
@@ -167,9 +174,38 @@ namespace util {
             case contentType::sigpatches:
                 extract::unzip(SIG_DOWNLOAD_PATH, ROOT, 1);
                 break;
-            case contentType::firmwares:
+            case contentType::firmwares: {
+                //Detect sysmodule and delete them if the user want
+                const std::filesystem::path contents_dir{AMS_PATH + CONTENTS_PATH};
+
+                if (!contents_dir.empty()) {
+                    auto contents_json = nlohmann::ordered_json::array();
+                    for (auto const& ent : std::filesystem::directory_iterator{contents_dir}){
+                        std::ifstream sysconfig(std::string(ent.path()) + "/toolbox.json");
+                        if (!sysconfig.fail()) {
+                            auto data = nlohmann::ordered_json::parse(sysconfig);
+                            contents_json.push_back(data);
+                        }
+                    }
+                    if (contents_json.size()) {
+                        std::string content = "menu/dialog/sysmodules"_i18n;
+                        for (auto i : contents_json) {
+                            content += i["name"].get<std::string>() + ", ";
+                        }
+                        int deletesysmodules = showDialogBoxBlocking(content, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
+
+                        if (deletesysmodules == 0) {
+                            for (auto i : contents_json) {
+                                std::string path = AMS_PATH + CONTENTS_PATH + i["tid"].get<std::string>();
+                                fs::removeDir(path);
+                            }
+                        }
+                    }
+                }
+             
                 extract::unzip(FIR_DOWNLOAD_PATH, "/firmware/", 1);
                 break;
+            }
             case contentType::app:
                 cp("romfs:/forwarder/amssu-forwarder.nro", "/config/AtmoPackUpdater/amssu-forwarder.nro");
                 envSetNextLoad(FORWARDER_PATH.c_str(), fmt::format("\"{}\"", FORWARDER_PATH).c_str());
@@ -187,41 +223,41 @@ namespace util {
     }
 
     bool cp(char *filein, char *fileout) {
-	FILE *exein, *exeout;
-	exein = fopen(filein, "rb");
-	if (exein == NULL) {
-		/* handle error */
-		perror("file open for reading");
-		return false;
-	}
-	exeout = fopen(fileout, "wb");
-	if (exeout == NULL) {
-		/* handle error */
-		perror("file open for writing");
-		return false;
-	}
-	size_t n, m;
-	unsigned char buff[8192];
-	do {
-		n = fread(buff, 1, sizeof buff, exein);
-		if (n) m = fwrite(buff, 1, n, exeout);
-		else   m = 0;
-	}
-	while ((n > 0) && (n == m));
-	if (m) {
-		perror("copy");
-		return false;
-	}
-	if (fclose(exeout)) {
-		perror("close output file");
-		return false;
-	}
-	if (fclose(exein)) {
-		perror("close input file");
-		return false;
-	}
-	return true;
-}
+        FILE *exein, *exeout;
+        exein = fopen(filein, "rb");
+        if (exein == NULL) {
+            /* handle error */
+            perror("file open for reading");
+            return false;
+        }
+        exeout = fopen(fileout, "wb");
+        if (exeout == NULL) {
+            /* handle error */
+            perror("file open for writing");
+            return false;
+        }
+        size_t n, m;
+        unsigned char buff[8192];
+        do {
+            n = fread(buff, 1, sizeof buff, exein);
+            if (n) m = fwrite(buff, 1, n, exeout);
+            else   m = 0;
+        }
+        while ((n > 0) && (n == m));
+        if (m) {
+            perror("copy");
+            return false;
+        }
+        if (fclose(exeout)) {
+            perror("close output file");
+            return false;
+        }
+        if (fclose(exein)) {
+            perror("close input file");
+            return false;
+        }
+        return true;
+    }
 
     bool set90dns() {
         Result res = 0;
