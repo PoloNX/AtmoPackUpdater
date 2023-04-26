@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include <string>
+
 //for the file update_tab.hpp
 enum class contentType
 {
@@ -10,11 +13,16 @@ enum class contentType
     homebrew,
 };
 
+struct homebrew_label {
+    std::string title;
+    std::string url;
+    std::string version;
+};
 
 const std::vector<std::string> contentSettings = {"dns", "theme", "clear", "reboot"};
 
 
-const std::string APP_VER = "1.8.0"; 
+const std::string APP_VER = "1.8.1"; 
 constexpr std::string_view contentTypeNames[5]{"ams_cfw", "app", "firmwares", "sigpatches", "homebrew"};
 
 //app path
@@ -42,5 +50,5 @@ const std::string SWITCH_PATH =           "/switch/";
 const std::string ROOT =                  "/";
 
 //URL for the JSON file
-const std::string NXLINKS_URL =           "https://raw.githubusercontent.com/PoloNX/nx-links/master/nx-links.json";
+const std::string NXLINKS_URL =           "https://raw.githubusercontent.com/PoloNX/nx-links/master/nx-links-new.json";
 const std::string APP_URL =               "https://github.com/PoloNX/AtmoPackUpdater/releases/latest/download/AtmoPackUpdater.nro";

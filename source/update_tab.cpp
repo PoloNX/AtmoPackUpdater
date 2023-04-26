@@ -47,7 +47,7 @@ void UpdateTab::setDescription(contentType type) {
         true
     );
 
-    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()));
+    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()), type);
     
     switch(type) {
         case contentType::ams_cfw: {
@@ -99,14 +99,20 @@ void UpdateTab::createList() {
 
 void UpdateTab::createList(contentType type) {
     //Create a vector wich contain all the links
-    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()));;
+
+    std::vector<homebrew_label> homebrews;
+    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()), type, homebrews);
+
     int compteur = -1;
     if (links.size()) {
         for (const auto& link : links) {
             compteur++;
-            //Create some strings from json
+
             std::string title = link.first;
-            if (title == "version" || title == "version_beta" || title=="Goldleaf_version" || title == "JKSV_version" || title == "FTPD_version" || title ==  "DBI_version" || title == "Ls-News_version") {
+            std::string url = link.second;
+
+            //Create some strings from json
+            if (title.find("version") != std::string::npos) {
                 continue;
             }
 
@@ -137,13 +143,12 @@ void UpdateTab::createList(contentType type) {
 
             else {
                 if (type == contentType::homebrew)
-                    listItem = new brls::ListItem(link.first + " " + links[compteur+1].second);
+                    listItem = new brls::ListItem(title + " " + homebrews[compteur].version);
                 else 
-                    listItem = new brls::ListItem(link.first);
+                    listItem = new brls::ListItem(title);
                 listItem->setHeight(50);
             }
             
-            const std::string url = link.second;
             const std::string text("menu/update/download_text"_i18n + "\n" +title + "\n" + "menu/update/link_text"_i18n + url);
             //Create one button with the name of the release
 

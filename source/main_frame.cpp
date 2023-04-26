@@ -4,6 +4,7 @@
 #include "download.hpp"
 #include "utils.hpp"
 #include "settings_tab.hpp"
+#include "constants.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -18,22 +19,31 @@ MainFrame::MainFrame() : TabFrame() {
     nlohmann::ordered_json nxlinks;
     net::getRequest(NXLINKS_URL, nxlinks);
     
+    std::vector<bool> tabsAccepted;
+    for (auto i : nxlinks.at("tab")) {
+        tabsAccepted.push_back(i.get<bool>());
+    }
     
-    this->addTab("menu/tab/pack"_i18n, new UpdateTab(contentType::ams_cfw, nxlinks));
-
-    this->addTab("menu/tab/app"_i18n, new UpdateTab(contentType::app, nxlinks));
-
-    this->addTab("menu/tab/homebrew"_i18n, new UpdateTab(contentType::homebrew, nxlinks));
-
-    this->addTab("menu/tab/firmwares"_i18n, new UpdateTab(contentType::firmwares, nxlinks));
-
-    this->addTab("menu/tab/sigpatches"_i18n, new UpdateTab(contentType::sigpatches, nxlinks));
+    if (tabsAccepted[0])
+        this->addTab("menu/tab/pack"_i18n, new UpdateTab(contentType::ams_cfw, nxlinks));
+    if (tabsAccepted[1])
+        this->addTab("menu/tab/app"_i18n, new UpdateTab(contentType::app, nxlinks));
+    if (tabsAccepted[2])
+        this->addTab("menu/tab/homebrew"_i18n, new UpdateTab(contentType::homebrew, nxlinks));
+    if (tabsAccepted[3])
+        this->addTab("menu/tab/firmwares"_i18n, new UpdateTab(contentType::firmwares, nxlinks));
+    if (tabsAccepted[4])
+        this->addTab("menu/tab/sigpatches"_i18n, new UpdateTab(contentType::sigpatches, nxlinks));
 
     this->addSeparator();
 
     this->addTab("menu/tab/settings"_i18n, new SettingsTab());
 
     this->addTab("menu/tab/credits"_i18n, new CreditsTab());
+
+    if (util::is_older_version(APP_VER, nxlinks.at("app")["version"])) {
+        brls::Application::setCommonFooter("menu/footer/update_available"_i18n);
+    }
 
     this->registerAction("", brls::Key::B, [this] { return true; });
 }

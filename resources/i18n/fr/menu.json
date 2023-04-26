@@ -88,5 +88,9 @@
     "reboot": "Voulez-vous vraiment redémarrer votre console?",
     "reboot_mariko": "Votre console n'est pas éligible à un redémarrage standard car celle-ci est un modèle patché.",
     "sysmodules": "Des sysmodules ont été détécté sur votre switch, il est conseillé de les supprimer lors d'une mise à jour du firmware, voulez-vous les supprimer? Voici les différents sysmodules présents : \n"
+  },
+
+  "footer": {
+    "update_available": "Une mise à jour de l'app est disponible."
   }
 }
