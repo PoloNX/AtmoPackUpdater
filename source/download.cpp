@@ -298,11 +298,37 @@ namespace net {
         return res;
     }
 
-    std::vector<std::pair<std::string, std::string>> getLinksFromJson(const nlohmann::ordered_json& json_object)
+    std::vector<std::pair<std::string, std::string>> getLinksFromJson(const nlohmann::ordered_json& json_object, contentType type, std::vector<homebrew_label>& homebrews)
     {
+        if (type != contentType::homebrew) {
+            std::vector<std::pair<std::string, std::string>> res;
+            for (auto it = json_object.begin(); it != json_object.end(); ++it) {
+                res.push_back(std::make_pair(it.key(), it.value()));
+            }
+            return res;
+        }
+        else {
+            std::vector<std::pair<std::string, std::string>> res;
+            homebrew_label label;
+            for (auto it = json_object.begin(); it != json_object.end(); ++it) {
+                res.push_back(std::make_pair(it.value()["name"], it.value()["link"]));
+                label.title = it.value()["name"];
+                label.url = it.value()["link"];
+                label.version = it.value()["version"];
+                homebrews.push_back(label);
+            }
+
+            return res;
+        }
+    }
+
+    std::vector<std::pair<std::string, std::string>> getLinksFromJson(const nlohmann::ordered_json& json_object, contentType type)
+    {               
         std::vector<std::pair<std::string, std::string>> res;
-        for (auto it = json_object.begin(); it != json_object.end(); ++it) {
-            res.push_back(std::make_pair(it.key(), it.value()));
+        if (type != contentType::homebrew) {
+            for (auto it = json_object.begin(); it != json_object.end(); ++it) {
+                res.push_back(std::make_pair(it.key(), it.value()));
+            }
         }
         return res;
     }
