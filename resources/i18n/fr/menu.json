@@ -15,7 +15,7 @@
     "subtitle_app": "Mettre à jour l'Application",
     "subtitle_firmwares": "Mettre à jour le Firmware",
     "subtitle_sigpatches": "Mettre à jour les Sigpatches",
-    "subtitle_homebrew": "Mettre à jour vos Homebrews",
+    "subtitle_homebrew": "Mettre à jour vos Homebrews/Sysmodules",
     "download_text": "téléchargement de ",
     "download": "téléchargement...",
     "link_text": "\nLien complet:\n",
@@ -25,7 +25,7 @@
     "apply_cfw": "Votre console dois redémarrer pour appliquer la mise à jour du pack.",
     "apply_patch": "Votre console dois redémarrer pour appliquer les patchs de signature.",
     "apply_app": "L'hombrew doit redémarrer pour appliquer la mise à jour",
-    "apply_homebrew": "L'homebrew a bien été mis à jour"
+    "apply_homebrew": "L'homebrew/sysmodule a bien été mis à jour"
   },
 
   "error": {
@@ -35,13 +35,13 @@
   },
 
   "tab": {
-    "pack": "Update le pack",
-    "app": "Update l'app",
-    "firmwares": "Update le firmware",
-    "sigpatches": "Update les sigpatches",
+    "pack": "Update pack",
+    "app": "Update app",
+    "firmwares": "Update firmware",
+    "sigpatches": "Update sigpatches",
     "credits": "Crédits",
     "settings": "Paramètres",
-    "homebrew": "Update les homebrews"
+    "homebrew": "Update homebrews"
   },
 
   "about": {
