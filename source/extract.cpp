@@ -30,8 +30,10 @@ void extractEntry(std::string filename, unzFile& zfile)
         fs::createTree(filename);
     }
 
+
     void* buf = malloc(WRITE_BUFFER_SIZE);
     FILE* outfile;
+    
     outfile = fopen(filename.c_str(), "wb");
     std::cout << "extracted :" << filename << std::endl;
     for (int j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE); j > 0; j = unzReadCurrentFile(zfile, buf, WRITE_BUFFER_SIZE)) {

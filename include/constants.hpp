@@ -17,12 +17,13 @@ struct homebrew_label {
     std::string title;
     std::string url;
     std::string version;
+    bool homebrew;
 };
 
 const std::vector<std::string> contentSettings = {"dns", "theme", "clear", "reboot"};
 
 
-const std::string APP_VER = "1.8.1"; 
+const std::string APP_VER = "1.8.2"; 
 constexpr std::string_view contentTypeNames[5]{"ams_cfw", "app", "firmwares", "sigpatches", "homebrew"};
 
 //app path
@@ -32,6 +33,7 @@ const std::string BAD_APP_PATH =          "/switch/AtmoPackUpdater.nro";
 //Path for the download
 const std::string NRO_PATH =              "/switch/AtmoPackUpdater/AtmoPackUpdater.nro";
 const std::string AMS_DOWNLOAD_PATH =     "/config/AtmoPackUpdater/ams.zip";
+const std::string SYSMODULES_DOWNLOAD_PATH= "/config/AtmoPackUpdater/sysmodules.zip";
 const std::string SIG_DOWNLOAD_PATH =     "/config/AtmoPackUpdater/sig.zip";
 const std::string FIR_DOWNLOAD_PATH =     "/config/AtmoPackUpdater/fir.zip";
 const std::string APP_DOWNLOAD_PATH =     "/config/AtmoPackUpdater/app.nro";

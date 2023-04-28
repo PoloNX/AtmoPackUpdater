@@ -153,7 +153,7 @@ void UpdateTab::createList(contentType type) {
             //Create one button with the name of the release
 
             //Get Click Event
-            listItem->getClickEvent()->subscribe([this, type, text, url, title](brls::View* view) {
+            listItem->getClickEvent()->subscribe([this, type, text, url, title, homebrews, compteur](brls::View* view) {
                 //Create a Staged Applet Frame
                 brls::StagedAppletFrame* stagedFrame = new brls::StagedAppletFrame();
                 //Set a title
@@ -161,12 +161,29 @@ void UpdateTab::createList(contentType type) {
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));
                 //Create a Download Page
-                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url]() {util::downloadArchive(url, type); }));
+                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url, homebrews, compteur]() {
+                    if (homebrews.size()) {
+                        util::downloadArchive(url, type, homebrews[compteur].homebrew); 
+                    }
+                    else {
+                        util::downloadArchive(url, type, false);
+                    }
+                }));
+                    
                 //Create an extract Page
-                if (type != contentType::app && type != contentType::homebrew) {
-                    stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
-                        util::extractArchive(type);
-                    }));
+                if(type!=contentType::homebrew) {
+                    if (type != contentType::app) {
+                        stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
+                            util::extractArchive(type);
+                        }));
+                    }
+                }
+                else {
+                    if (homebrews[compteur].homebrew == false) {
+                        stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
+                            util::extractArchive(type);
+                        }));
+                    }
                 }
 
                 //Done messages

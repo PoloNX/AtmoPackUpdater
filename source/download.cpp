@@ -315,6 +315,7 @@ namespace net {
                 label.title = it.value()["name"];
                 label.url = it.value()["link"];
                 label.version = it.value()["version"];
+                label.homebrew = it.value()["homebrew"];
                 homebrews.push_back(label);
             }
 

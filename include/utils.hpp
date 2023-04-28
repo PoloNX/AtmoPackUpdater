@@ -10,8 +10,8 @@
 #include "constants.hpp"
 
 namespace util {
-    void downloadArchive(const std::string& url, contentType type);
-    void downloadArchive(const std::string& url, contentType type, long& status_code);
+    void downloadArchive(const std::string& url, contentType type, bool homebrew);
+    void downloadArchive(const std::string& url, contentType type, long& status_code, bool homebrew);
     void extractArchive(contentType type);
     std::string getContentsPath();
     std::string getErrorMessage(long status_code);

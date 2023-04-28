@@ -32,13 +32,13 @@ namespace util {
         }
     }
 
-    void downloadArchive(const std::string& url, contentType type)
+    void downloadArchive(const std::string& url, contentType type, bool homebrew)
     {
         long status_code;
-        downloadArchive(url, type, status_code);
+        downloadArchive(url, type, status_code, homebrew);
     }
 
-    void downloadArchive(const std::string& url, contentType type, long& status_code)
+    void downloadArchive(const std::string& url, contentType type, long& status_code, bool homebrew)
     {
         createTree(DOWNLOAD_PATH);
         switch (type) {
@@ -58,7 +58,10 @@ namespace util {
             case contentType::homebrew: {
                 std::size_t last_slash_pos = url.find_last_of("/");
                 std::string filename = url.substr(last_slash_pos + 1);
-                status_code = net::downloadFile(url, SWITCH_PATH + filename, false);
+                if(homebrew)
+                    status_code = net::downloadFile(url, SWITCH_PATH + filename, false);
+                else
+                    status_code = net::downloadFile(url, SYSMODULES_DOWNLOAD_PATH, false);
                 break;
             }
             default:
@@ -206,6 +209,11 @@ namespace util {
                 extract::unzip(FIR_DOWNLOAD_PATH, "/firmware/", 1);
                 break;
             }
+
+            case contentType::homebrew:
+                extract::unzip(SYSMODULES_DOWNLOAD_PATH, ROOT, 0);
+                break;
+
             case contentType::app:
                 cp("romfs:/forwarder/amssu-forwarder.nro", "/config/AtmoPackUpdater/amssu-forwarder.nro");
                 envSetNextLoad(FORWARDER_PATH.c_str(), fmt::format("\"{}\"", FORWARDER_PATH).c_str());
