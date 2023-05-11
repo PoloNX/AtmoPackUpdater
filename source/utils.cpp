@@ -377,9 +377,14 @@ namespace util {
         return NRO_PATH;
     }
 
-    bool isExfat() {
-        bool exfat_support = fsIsExFatSupported(&exfat_support);
-        return exfat_support;
+    //bool isExfat() {
+    //    bool exfat_support = fsIsExFatSupported(&exfat_support);
+    //    return exfat_support;
+    //}
+
+    bool isApplet() {
+        AppletType at = appletGetAppletType();
+	    return at != AppletType_Application && at != AppletType_SystemApplication;
     }
 
     std::vector<int> split_version(const std::string& version) {

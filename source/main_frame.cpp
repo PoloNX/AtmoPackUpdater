@@ -13,15 +13,26 @@ using namespace i18n::literals;
 
 MainFrame::MainFrame() : TabFrame() {
     // Create a tabbed frame with a single tab
-    this->setTitle(fmt::format("{}{}", "AtmoPackUpdater v", APP_VER));
+    this->setTitle(fmt::format("{}{}-dev", "AtmoPackUpdater v", APP_VER));
     this->setIcon(BOREALIS_ASSET("icon/icon.png"));
 
     nlohmann::ordered_json nxlinks;
     net::getRequest(NXLINKS_URL, nxlinks);
     
     std::vector<bool> tabsAccepted;
-    for (auto i : nxlinks.at("tab")) {
-        tabsAccepted.push_back(i.get<bool>());
+    if(!nxlinks.empty()) {
+        for (auto i : nxlinks.at("tab")) {
+            tabsAccepted.push_back(i.get<bool>());
+        }
+        if (util::is_older_version(APP_VER, nxlinks.at("app")["version"])) {
+            brls::Application::setCommonFooter("menu/footer/update_available"_i18n);
+        }
+    }
+    else {
+        for (auto i = 0; i < 5; ++i) {
+            tabsAccepted.push_back(true);
+        }
+        brls::Application::setCommonFooter("menu/footer/no_internet"_i18n);
     }
     
     if (tabsAccepted[0])
@@ -40,10 +51,6 @@ MainFrame::MainFrame() : TabFrame() {
     this->addTab("menu/tab/settings"_i18n, new SettingsTab());
 
     this->addTab("menu/tab/credits"_i18n, new CreditsTab());
-
-    if (util::is_older_version(APP_VER, nxlinks.at("app")["version"])) {
-        brls::Application::setCommonFooter("menu/footer/update_available"_i18n);
-    }
 
     this->registerAction("", brls::Key::B, [this] { return true; });
 }

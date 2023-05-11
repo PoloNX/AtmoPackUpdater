@@ -19,10 +19,10 @@ BUILD		:=	build
 SOURCES		:=	source 
 RESOURCES	:=	resources
 DATA		:=	data
-INCLUDES	:=	include lib/base64 /lib/borealis/library/include/borealis/extern/nlohmann
+INCLUDES	:=	include /lib/borealis/library/include/borealis/extern/nlohmann
 APP_TITLE	:=	AtmoPackUpdater
 APP_AUTHOR	:=	PoloNX
-APP_VERSION :=  1.8.2
+APP_VERSION :=  1.8.3-dev
 TARGET		:=	$(notdir $(CURDIR))
 
 ROMFS				:=	resources

@@ -99,12 +99,11 @@ void UpdateTab::createList() {
 
 void UpdateTab::createList(contentType type) {
     //Create a vector wich contain all the links
-
-    std::vector<homebrew_label> homebrews;
-    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()), type, homebrews);
-
     int compteur = -1;
-    if (links.size()) {
+    if (!nxlinks.empty()) {
+        std::vector<homebrew_label> homebrews;
+        std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()), type, homebrews);
+
         for (const auto& link : links) {
             compteur++;
 

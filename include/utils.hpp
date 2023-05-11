@@ -24,6 +24,7 @@ namespace util {
     int showDialogBoxBlocking(const std::string& text, const std::string& opt);
     int showDialogBox(const std::string& text, const std::string& opt1, const std::string& opt2);
     std::string getAppPath();
-    bool isExfat();
+    //bool isExfat();
     bool is_older_version(const std::string& version1, const std::string& version2);
+    bool isApplet();
 }

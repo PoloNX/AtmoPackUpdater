@@ -5,7 +5,7 @@
     "pack_beta" : "\u25c6 Le pack AtmoPack-Vanilla possède une version bêta, celle ci permet de tester les dernières nouveautées. Pour rappel une version bêta n'est pas forcément stable. \n Version actuelle du pack\u00a0:",
     "firmwares" : "\u25c6 Firmware archivé sur 'https://github.com/THZoria/NX_Firmware'. Une fois téléchargé, ils sera extrait dans '/firmware'. Vous pouvez ensuite installer la mise à jour avec Daybreak.\n FW installé\u00a0: ",
     "app" : "\u25c6 Vous pouvez mettre à jour l'application que vous utilisez sur votre switch.\n Version actuelle de l'app\u00a0: ",
-    "homebrew": "\u25c6 Vous pouvez mettre à jour différents homebrews du pack si celui-ci n'est pas encore mis à jour avec les dernières versions des homebrews.",
+    "homebrew": "\u25c6 Vous pouvez installer ou mettre à jour différents homebrews/sysmodules.",
     "version" : "\n\u25c6 Version disponible\u00a0: ",
     "version_beta" : "\n\u25c6 Version de test disponible\u00a0: "
   },
@@ -29,7 +29,7 @@
   },
 
   "error": {
-    "exfat": "Votre carte sd est en format exfat. Utiliser ce logiciel peut provoquer des corruptions dû à l'instabilité du format exfat.",
+    "applet" : "Vous avez lancé l'homebrew en mode applet. Ce mode est très déconséillé car limité en mémoire. Lancez n'importe quelle application sur le menu home en maintenant le bouton \"R\" pour lancer l'homebrew launcher en mode normal.",
     "version_not_found" : "Impossible d'obtenir la version disponible",
     "links_not_found" : "Impossible de trouver un lien de téléchargement, vérifiez que la Switch soit connectée à internet.\nSi ce problème persiste, veuillez ouvrir une issue sur GitHub."
   },
@@ -91,6 +91,7 @@
   },
 
   "footer": {
-    "update_available": "Une mise à jour de l'app est disponible."
+    "update_available": "Une mise à jour de l'app est disponible.",
+    "no_internet": "Vous n'êtes pas connecté à internet!"
   }
 }

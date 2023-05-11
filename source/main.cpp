@@ -37,10 +37,10 @@ int main() {
 
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
 
-    if (!util::isExfat()) {
+    if (!util::isApplet()) {
         brls::Application::pushView(new MainFrame());
     } else {
-        brls::Application::pushView(new WarningPage("menu/error/exfat"_i18n));
+        brls::Application::pushView(new WarningPage("menu/error/applet"_i18n));
     }
 
     while (brls::Application::mainLoop()) {

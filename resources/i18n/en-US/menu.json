@@ -5,7 +5,7 @@
       "pack_beta" : "\u25c6 AtmoPack-Vanilla now has a beta version that allows you to test the latest features. Be aware that this beta version is still in developpement and can have issues. \n Current pack version\u00a0:",
       "firmwares" : "\u25c6 Firmware archived at 'https://github.com/THZoria/NX_Firmware'. Once downloaded, it will be extracted to '/firmware'. You can then install the update with Daybreak.\n FW installed\u00a0: ",
       "app" : "\u25c6 You can update the app you're using on your Switch.\n\u25c6 Current app version\u00a0: ",
-      "homebrew": "\u25c6 You can update different homebrews of the pack if it is not yet updated with the latest versions of homebrews.",
+      "homebrew": "\u25c6 You can install or update differents homebrews or sysmodules",
       "version" : "\n\u25c6 Available version\u00a0: ",
       "version_beta" : "\n\u25c6 Available beta version\u00a0: "
     },
@@ -25,11 +25,11 @@
       "apply_cfw": "Your console must restart to apply the package update.",
       "apply_patch": "Your console must restart to apply the sigpatches.",
       "apply_app": "Homebrew must restart to apply the update.",
-      "apply_homebrew": "The homebrew has been updated"
+      "apply_homebrew": "The homebrew/sysmodules has been updated"
     },
   
     "error": {
-      "exfat": "Your sd card is in exfat format. Using this software may cause corruption due to the instability of the exfat format.",
+      "applet" : "You have launched the homebrew in applet mode. This mode is highly discouraged as it is limited in memory. Launch any application from the home menu while holding the \"R\" button to start the homebrew launcher in normal mode.",
       "version_not_found" : "Unable to get available version",
       "links_not_found" : "Unable to find a download link, please check that your Switch is connected to the Internet.\nIf this problem persists, please open an issue on GitHub."
     },
@@ -88,6 +88,11 @@
       "reboot": "Do you really want to restart your console?",
       "reboot_mariko": "Your console is not eligible for a standard reboot because it is a patched model.",
       "sysmodules": "Sysmodules have been detected on your switch, it is advised to remove them during a firmware update, do you want to remove them? Here are the different sysmodules installed : \n"
+    },
+
+    "footer": {
+      "update_available": "An app update is available.",
+      "no_internet": "You are not connected to the internet!"
     }
   }
   
