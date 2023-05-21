@@ -87,7 +87,7 @@ void SettingsTab::createList() {
             }
 
             case str2int("auto-update"): {
-                title = "menu/settings/auto-update";
+                title = "menu/settings/auto-update"_i18n;
                 brls::SelectListItem* selectItem = new brls::SelectListItem(
                     title,
                     {
