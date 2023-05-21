@@ -27,4 +27,5 @@ namespace util {
     //bool isExfat();
     bool is_older_version(const std::string& version1, const std::string& version2);
     bool isApplet();
+    const nlohmann::ordered_json getValueFromKey(const nlohmann::ordered_json& jsonFile, const std::string& key);
 }

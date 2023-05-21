@@ -3,22 +3,30 @@
 #include "about_tab.hpp"
 #include "download.hpp"
 #include "utils.hpp"
+#include "confirm_page.hpp"
 #include "settings_tab.hpp"
 #include "constants.hpp"
 #include <iostream>
 #include <fstream>
+#include "worker_page.hpp"
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
 
 MainFrame::MainFrame() : TabFrame() {
-    // Create a tabbed frame with a single tab
-    this->setTitle(fmt::format("{}{}-dev", "AtmoPackUpdater v", APP_VER));
-    this->setIcon(BOREALIS_ASSET("icon/icon.png"));
+    nlohmann::ordered_json json;
+    net::getRequest(NXLINKS_URL, json);
+    initializeFromJSON(json);
+}
 
-    nlohmann::ordered_json nxlinks;
-    net::getRequest(NXLINKS_URL, nxlinks);
-    
+MainFrame::MainFrame(nlohmann::ordered_json nxlinks) : TabFrame() {
+    initializeFromJSON(nxlinks);
+}
+
+void MainFrame::initializeFromJSON(const nlohmann::ordered_json& nxlinks) {
+    // Initialiser les membres de MainFrame à partir de l'objet JSON ici
+    this->setTitle(fmt::format("{}{}", "AtmoPackUpdater v", APP_VER));
+    this->setIcon(BOREALIS_ASSET("icon/icon.png"));
     std::vector<bool> tabsAccepted;
     if(!nxlinks.empty()) {
         for (auto i : nxlinks.at("tab")) {
@@ -41,7 +49,7 @@ MainFrame::MainFrame() : TabFrame() {
         this->addTab("menu/tab/app"_i18n, new UpdateTab(contentType::app, nxlinks));
     if (tabsAccepted[2])
         this->addTab("menu/tab/homebrew"_i18n, new UpdateTab(contentType::homebrew, nxlinks));
-    if (tabsAccepted[3])
+    //if (tabsAccepted[3])
         this->addTab("menu/tab/firmwares"_i18n, new UpdateTab(contentType::firmwares, nxlinks));
     if (tabsAccepted[4])
         this->addTab("menu/tab/sigpatches"_i18n, new UpdateTab(contentType::sigpatches, nxlinks));

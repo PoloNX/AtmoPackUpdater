@@ -19,10 +19,6 @@ UpdateTab::UpdateTab(contentType type, const nlohmann::ordered_json& nxlinks) : 
     this->createList();
 }
 
-const nlohmann::ordered_json getValueFromKey(const nlohmann::ordered_json& jsonFile, const std::string& key)
-{
-    return (jsonFile.find(key) != jsonFile.end()) ? jsonFile.at(key) : nlohmann::ordered_json::object();
-}
 
 void UpdateTab::setDescription() {
     setDescription(this->type);
@@ -47,7 +43,7 @@ void UpdateTab::setDescription(contentType type) {
         true
     );
 
-    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()), type);
+    std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(util::getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()), type);
     
     switch(type) {
         case contentType::ams_cfw: {
@@ -102,7 +98,7 @@ void UpdateTab::createList(contentType type) {
     int compteur = -1;
     if (!nxlinks.empty()) {
         std::vector<homebrew_label> homebrews;
-        std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()), type, homebrews);
+        std::vector<std::pair<std::string, std::string>> links = net::getLinksFromJson(util::getValueFromKey(this->nxlinks, contentTypeNames[(int)type].data()), type, homebrews);
 
         for (const auto& link : links) {
             compteur++;
@@ -199,9 +195,9 @@ void UpdateTab::createList(contentType type) {
                         if (std::filesystem::exists(DAYBREAK_PATH)) {
                             stagedFrame->addStage(new DialoguePage_fw(stagedFrame, doneMsg));
                         }
-                        else {
-                            stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true));
-                        }
+                        else{
+                        stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true));
+                        }   
                         break;
                     }
                     case contentType::sigpatches:

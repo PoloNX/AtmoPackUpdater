@@ -19,6 +19,7 @@
 
 #pragma once
 
+#include <cstdint>
 #include <borealis/view.hpp>
 #include <borealis/animations.hpp>
 
