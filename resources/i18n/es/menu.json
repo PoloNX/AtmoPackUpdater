@@ -23,7 +23,8 @@
       "apply_cfw": "Su consola debe reiniciarse para aplicar la actualización del paquete.",
       "apply_patch": "Su consola debe reiniciarse para aplicar los parches de firma.",
       "apply_app": "El hombrew debe reiniciar para aplicar la actualización",
-      "apply_homebrew": "Se ha actualizado Homebrew correctamente"
+      "apply_homebrew": "Se ha actualizado Homebrew correctamente",
+      "auto-update": "Actualización automática del Homebrew"
     },
   
     "error": {
@@ -75,7 +76,8 @@
       "theme_delete_fail": "No se puede eliminar el tema. ¿Tiene actualmente un tema?",
       "clear": "Actualizar los datos de AtmoPackUpdater",
       "clear_fail": "No se pueden actualizar los datos...",
-      "reboot": "Reiniciar en Hekate"
+      "reboot": "Reiniciar en Hekate",
+      "auto-update": "Actualización automática del Homebrew"
     },
   
     "dialog": {

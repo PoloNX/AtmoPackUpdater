@@ -25,7 +25,8 @@
     "apply_cfw": "Votre console dois redémarrer pour appliquer la mise à jour du pack.",
     "apply_patch": "Votre console dois redémarrer pour appliquer les patchs de signature.",
     "apply_app": "L'hombrew doit redémarrer pour appliquer la mise à jour",
-    "apply_homebrew": "L'homebrew/sysmodule a bien été mis à jour"
+    "apply_homebrew": "L'homebrew/sysmodule a bien été mis à jour",
+    "auto-update": "Mise à jour automatique de l'homebrew"
   },
 
   "error": {
@@ -78,7 +79,8 @@
     "theme_delete_fail": "Impossible de supprimer le thème. Avez vous un thème actuellement?",
     "clear": "Raffraichir les données de AtmoPackUpdater",
     "clear_fail": "Impossible de raffraichir les données..",
-    "reboot": "Redémarrer sur Hekate"
+    "reboot": "Redémarrer sur Hekate",
+    "auto-update": "Mise à jour automatique de l'homebrew"
   },
 
   "dialog": {

@@ -61,9 +61,8 @@ int main() {
                 std::string url = links[0].second;
 
                 brls::StagedAppletFrame* stagedFrame = new brls::StagedAppletFrame();
-                stagedFrame->setTitle(fmt::format("{}{}", "menu/update/download_text"_i18n, contentTypeNames[(int)contentType::app].data()));
+                stagedFrame->setTitle(fmt::format("{}", "menu/update/auto-update"_i18n));
 
-                stagedFrame->addStage(new ConfirmPage(stagedFrame, "menu/update/auto-update"_i18n, true));
                 stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [title, url]() {
                     util::downloadArchive(url, contentType::app, false);
                 }));
@@ -77,7 +76,7 @@ int main() {
         }
     }
 
-    if (!util::isApplet()) {
+    else if (!util::isApplet()) {
         brls::Application::pushView(new MainFrame(nxlinks));
     } else {
         brls::Application::pushView(new WarningPage("menu/error/applet"_i18n));

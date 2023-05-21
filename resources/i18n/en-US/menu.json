@@ -25,7 +25,8 @@
       "apply_cfw": "Your console must restart to apply the package update.",
       "apply_patch": "Your console must restart to apply the sigpatches.",
       "apply_app": "Homebrew must restart to apply the update.",
-      "apply_homebrew": "The homebrew/sysmodules has been updated"
+      "apply_homebrew": "The homebrew/sysmodules has been updated",
+      "auto-update": "Automatic Homebrew Update"
     },
   
     "error": {
@@ -78,7 +79,8 @@
       "theme_delete_fail": "Unable to delete theme. Do you currently have a custom theme ?",
       "clear": "Refresch AtmoPackUpdater data",
       "clear_fail": "Unable to refresch data...",
-      "reboot": "Reboot on Hekate"
+      "reboot": "Reboot on Hekate",
+      "auto-update": "Automatic Homebrew Update"
     },
   
     "dialog": {
