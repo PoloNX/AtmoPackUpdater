@@ -49,7 +49,7 @@ void MainFrame::initializeFromJSON(const nlohmann::ordered_json& nxlinks) {
         this->addTab("menu/tab/app"_i18n, new UpdateTab(contentType::app, nxlinks));
     if (tabsAccepted[2])
         this->addTab("menu/tab/homebrew"_i18n, new UpdateTab(contentType::homebrew, nxlinks));
-    //if (tabsAccepted[3])
+    if (tabsAccepted[3])
         this->addTab("menu/tab/firmwares"_i18n, new UpdateTab(contentType::firmwares, nxlinks));
     if (tabsAccepted[4])
         this->addTab("menu/tab/sigpatches"_i18n, new UpdateTab(contentType::sigpatches, nxlinks));
