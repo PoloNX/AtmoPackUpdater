@@ -403,20 +403,25 @@ namespace util {
         return components;
     }
 
-    bool is_older_version(const std::string& version1, const std::string& version2) {
-        std::vector<int> components1 = split_version(version1);
-        std::vector<int> components2 = split_version(version2);
+    bool is_older_version(const std::string& version1, nlohmann::json json) {
+        if (!json.empty()) {
+            std::string version2 = json.at("app").at("version").get<std::string>();
 
-        // Compare the components of the versions
-        for (size_t i = 0; i < components1.size(); i++) {
-            if (components1[i] < components2[i]) {
-                return true;
-            } else if (components1[i] > components2[i]) {
-                return false;
+            std::vector<int> components1 = split_version(version1);
+            std::vector<int> components2 = split_version(version2);
+
+            // Compare the components of the versions
+            for (size_t i = 0; i < components1.size(); i++) {
+                if (components1[i] < components2[i]) {
+                    return true;
+                } else if (components1[i] > components2[i]) {
+                    return false;
+                }
             }
-        }
 
-        // If all components are equal, the versions are the same
+            // If all components are equal, the versions are the same
+            return false;
+        }
         return false;
     }
     const nlohmann::ordered_json getValueFromKey(const nlohmann::ordered_json& jsonFile, const std::string& key)

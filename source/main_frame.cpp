@@ -32,7 +32,7 @@ void MainFrame::initializeFromJSON(const nlohmann::ordered_json& nxlinks) {
         for (auto i : nxlinks.at("tab")) {
             tabsAccepted.push_back(i.get<bool>());
         }
-        if (util::is_older_version(APP_VER, nxlinks.at("app")["version"])) {
+        if (util::is_older_version(APP_VER, nxlinks)) {
             brls::Application::setCommonFooter("menu/footer/update_available"_i18n);
         }
     }
