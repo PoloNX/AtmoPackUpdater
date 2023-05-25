@@ -181,26 +181,28 @@ namespace util {
                 //Detect sysmodule and delete them if the user want
                 const std::filesystem::path contents_dir{AMS_PATH + CONTENTS_PATH};
 
-                if (!contents_dir.empty()) {
-                    auto contents_json = nlohmann::ordered_json::array();
-                    for (auto const& ent : std::filesystem::directory_iterator{contents_dir}){
-                        std::ifstream sysconfig(std::string(ent.path()) + "/toolbox.json");
-                        if (!sysconfig.fail()) {
-                            auto data = nlohmann::ordered_json::parse(sysconfig);
-                            contents_json.push_back(data);
+                if (std::filesystem::exists(contents_dir)) {
+                    if (!contents_dir.empty()) {
+                        auto contents_json = nlohmann::ordered_json::array();
+                        for (auto const& ent : std::filesystem::directory_iterator{contents_dir}){
+                            std::ifstream sysconfig(std::string(ent.path()) + "/toolbox.json");
+                            if (!sysconfig.fail()) {
+                                auto data = nlohmann::ordered_json::parse(sysconfig);
+                                contents_json.push_back(data);
+                            }
                         }
-                    }
-                    if (contents_json.size()) {
-                        std::string content = "menu/dialog/sysmodules"_i18n;
-                        for (auto i : contents_json) {
-                            content += i["name"].get<std::string>() + ", ";
-                        }
-                        int deletesysmodules = showDialogBoxBlocking(content, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
-
-                        if (deletesysmodules == 0) {
+                        if (contents_json.size()) {
+                            std::string content = "menu/dialog/sysmodules"_i18n;
                             for (auto i : contents_json) {
-                                std::string path = AMS_PATH + CONTENTS_PATH + i["tid"].get<std::string>();
-                                fs::removeDir(path);
+                                content += i["name"].get<std::string>() + ", ";
+                            }
+                            int deletesysmodules = showDialogBoxBlocking(content, "menu/dialog/yes"_i18n, "menu/dialog/no"_i18n);
+
+                            if (deletesysmodules == 0) {
+                                for (auto i : contents_json) {
+                                    std::string path = AMS_PATH + CONTENTS_PATH + i["tid"].get<std::string>();
+                                    fs::removeDir(path);
+                                }
                             }
                         }
                     }

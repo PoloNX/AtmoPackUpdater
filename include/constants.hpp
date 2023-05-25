@@ -23,7 +23,7 @@ struct homebrew_label {
 const std::vector<std::string> contentSettings = {"dns", "theme", "clear", "reboot", "auto-update"};
 
 
-const std::string APP_VER = "1.9.0"; 
+const std::string APP_VER = "1.9.1"; 
 constexpr std::string_view contentTypeNames[5]{"ams_cfw", "app", "firmwares", "sigpatches", "homebrew"};
 
 //app path
