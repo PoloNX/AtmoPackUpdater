@@ -35,7 +35,7 @@
 
 - Download the latest update of [AtmosphereVanillaPack](https://github.com/THZoria/AtmoPack-Vanilla)
 - Download the latest update of this application
-- Download the latest [sigpatches](https://github.com/ITotalJustice/patches)
+- Download the latest [sigpatches](https://jits.cc/patches)
 - Download the [firmware](https://github.com/THZoria/NX_Firmware) of your choice
 
 ## Screenshot
