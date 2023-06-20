@@ -14,9 +14,10 @@ jobs:
     - name: update repo
       run: |
         git config --global --add safe.directory /__w/AtmoPackUpdater/AtmoPackUpdater/lib/borealis
+        git config --global --add safe.directory /__w/AtmoPackUpdater/AtmoPackUpdater/amssu-rcm
         git config --global --add safe.directory /__w/AtmoPackUpdater/AtmoPackUpdater
         git submodule update --init --recursive
-            
+
     - name: build AtmoPackUpdater
       run: | 
         make
