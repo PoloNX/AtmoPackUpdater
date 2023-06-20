@@ -10,7 +10,13 @@ jobs:
     container: devkitpro/devkita64
     steps:
     - uses: actions/checkout@v1
-    
+
+    - name: update repo
+      run: |
+        git config --global --add safe.directory /__w/AtmoPackUpdater/AtmoPackUpdater/lib/borealis
+        git config --global --add safe.directory /__w/AtmoPackUpdater/AtmoPackUpdater
+        git submodule update --init --recursive
+            
     - name: build AtmoPackUpdater
       run: | 
         make
