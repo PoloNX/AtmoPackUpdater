@@ -73,7 +73,7 @@ namespace util {
                         if(std::filesystem::exists(fmt::format("{}{}", SWITCH_PATH, filename)))
                             std::filesystem::remove(fmt::format("{}{}", SWITCH_PATH, filename));
                     }
-                    status_code = net::downloadFile(url, SWITCH_PATH + filename, false);
+                    status_code = net::downloadFile(url, output, false);
                 }
                 else
                     status_code = net::downloadFile(url, SYSMODULES_DOWNLOAD_PATH, false);
