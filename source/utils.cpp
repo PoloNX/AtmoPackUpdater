@@ -62,18 +62,27 @@ namespace util {
                     std::string foldername = filename.substr(0, filename.find_last_of("."));
                     int choice = showDialogBoxBlocking("menu/dialog/homebrew_path"_i18n, fmt::format("{}{}", SWITCH_PATH, filename), fmt::format("{}{}/{}", SWITCH_PATH, foldername, filename));
                     std::string output;
-                    if(choice == 0)
+                    if(choice == 0) {
                         output = fmt::format("{}{}", SWITCH_PATH, filename);
-                        if(std::filesystem::exists(fmt::format("{}{}", SWITCH_PATH, foldername)))
-                            std::filesystem::remove_all(fmt::format("{}{}", SWITCH_PATH, foldername));
+                        brls::Logger::debug("Output = {}", output);
+                        
+                        fs::removeDir(fmt::format("{}{}", SWITCH_PATH, foldername));
+                        status_code = net::downloadFile(url, output, false);
+                    }
                     else {
                         output = fmt::format("{}{}/{}", SWITCH_PATH, foldername, filename);
-                        if(!std::filesystem::exists(fmt::format("{}{}", SWITCH_PATH, foldername)))
-                            std::filesystem::create_directory(fmt::format("{}{}", SWITCH_PATH, foldername));
-                        if(std::filesystem::exists(fmt::format("{}{}", SWITCH_PATH, filename)))
-                            std::filesystem::remove(fmt::format("{}{}", SWITCH_PATH, filename));
+                        std::string downloadPath = fmt::format("{}{}", SWITCH_PATH, foldername);
+                        std::string oldPath = fmt::format("{}{}", SWITCH_PATH, filename);
+
+                        brls::Logger::debug("Output = {}", output);
+
+                        brls::Logger::debug("Remove file : {}", oldPath);
+                        fs::removeFile(oldPath);
+
+                        brls::Logger::debug("Download path : {}", downloadPath);
+                        std::filesystem::create_directories(downloadPath);
+                        status_code = net::downloadFile(url, output, false);
                     }
-                    status_code = net::downloadFile(url, output, false);
                 }
                 else
                     status_code = net::downloadFile(url, SYSMODULES_DOWNLOAD_PATH, false);

@@ -30,6 +30,14 @@ namespace fs {
         return true;
     }
 
+    bool removeFile(const std::string& path) {
+        Result ret = 0;
+        FsFileSystem* fs = fsdevGetDeviceFileSystem("sdmc");
+        if (R_FAILED(ret = fsFsDeleteFile(fs, path.c_str())))
+            return false;
+        return true;
+    }
+
     nlohmann::ordered_json parseJsonFile(const std::string& path)
     {
         std::ifstream file(path);
