@@ -58,8 +58,32 @@ namespace util {
             case contentType::homebrew: {
                 std::size_t last_slash_pos = url.find_last_of("/");
                 std::string filename = url.substr(last_slash_pos + 1);
-                if(homebrew)
-                    status_code = net::downloadFile(url, SWITCH_PATH + filename, false);
+                if(homebrew) {
+                    std::string foldername = filename.substr(0, filename.find_last_of("."));
+                    int choice = showDialogBoxBlocking("menu/dialog/homebrew_path"_i18n, fmt::format("{}{}", SWITCH_PATH, filename), fmt::format("{}{}/{}", SWITCH_PATH, foldername, filename));
+                    std::string output;
+                    if(choice == 0) {
+                        output = fmt::format("{}{}", SWITCH_PATH, filename);
+                        brls::Logger::debug("Output = {}", output);
+                        
+                        fs::removeDir(fmt::format("{}{}", SWITCH_PATH, foldername));
+                        status_code = net::downloadFile(url, output, false);
+                    }
+                    else {
+                        output = fmt::format("{}{}/{}", SWITCH_PATH, foldername, filename);
+                        std::string downloadPath = fmt::format("{}{}", SWITCH_PATH, foldername);
+                        std::string oldPath = fmt::format("{}{}", SWITCH_PATH, filename);
+
+                        brls::Logger::debug("Output = {}", output);
+
+                        brls::Logger::debug("Remove file : {}", oldPath);
+                        fs::removeFile(oldPath);
+
+                        brls::Logger::debug("Download path : {}", downloadPath);
+                        std::filesystem::create_directories(downloadPath);
+                        status_code = net::downloadFile(url, output, false);
+                    }
+                }
                 else
                     status_code = net::downloadFile(url, SYSMODULES_DOWNLOAD_PATH, false);
                 break;

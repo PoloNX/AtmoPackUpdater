@@ -7,6 +7,7 @@
 
 namespace fs {
     bool removeDir(const std::string& path);
+    bool removeFile(const std::string& path);
     nlohmann::ordered_json parseJsonFile(const std::string& path);
     void writeJsonToFile(nlohmann::json& data, const std::string& path);
     bool copyFile(const std::string& from, const std::string& to);
