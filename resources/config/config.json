@@ -1,3 +1,4 @@
 {
-    "auto-update" : false
+    "auto-update" : false,
+    "custom-pack" : []
 }

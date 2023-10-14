@@ -6,6 +6,7 @@
 #include "confirm_page.hpp"
 #include "settings_tab.hpp"
 #include "constants.hpp"
+#include "custom_pack.hpp"
 #include <iostream>
 #include <fstream>
 #include "worker_page.hpp"
@@ -53,6 +54,8 @@ void MainFrame::initializeFromJSON(const nlohmann::ordered_json& nxlinks) {
         this->addTab("menu/tab/firmwares"_i18n, new UpdateTab(contentType::firmwares, nxlinks));
     if (tabsAccepted[4])
         this->addTab("menu/tab/sigpatches"_i18n, new UpdateTab(contentType::sigpatches, nxlinks));
+
+    this->addTab("menu/tab/custom-pack"_i18n, new CustomPack());
 
     this->addSeparator();
 

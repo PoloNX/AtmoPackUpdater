@@ -7,7 +7,8 @@
     "app" : "\u25c6 Vous pouvez mettre à jour l'application que vous utilisez sur votre switch.\n Version actuelle de l'app\u00a0: ",
     "homebrew": "\u25c6 Vous pouvez installer ou mettre à jour différents homebrews/sysmodules.",
     "version" : "\n\u25c6 Version disponible\u00a0: ",
-    "version_beta" : "\n\u25c6 Version de test disponible\u00a0: "
+    "version_beta" : "\n\u25c6 Version de test disponible\u00a0: ",
+    "custom-pack": "\u25c6 Vous pouvez créer votre propre pack et utiliser AtmoPackUpdater pour l'installer."
   },
 
   "update": {
@@ -42,7 +43,8 @@
     "sigpatches": "Update sigpatches",
     "credits": "Crédits",
     "settings": "Paramètres",
-    "homebrew": "Update homebrews"
+    "homebrew": "Update homebrews",
+    "custom-pack": "Custom pack"
   },
 
   "about": {
@@ -95,5 +97,9 @@
   "footer": {
     "update_available": "Une mise à jour de l'app est disponible.",
     "no_internet": "Vous n'êtes pas connecté à internet!"
+  },
+
+  "custom_pack": {
+    "add": "Ajouter un pack customisé"
   }
 }
