@@ -82,7 +82,7 @@ void CustomPack::addPack(Pack& pack) {
 
 CustomPack::CustomPack() {
 
-    m_label = new brls::Label(brls::LabelStyle::REGULAR, "menu/custom_pack/desc"_i18n, true);
+    m_label = new brls::Label(brls::LabelStyle::REGULAR, "menu/description/custom-pack"_i18n, true);
     this->addView(m_label);
 
     Packs = getPacks();
