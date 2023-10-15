@@ -28,4 +28,6 @@ namespace util {
     bool is_older_version(const std::string& version1, nlohmann::json json);
     bool isApplet();
     const nlohmann::ordered_json getValueFromKey(const nlohmann::ordered_json& jsonFile, const std::string& key);
+    std::string getAppPath();
+    void restartApp();
 }

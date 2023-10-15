@@ -147,6 +147,7 @@ CustomPack::CustomPack() {
         m_item->registerAction("menu/custom-pack/delete"_i18n, brls::Key::Y, [this, pack]{
             brls::Logger::debug("Before deletePack");
             deletePack(pack);
+            util::restartApp();
             return true;
         });
         this->addView(m_item);
@@ -160,6 +161,7 @@ CustomPack::CustomPack() {
         
         Pack pack(title, url);
         addPack(pack);
+        util::restartApp();
     });
     this->addView(m_item);
 }

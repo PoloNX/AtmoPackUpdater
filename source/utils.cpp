@@ -395,14 +395,6 @@ namespace util {
             return false;
     }
 
-    std::string getAppPath() {
-         if (envHasArgv()) {
-            std::string argv = (char*)envGetArgv();
-            return fs::splitString(argv, '\"')[1].substr(5);
-        }
-        return NRO_PATH;
-    }
-
     //bool isExfat() {
     //    bool exfat_support = fsIsExFatSupported(&exfat_support);
     //    return exfat_support;
@@ -453,5 +445,25 @@ namespace util {
     const nlohmann::ordered_json getValueFromKey(const nlohmann::ordered_json& jsonFile, const std::string& key)
     {
         return (jsonFile.find(key) != jsonFile.end()) ? jsonFile.at(key) : nlohmann::ordered_json::object();
+    }
+
+    std::string getAppPath() {
+        if(envHasArgv()) {
+            std::smatch match;
+            std::string argv = (char*)envGetArgv();
+            if(std::regex_match(argv, match, std::regex(".*(/switch/.*AtmoPackUpdater.nro).*"))) {
+                if (match.size() >= 2) {
+                    return match[1].str();
+                }
+            }
+        }
+    }
+
+    void restartApp() {
+        std::string appPath = fmt::format("sdmc:{}", getAppPath());
+        std::string argv = "\"" + appPath + "\"";
+        envSetNextLoad(appPath.c_str(), argv.c_str());
+        romfsExit();
+        brls::Application::quit();
     }
 }
