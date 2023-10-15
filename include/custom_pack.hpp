@@ -20,6 +20,7 @@ private:
     brls::Label* m_label;
     std::vector<Pack> Packs;
     void addPack(Pack& pack);
+    void deletePack(Pack pack);
     std::vector<Pack> getPacks();
 public:
     CustomPack();

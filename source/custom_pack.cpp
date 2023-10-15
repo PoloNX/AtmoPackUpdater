@@ -80,6 +80,34 @@ void CustomPack::addPack(Pack& pack) {
     }
 }
 
+void CustomPack::deletePack(Pack pack) {
+    brls::Logger::debug("Deleting pack: {}", pack.getName());
+    nlohmann::json j;
+    std::ifstream file("/config/AtmoPackUpdater/config.json");
+    if(file.is_open()) {
+        brls::Logger::debug("Opened config file for reading");
+        file >> j;
+        file.close();
+        brls::Logger::debug("Closed config file for reading");
+        if(j.find("custom-pack") != j.end() && j["custom-pack"].is_array()) {
+            brls::Logger::info("Deleting pack: " + pack.getName());
+            for (auto it = j["custom-pack"].begin(); it != j["custom-pack"].end(); ++it) {
+                if ((*it)["name"] == pack.getName() && (*it)["url"] == pack.getUrl()) {
+                    j["custom-pack"].erase(it);
+                    break;
+                }
+            }
+            std::ofstream outfile("/config/AtmoPackUpdater/config.json");
+            outfile << j;
+            outfile.close();
+        } else {
+            brls::Logger::error("Invalid or missing 'custom-pack' field in the configuration file");
+        }
+    } else {
+        brls::Logger::error("Failed to open config file for reading");
+    }
+}
+
 CustomPack::CustomPack() {
 
     m_label = new brls::Label(brls::LabelStyle::REGULAR, "menu/description/custom-pack"_i18n, true);
@@ -116,7 +144,11 @@ CustomPack::CustomPack() {
 
             brls::Application::pushView(stagedFrame);
         });
-        
+        m_item->registerAction("menu/custom-pack/delete"_i18n, brls::Key::Y, [this, pack]{
+            brls::Logger::debug("Before deletePack");
+            deletePack(pack);
+            return true;
+        });
         this->addView(m_item);
     }
 

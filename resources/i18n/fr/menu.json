@@ -100,6 +100,7 @@
   },
 
   "custom_pack": {
-    "add": "Ajouter un pack customisé"
+    "add": "Ajouter un pack customisé",
+    "delete": "Supprimer"
   }
 }
