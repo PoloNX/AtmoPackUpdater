@@ -30,4 +30,5 @@ namespace util {
     const nlohmann::ordered_json getValueFromKey(const nlohmann::ordered_json& jsonFile, const std::string& key);
     std::string getAppPath();
     void restartApp();
+    void updateConsole(const std::string& updatePath);
 }

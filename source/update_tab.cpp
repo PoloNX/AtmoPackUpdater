@@ -156,17 +156,17 @@ void UpdateTab::createList(contentType type) {
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));
                 //Create a Download Page
-                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url, homebrews, compteur]() {
+                /*stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url, homebrews, compteur]() {
                     if (homebrews.size()) {
                         util::downloadArchive(url, type, homebrews[compteur].homebrew); 
                     }
                     else {
                         util::downloadArchive(url, type, false);
                     }
-                }));
+                }));*/
                     
                 //Create an extract Page
-                if(type!=contentType::homebrew) {
+                /*if(type!=contentType::homebrew) {
                     if (type != contentType::app) {
                         stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
                             util::extractArchive(type);
@@ -179,7 +179,7 @@ void UpdateTab::createList(contentType type) {
                             util::extractArchive(type);
                         }));
                     }
-                }
+                }*/
 
                 //Done messages
                 std::string doneMsg = "menu/update/download_finish"_i18n;

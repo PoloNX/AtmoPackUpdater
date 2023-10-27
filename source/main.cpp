@@ -37,6 +37,8 @@ int main() {
     pmdmntInitialize();
     pminfoInitialize();
     splInitialize();
+    hiddbgInitialize();
+    spsmInitialize();
     romfsInit();
 
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
@@ -95,6 +97,9 @@ int main() {
     nsExit();
     setsysExit();
     plExit();
+    hiddbgExit();
+    spsmExit();
+
     return EXIT_SUCCESS;
 }
 
