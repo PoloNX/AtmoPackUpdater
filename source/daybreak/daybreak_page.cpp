@@ -38,6 +38,39 @@ u32 DaybreakPage::EncodeVersion(u32 major, u32 minor, u32 micro, u32 relstep)
     return ((major & 0xFF) << 24) | ((minor & 0xFF) << 16) | ((micro & 0xFF) << 8) | ((relstep & 0xFF) << 8);
 }
 
+void DaybreakPage::DaybreakInit() {
+    Result rc = 0;
+
+	if (R_FAILED(rc = spsmInitialize())) {
+		fatalThrow(rc);
+	}
+
+	if (R_FAILED(rc = plInitialize(PlServiceType_User))) {
+		fatalThrow(rc);
+	}
+
+	if (R_FAILED(rc = splInitialize())) {
+		fatalThrow(rc);
+	}
+
+	if (R_FAILED(rc = nsInitialize())) {
+		fatalThrow(rc);
+	}
+
+	if (R_FAILED(rc = hiddbgInitialize())) {
+		fatalThrow(rc);
+	}
+}
+
+void DaybreakPage::DaybreakExit() {
+    hiddbgExit();
+	nsExit();
+	splExit();
+	plExit();
+	spsmExit();
+	amssuExit();
+}
+
 extern "C" {
     bool DaybreakPage::DaybreakInitializeMenu() {
         Result rc = 0;
@@ -79,9 +112,11 @@ extern "C" {
 }
 
 void DaybreakPage::InstallUpdate() {
+    this->DaybreakInit();
     strcpy(this->g_update_path, "sdmc:/firmware/");
 
     DaybreakInitializeMenu();
 
+    this->DaybreakExit();
     return;
 }

@@ -53,7 +53,8 @@ private:
     void MarkForReboot();
     Result TransitionUpdateState();
     void InstallUpdate();
-
+    void DaybreakInit();
+    void DaybreakExit();
 public:
     DaybreakPage(brls::StagedAppletFrame* frame, const std::string& text) : DialoguePage(), text(text), frame(frame) { CreateView(); }
     void draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx) override;
