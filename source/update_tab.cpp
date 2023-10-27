@@ -164,10 +164,10 @@ void UpdateTab::createList(contentType type) {
                     else {
                         util::downloadArchive(url, type, false);
                     }
-                }));*/
+                }));
                     
                 //Create an extract Page
-                /*if(type!=contentType::homebrew) {
+                if(type!=contentType::homebrew) {
                     if (type != contentType::app) {
                         stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/extract_text"_i18n, [this, type]() {
                             util::extractArchive(type);
