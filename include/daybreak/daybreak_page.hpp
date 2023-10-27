@@ -59,3 +59,25 @@ public:
     DaybreakPage(brls::StagedAppletFrame* frame, const std::string& text) : DialoguePage(), text(text), frame(frame) { CreateView(); }
     void draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx) override;
 };
+
+class ExFatPage : public DialoguePage {
+private:
+    void instantiateButtons() override;
+    std::string text;
+    brls::StagedAppletFrame* frame;
+    bool &use_exfat;
+public:
+    ExFatPage(brls::StagedAppletFrame* frame, const std::string& text, bool &g_use_exfat) : DialoguePage(), text(text), frame(frame), use_exfat(g_use_exfat) { CreateView(); }
+    void draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx) override;
+};
+
+class ResetPage : public DialoguePage {
+private:
+    void instantiateButtons() override;
+    std::string text;
+    brls::StagedAppletFrame* frame;
+    bool &reset_to_factory;
+public:
+    ResetPage(brls::StagedAppletFrame* frame, const std::string& text, bool &g_reset_to_factory) : DialoguePage(), text(text), frame(frame), reset_to_factory(g_reset_to_factory) { CreateView(); }
+    void draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx) override;
+};
