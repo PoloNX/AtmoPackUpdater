@@ -16,6 +16,7 @@ WorkerPage::WorkerPage(brls::StagedAppletFrame* frame, const std::string& text, 
 {
     this->progressDisp = new brls::ProgressDisplay();
     this->progressDisp->setParent(this);
+   
 
     this->label = new brls::Label(brls::LabelStyle::DIALOG, text, true);
     this->label->setHorizontalAlign(NVG_ALIGN_CENTER);

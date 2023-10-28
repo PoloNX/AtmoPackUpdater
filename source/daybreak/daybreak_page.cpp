@@ -198,6 +198,9 @@ Result DaybreakPage::TransitionUpdateState() {
     Result rc = 0;
 	if (m_install_state == InstallState::NeedsSetup) {
 		/* Setup the update. */
+        brls::Logger::info("UpdateTaskBufferSize : {}", UpdateTaskBufferSize);
+        brls::Logger::info("Update path : {}", g_update_path);
+        brls::Logger::info("Use exfat : {}", g_use_exfat);
 		if (R_FAILED(rc = amssuSetupUpdate(nullptr, UpdateTaskBufferSize, g_update_path, g_use_exfat))) {
 			//printf(language_vars["lng_db_install_process_setup_error"], rc);
 			brls::Logger::error("Failed to setup update: 0x{:08X}", rc);
@@ -260,16 +263,16 @@ Result DaybreakPage::TransitionUpdateState() {
 		// Update progress percent.
 		if (static_cast<float>(update_progress.total_size) > 0.0f) {
 			m_progress_percent = (static_cast<float>(update_progress.current_size) / static_cast<float>(update_progress.total_size)) * 100.0f;
-			// printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
+			printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
 			// consoleUpdate(&logs_console);
 		} else {
 			m_progress_percent = 0.0f;
-			// printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
+			printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
 			// consoleUpdate(&logs_console);
 		}
-		// printf("\r* %10.0f on %10.0f  *", static_cast<float>(update_progress.current_size), static_cast<float>(update_progress.total_size));
-		// printf("\r* %i *", (static_cast<int>(update_progress.current_size) / static_cast<int>(update_progress.total_size)) * 100);
-		// printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
+		printf("\r* %10.0f on %10.0f  *", static_cast<float>(update_progress.current_size), static_cast<float>(update_progress.total_size));
+		printf("\r* %i *", (static_cast<int>(update_progress.current_size) / static_cast<int>(update_progress.total_size)) * 100);
+		printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
 		// consoleUpdate(&logs_console);
 	} else if (m_install_state == InstallState::NeedsApply) {
 		/* Apply the prepared update. */
@@ -311,7 +314,9 @@ void DaybreakPage::MarkForReboot() {
 
 void DaybreakPage::InstallUpdate() {
     brls::StagedAppletFrame* appletFrame = new brls::StagedAppletFrame();
+    appletFrame->setIcon("romfs:/icon/daybreak.png");
 
+    
     this->DaybreakInit();
     chdir("sdmc:/");
 
@@ -370,7 +375,7 @@ void DaybreakPage::InstallUpdate() {
     }
 
     if (!m_has_validated || R_FAILED(m_validation_info.result)) {
-        brls::Logger::error("Failed to validate update");
+        brls::Logger::error("Failed to validate update, m_has_validated : {}, m_validation_info.result : {}", m_has_validated, m_validation_info.result);
         return;
     }
 
@@ -386,9 +391,8 @@ void DaybreakPage::InstallUpdate() {
     appletFrame->addStage(new ResetPage(appletFrame, "menu/dialogue/reset"_i18n, g_reset_to_factory));
 
     appletFrame->addStage(new WorkerPage(appletFrame, "menu/dialogue/update"_i18n, [this]() {
-        ProgressEvent::instance().setStep(0);
         ProgressEvent::instance().setTotalSteps(100); //Percents
-        
+        //ProgressEvent::instance().setStep(0);
         hiddbgDeactivateHomeButton();
         m_install_state = InstallState::NeedsDraw;
         if(m_install_state == InstallState::NeedsDraw) {
@@ -413,9 +417,9 @@ void DaybreakPage::InstallUpdate() {
                     break;
                 }
                 TransitionUpdateState();
-                // printf("\r* Update progress : %3.0f%s *", m_progress_percent, "%");
+                printf("\r* Update progress : %3.0f%s *", m_progress_percent, "%");
                 // consoleUpdate(&logs_console);
-                ProgressEvent::instance().setStep(this->m_progress_percent);
+                ProgressEvent::instance().setNow(this->m_progress_percent);
             }
 	    }
 
@@ -424,14 +428,17 @@ void DaybreakPage::InstallUpdate() {
             TransitionUpdateState();
         }
 
-        //reboot::rebootNow();
+
+        if (m_install_state == InstallState::AwaitingReboot) {
+            brls::Logger::info("6- Install state : {}", m_install_state);
+            brls::Logger::info("Rebooting...");
+            reboot::rebootNow();
+        }
     }));
 
+    appletFrame->setTitle(fmt::format("Daybreak Installing firmware {}.{}.{}", (m_update_info.version >> 26) & 0x1f, (m_update_info.version >> 20) & 0x1f, (m_update_info.version >> 16) & 0xf));
 
     brls::Application::pushView(appletFrame);
-
-    this->DaybreakExit();
-    
     
     return;
 }

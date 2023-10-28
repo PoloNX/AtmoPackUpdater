@@ -15,6 +15,7 @@
  */
 #include <switch.h>
 #include <string.h>
+#include <stdio.h>
 #include "ams_su.h"
 #include "service_guard.h"
 
@@ -63,6 +64,7 @@ Result amssuSetupUpdate(void *buffer, size_t size, const char *path, bool exfat)
 
     if (buffer == NULL) {
         rc = tmemCreate(&g_tmem, size, Perm_None);
+        printf("tmemCreate: 0x%08x\n", rc);
     } else {
         rc = tmemCreateFromMemory(&g_tmem, buffer, size, Perm_None);
     }
@@ -83,6 +85,7 @@ Result amssuSetupUpdate(void *buffer, size_t size, const char *path, bool exfat)
         .buffer_attrs = { SfBufferAttr_In | SfBufferAttr_HipcPointer | SfBufferAttr_FixedSize },
         .buffers      = { { send_path, FS_MAX_PATH } },
     );
+    printf("serviceDispatchIn: 0x%08x\n", rc);
     if (R_FAILED((rc))) {
         tmemClose(&g_tmem);
     }
