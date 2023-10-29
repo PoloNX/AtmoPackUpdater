@@ -4,6 +4,7 @@
 #include "worker_page.hpp"
 #include "progress_event.hpp"
 #include "reboot.hpp"
+#include "confirm_page.hpp"
 #include <sys/stat.h>
 
 namespace i18n = brls::i18n;
@@ -21,11 +22,6 @@ void DaybreakPage::instantiateButtons()
 
     this->button1->getClickEvent()->subscribe([this](View* view) {
         this->InstallUpdate();
-        /*if (!frame->isLastStage())
-            frame->nextStage();
-        else {
-            brls::Application::pushView(new MainFrame());
-        }*/
     });
 
     this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "menu/dialogue/launch_daybreak"_i18n), true);
@@ -260,16 +256,21 @@ Result DaybreakPage::TransitionUpdateState() {
 			return rc;
 		}
 
+        ProgressEvent::instance().setStep(int(update_progress.current_size));
+        ProgressEvent::instance().setTotalSteps(int(update_progress.total_size));
+
 		// Update progress percent.
 		if (static_cast<float>(update_progress.total_size) > 0.0f) {
 			m_progress_percent = (static_cast<float>(update_progress.current_size) / static_cast<float>(update_progress.total_size)) * 100.0f;
-			printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
+			printf("\r* Update progress : %3.0f %s * \n", m_progress_percent, "%");
 			// consoleUpdate(&logs_console);
 		} else {
 			m_progress_percent = 0.0f;
-			printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
+			printf("\r* Update progress : %3.0f %s * \n", m_progress_percent, "%");
 			// consoleUpdate(&logs_console);
 		}
+
+
 		printf("\r* %10.0f on %10.0f  *", static_cast<float>(update_progress.current_size), static_cast<float>(update_progress.total_size));
 		printf("\r* %i *", (static_cast<int>(update_progress.current_size) / static_cast<int>(update_progress.total_size)) * 100);
 		printf("\r* Update progress : %3.0f %s *", m_progress_percent, "%");
@@ -391,7 +392,7 @@ void DaybreakPage::InstallUpdate() {
     appletFrame->addStage(new ResetPage(appletFrame, "menu/dialogue/reset"_i18n, g_reset_to_factory));
 
     appletFrame->addStage(new WorkerPage(appletFrame, "menu/dialogue/update"_i18n, [this]() {
-        ProgressEvent::instance().setTotalSteps(100); //Percents
+        //ProgressEvent::instance().setTotalSteps(100); //Percents
         //ProgressEvent::instance().setStep(0);
         hiddbgDeactivateHomeButton();
         m_install_state = InstallState::NeedsDraw;
@@ -417,9 +418,7 @@ void DaybreakPage::InstallUpdate() {
                     break;
                 }
                 TransitionUpdateState();
-                printf("\r* Update progress : %3.0f%s *", m_progress_percent, "%");
-                // consoleUpdate(&logs_console);
-                ProgressEvent::instance().setNow(this->m_progress_percent);
+                printf("\r* Update progress : %3.0f%s *\n", m_progress_percent, "%");
             }
 	    }
 
@@ -432,9 +431,15 @@ void DaybreakPage::InstallUpdate() {
         if (m_install_state == InstallState::AwaitingReboot) {
             brls::Logger::info("6- Install state : {}", m_install_state);
             brls::Logger::info("Rebooting...");
-            reboot::rebootNow();
+            //reboot::rebootNow();
+            ProgressEvent::instance().finished();
+            this->DaybreakExit();
         }
     }));
+
+    std::string doneMsg = "menu/update/download_finish"_i18n + "menu/update/apply_firmware"_i18n;
+    
+    appletFrame->addStage(new ConfirmPage(appletFrame, doneMsg, true, true, util::isErista()));
 
     appletFrame->setTitle(fmt::format("Daybreak Installing firmware {}.{}.{}", (m_update_info.version >> 26) & 0x1f, (m_update_info.version >> 20) & 0x1f, (m_update_info.version >> 16) & 0xf));
 

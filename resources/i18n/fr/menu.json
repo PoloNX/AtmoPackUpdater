@@ -17,6 +17,7 @@
     "subtitle_firmwares": "Mettre à jour le Firmware",
     "subtitle_sigpatches": "Mettre à jour les Sigpatches",
     "subtitle_homebrew": "Mettre à jour vos Homebrews/Sysmodules",
+    "subtitle_custom_pack": "Mettre à jour votre pack customisé",
     "download_text": "téléchargement de ",
     "download": "téléchargement...",
     "link_text": "\nLien complet:\n",
@@ -27,6 +28,7 @@
     "apply_patch": "Votre console dois redémarrer pour appliquer les patchs de signature.",
     "apply_app": "L'hombrew doit redémarrer pour appliquer la mise à jour",
     "apply_homebrew": "L'homebrew/sysmodule a bien été mis à jour",
+    "apply_firmware": "Votre console dois redémarrer pour appliquer la mise à jour du firmware.",
     "auto-update": "Mise à jour automatique de l'homebrew"
   },
 
