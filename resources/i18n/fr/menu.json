@@ -3,7 +3,7 @@
     "sigpatches" : "\u25c6 Les sigpatches permettent à la Switch d'installer et d'exécuter des fichiers NSP non officiels. Redémarrez la console pour appliquer les patches.",
     "pack" : "\u25c6 Le pack AtmoPack-Vanilla est un pack léger qui vous permettra d'hacker votre switch très facilement et sans problèmes. Il contient des homebrews très utiles.\n Version actuelle du pack\u00a0:",
     "pack_beta" : "\u25c6 Le pack AtmoPack-Vanilla possède une version bêta, celle ci permet de tester les dernières nouveautées. Pour rappel une version bêta n'est pas forcément stable. \n Version actuelle du pack\u00a0:",
-    "firmwares" : "\u25c6 Firmware archivé sur 'https://github.com/THZoria/NX_Firmware'. Une fois téléchargé, ils sera extrait dans '/firmware'. Vous pouvez ensuite installer la mise à jour avec Daybreak.\n FW installé\u00a0: ",
+    "firmwares" : "\u25c6 Firmware archivé sur 'https://github.com/THZoria/NX_Firmware'. Une fois téléchargé, ils sera extrait dans '/firmware'. Vous pouvez ensuite installer la mise à jour avec Daybreak ou directement depuis AtmoPackUpdater.\n FW installé\u00a0: ",
     "app" : "\u25c6 Vous pouvez mettre à jour l'application que vous utilisez sur votre switch.\n Version actuelle de l'app\u00a0: ",
     "homebrew": "\u25c6 Vous pouvez installer ou mettre à jour différents homebrews/sysmodules.",
     "version" : "\n\u25c6 Version disponible\u00a0: ",
@@ -29,7 +29,8 @@
     "apply_app": "L'hombrew doit redémarrer pour appliquer la mise à jour",
     "apply_homebrew": "L'homebrew/sysmodule a bien été mis à jour",
     "apply_firmware": "Votre console dois redémarrer pour appliquer la mise à jour du firmware.",
-    "auto-update": "Mise à jour automatique de l'homebrew"
+    "auto-update": "Mise à jour automatique de l'homebrew",
+    "install_finish": "Installation terminée!"
   },
 
   "error": {
@@ -64,9 +65,11 @@
   "dialogue": {
     "yes": "Oui",
     "no": "Non",
-    "launch_daybreak": "Voulez vous lancer daybreak?",
+    "launch_daybreak": "Voulez vous directement installer la mise à jour ?",
     "delete_theme": "Voulez-vous supprimer votre thème?",
-    "mariko_model": "Vous êtes sur un model patché, vous devez redémarrer votre switch pour appliquer la mise à jour et la redémarrer une nouvelle fois pour lancer hekate"
+    "mariko_model": "Vous êtes sur un model patché, vous devez redémarrer votre switch pour appliquer la mise à jour et la redémarrer une nouvelle fois pour lancer hekate",
+    "exfat": "Voulez vous installer les drivers exFat ? (recommandé)",
+    "update": "Installation du firmware"
   },
 
   "worker": {
