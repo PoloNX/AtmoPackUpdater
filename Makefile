@@ -16,10 +16,10 @@ include $(DEVKITPRO)/libnx/switch_rules
 # DATA is a list of directories containing data files
 # INCLUDES is a list of directories containing header files
 BUILD		:=	build
-SOURCES		:=	source 
+SOURCES		:=	source source/daybreak
 RESOURCES	:=	resources
 DATA		:=	data
-INCLUDES	:=	include /lib/borealis/library/include/borealis/extern/nlohmann
+INCLUDES	:=	include /lib/borealis/library/include/borealis/extern/nlohmann include/daybreak
 APP_TITLE	:=	AtmoPackUpdater
 APP_AUTHOR	:=	PoloNX
 APP_VERSION :=  1.9.1

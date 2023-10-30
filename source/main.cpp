@@ -11,6 +11,7 @@
 #include <borealis.hpp>
 #include "worker_page.hpp"
 #include "download.hpp"
+#include "ams_su.h"
 #include <fstream>
 
 namespace i18n = brls::i18n;
@@ -37,6 +38,8 @@ int main() {
     pmdmntInitialize();
     pminfoInitialize();
     splInitialize();
+    hiddbgInitialize();
+    spsmInitialize();
     romfsInit();
 
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
@@ -95,6 +98,10 @@ int main() {
     nsExit();
     setsysExit();
     plExit();
+    hiddbgExit();
+    spsmExit();
+	amssuExit();
+
     return EXIT_SUCCESS;
 }
 

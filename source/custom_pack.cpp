@@ -110,7 +110,12 @@ void CustomPack::deletePack(Pack pack) {
 
 CustomPack::CustomPack() {
 
-    m_label = new brls::Label(brls::LabelStyle::REGULAR, "menu/description/custom-pack"_i18n, true);
+    m_label = new brls::Label(brls::LabelStyle::REGULAR, "", true);
+    m_label->setText("menu/update/subtitle_custom_pack"_i18n);
+    m_label->setHorizontalAlign(NVG_ALIGN_CENTER);
+    this->addView(m_label);
+
+    m_label = new brls::Label(brls::LabelStyle::DESCRIPTION, "menu/description/custom-pack"_i18n, true);
     this->addView(m_label);
 
     Packs = getPacks();

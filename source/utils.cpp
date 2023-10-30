@@ -18,6 +18,7 @@ namespace i18n = brls::i18n;
 using namespace i18n::literals;
 
 namespace util {
+
     void createTree(std::string path)
     {
         std::string delimiter = "/";
@@ -466,4 +467,7 @@ namespace util {
         romfsExit();
         brls::Application::quit();
     }
+
+
+
 }

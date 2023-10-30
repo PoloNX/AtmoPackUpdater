@@ -2,13 +2,19 @@
 
 #include <algorithm>
 #include <filesystem>
+#include <switch.h>
+#include <worker_page.hpp>
 
 #include "fs.hpp"
+#include "progress_event.hpp"
 #include "main_frame.hpp"
 #include "utils.hpp"
+#include "reboot.hpp"
 
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
+
+
 
 void DialoguePage::CreateView()
 {

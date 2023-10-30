@@ -1,91 +1,101 @@
 {
-    "description": {
-      "sigpatches" : "\u25c6 Los sigpatches permiten a la Switch instalar y ejecutar archivos NSP no oficiales. Reinicie la consola para aplicar los parches.",
-      "pack" : "\u25c6 La mochila AtmoPack-Vanilla es una mochila ligera que le permitirá piratear su interruptor muy fácilmente y sin problemas. Contiene cervezas caseras muy útiles.\u00a0:",
-      "firmwares" : "\u25c6 Firmware archivado en 'https://github.com/THZoria/NX_Firmware'. Una vez descargados, se extraerán a '/firmware'. A continuación, puede instalar la actualización con Daybreak. \n FW instalada\u00a0: ",
-      "app" : "\u25c6 Puede actualizar la aplicación que utiliza en su conmutador.\n Versión actual de la aplicación\u00a0: ",
-      "version" : "\n\u25c6 Versión disponible\u00a0: ",
-      "homebrew": "Actualizar Homebrews"
-    },
-  
-    "update": {
-      "subtitle_ams": "Actualizar AtmoPack-Vanilla",
-      "subtitle_app": "Actualización de la aplicación",
-      "subtitle_firmwares": "Actualizar el firmware",
-      "subtitle_sigpatches": "Actualización de los Sigpatches",
-      "subtitle_homebrew": "Actualizar sus Homebrews",
-      "download_text": "descarga de ",
-      "download": "descargar de...",
-      "link_text": "\nEnlace completo:\n",
-      "extract_text": "Extracción en curso...",
-      "download_finish": "¡Descarga completa!",
-      "theme_installed": "\nParece que has instalado un tema personalizado, esto podría impedir el arranque del sistema tras la actualización del firmware. Es aconsejable eliminarlo antes de realizar la actualización.",
-      "apply_cfw": "Su consola debe reiniciarse para aplicar la actualización del paquete.",
-      "apply_patch": "Su consola debe reiniciarse para aplicar los parches de firma.",
-      "apply_app": "El hombrew debe reiniciar para aplicar la actualización",
-      "apply_homebrew": "Se ha actualizado Homebrew correctamente",
-      "auto-update": "Actualización automática del Homebrew"
-    },
-  
-    "error": {
-      "exfat": "Su tarjeta SD está en formato exfat. El uso de este software puede causar corrupción debido a la inestabilidad del formato exfat.",
-      "version_not_found" : "No se puede obtener la versión disponible",
-      "links_not_found" : "No se puede encontrar un enlace de descarga, compruebe que el Switch está conectado a Internet.\nSi este problema persiste, abre una incidencia en GitHub."
-    },
-  
-    "tab": {
-      "pack": "Actualizar el pack",
-      "app": "Actualizar la aplicación",
-      "firmwares": "Actualizar el firmware",
-      "sigpatches": "Actualizar los sigpatches",
-      "credits": "Créditos",
-      "settings": "Parámetros"
-    },
-  
-    "about": {
-      "credits": "Créditos de AtmoPackUpdater",
-      "copyright": "copyright © 2022 PoloNX",
-      "thanks_to": "Gracias a:",
-      "thanks": "THZoria para su AtmoPack-Vanilla\n\nSciresM para su reboot_to_payload\n\nTeam Neptune para su rcm payload\n\nHamletDuFromage para su .nro que me ayudó."
-    },
-  
-    "confirm": {
-      "continue": "Continuar",
-      "cancel": "Cancelar"
-    },
-  
-    "dialogue": {
-      "yes": "Sí",
-      "no": "No",
-      "launch_daybreak": "¿Quieres lanzar el amanecer?",
-      "delete_theme": "¿Desea eliminar su tema?",
-      "mariko_model": "Usted está en un modelo parcheado, debe reiniciar su switch para aplicar la actualización y reiniciar de nuevo para ejecutar hekate"
-    },
-  
-    "worker": {
-      "cancel": "Cancelar",
-      "of": "en"
-    },
-  
-    "settings": {
-      "90dns": "Aplicar 90dns (antiprohibición)",
-      "90dns_set": "Aplicación exitosa de 90dns",
-      "90dns_set_fail": "La aplicación de 90dns falló. ¿Tienes configurada una red de internet?",
-      "theme": "Eliminar el tema actual",
-      "theme_delete": "La eliminación del tema se ha completado con éxito. Reinicia para ver los efectos",
-      "theme_delete_fail": "No se puede eliminar el tema. ¿Tiene actualmente un tema?",
-      "clear": "Actualizar los datos de AtmoPackUpdater",
-      "clear_fail": "No se pueden actualizar los datos...",
-      "reboot": "Reiniciar en Hekate",
-      "auto-update": "Actualización automática del Homebrew"
-    },
-  
-    "dialog": {
-      "overwrite_ini": "¿Quiere escribir sobre su .ini ya registrado?",
-      "yes": "Sí",
-      "no": "No",
-      "reboot": "¿Realmente desea reiniciar su consola?",
-      "reboot_mariko": "Su consola no es elegible para un reinicio estándar porque es un modelo parcheado.",
-      "sysmodules": "Se han detectado sysmodules en su Switch, se recomienda eliminarlos durante una actualización del firmware. ¿Desea eliminarlos? Aquí están los diferentes sysmodules presentes:\n"
-    }
+  "description":{
+     "sigpatches":"\u25c6 Los sigpatches permiten a la Switch instalar y ejecutar archivos NSP no oficiales. Reinicia la consola para aplicar los parches.",
+     "pack":"\u25c6 AtmoPack-Vanilla es un paquete ligero que te permite piratear tu Switch de forma muy sencilla y sin problemas. Contiene homebrews muy útiles.\n Versión actual del paquete\u00a0:",
+     "pack_beta":"\u25c6 AtmoPack-Vanilla tiene una versión beta, que te permite probar las últimas novedades. Recuerda que una versión beta no siempre es estable. \n Versión actual del paquete\u00a0:",
+     "firmwares":"\u25c6 Firmware archivado en 'https://github.com/THZoria/NX_Firmware'. Una vez descargado, se extraerá en '/firmware'. Luego puedes instalar la actualización con Daybreak o directamente desde AtmoPackUpdater.\n FW instalado\u00a0: ",
+     "app":"\u25c6 Puedes actualizar la aplicación que estás usando en tu Switch.\n Versión actual de la aplicación\u00a0: ",
+     "homebrew":"\u25c6 Puedes instalar o actualizar varios homebrews/sysmodules.",
+     "version":"\n\u25c6 Versión disponible\u00a0: ",
+     "version_beta":"\n\u25c6 Versión de prueba disponible\u00a0: ",
+     "custom-pack":"\u25c6 Puedes crear tu propio paquete y usar AtmoPackUpdater para instalarlo."
+  },
+  "update":{
+     "subtitle_ams":"Actualizar AtmoPack-Vanilla",
+     "subtitle_app":"Actualizar la aplicación",
+     "subtitle_firmwares":"Actualizar el firmware",
+     "subtitle_sigpatches":"Actualizar los Sigpatches",
+     "subtitle_homebrew":"Actualizar tus Homebrews/Sysmodules",
+     "subtitle_custom_pack":"Actualizar tu paquete personalizado",
+     "download_text":"descargando ",
+     "download":"descargando...",
+     "link_text":"\nEnlace completo:\n",
+     "extract_text":"Extrayendo...",
+     "download_finish":"¡Descarga terminada!",
+     "theme_installed":"\nParece que has instalado un tema personalizado, esto podría evitar que el sistema se inicie después de actualizar tu firmware.\nSe recomienda eliminarlo antes de realizar la actualización.",
+     "apply_cfw":"Tu consola debe reiniciarse para aplicar la actualización del paquete.",
+     "apply_patch":"Tu consola debe reiniciarse para aplicar los parches de firma.",
+     "apply_app":"El homebrew debe reiniciarse para aplicar la actualización",
+     "apply_homebrew":"El homebrew/sysmodule se ha actualizado correctamente",
+     "apply_firmware":"Tu consola debe reiniciarse para aplicar la actualización del firmware.",
+     "auto-update":"Actualización automática del homebrew",
+     "install_finish":"¡Instalación terminada!"
+  },
+  "error":{
+     "applet":"Has iniciado el homebrew en modo applet. Este modo no es recomendado ya que tiene limitaciones de memoria. Inicia cualquier aplicación en el menú principal manteniendo presionado el botón \"R\" para iniciar el lanzador de homebrew en modo normal.",
+     "version_not_found":"No se pudo obtener la versión disponible",
+     "links_not_found":"No se pudo encontrar un enlace de descarga, verifica que la Switch esté conectada a internet.\nSi el problema persiste, por favor abre un problema en GitHub."
+  },
+  "tab":{
+     "pack":"Actualizar paquete",
+     "app":"Actualizar aplicación",
+     "firmwares":"Actualizar firmware",
+     "sigpatches":"Actualizar sigpatches",
+     "credits":"Créditos",
+     "settings":"Configuración",
+     "homebrew":"Actualizar homebrews",
+     "custom-pack":"Paquete personalizado"
+  },
+  "about":{
+     "credits":"Créditos de AtmoPackUpdater",
+     "copyright":"Derechos de autor © 2022 PoloNX",
+     "thanks_to":"Agradecimientos a:",
+     "thanks":"THZoria por AtmoPack-Vanilla\n\nSciresM por reboot_to_payload y Daybreak\n\nEquipo Neptune por el rcm payload\n\nHamletDuFromage por AioSwitchUpdater que me ayudó.",
+     "translator":"Traducido por ChatGPT"
+  },
+  "confirm":{
+     "continue":"Continuar",
+     "cancel":"Cancelar"
+  },
+  "dialogue":{
+     "yes":"Sí",
+     "no":"No",
+     "launch_daybreak":"¿Quieres instalar la actualización directamente?",
+     "delete_theme":"¿Quieres eliminar tu tema?",
+     "mariko_model":"Estás en un modelo parcheado, debes reiniciar tu Switch para aplicar la actualización y reiniciarla de nuevo para ejecutar hekate",
+     "exfat":"¿Quieres instalar los controladores exFat? (recomendado)",
+     "update":"Instalación del firmware"
+  },
+  "worker":{
+     "cancel":"Cancelar",
+     "of":"de"
+  },
+  "settings":{
+     "90dns":"Aplicar 90dns (antibaneo)",
+     "90dns_set":"90dns aplicado correctamente",
+     "90dns_set_fail":"La aplicación de 90dns falló. ¿Tienes configurada una red de internet?",
+     "theme":"Eliminar el tema actual",
+     "theme_delete":"Tema eliminado correctamente. Reiniciar para ver los efectos",
+     "theme_delete_fail":"No se pudo eliminar el tema. ¿Tienes un tema actualmente?",
+     "clear":"Actualizar los datos de AtmoPackUpdater",
+     "clear_fail":"No se pudieron actualizar los datos.",
+     "reboot":"Reiniciar a Hekate",
+     "auto-update":"Actualización automática del homebrew"
+  },
+  "dialog":{
+     "overwrite_ini":"¿Quieres sobrescribir tus archivos .ini guardados?",
+     "yes":"Sí",
+     "no":"No",
+     "reboot":"¿Quieres reiniciar tu consola?",
+     "reboot_mariko":"Tu consola no es elegible para un reinicio estándar ya que es un modelo parcheado.",
+     "sysmodules":"Se detectaron sysmodules en tu Switch, se recomienda eliminarlos al actualizar el firmware, ¿quieres eliminarlos? Aquí están los diferentes sysmodules presentes: \n"
+  },
+  "footer":{
+     "update_available":"Hay una actualización disponible para la aplicación.",
+     "no_internet":"¡No estás conectado a internet!"
+  },
+  "custom_pack":{
+     "add":"Agregar paquete personalizado",
+     "delete":"Eliminar"
   }
+}

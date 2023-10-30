@@ -12,9 +12,12 @@
 namespace i18n = brls::i18n;
 using namespace i18n::literals;
 
-WorkerPage::WorkerPage(brls::StagedAppletFrame* frame, const std::string& text, worker_func_t worker_func) : frame(frame), workerFunc(worker_func), text(text)
+WorkerPage::WorkerPage(brls::StagedAppletFrame* frame, const std::string& text, worker_func_t worker_func, bool progressBar, bool percentage) : frame(frame), workerFunc(worker_func), text(text),  m_progressBar(progressBar), m_percentage(percentage)
 {
-    this->progressDisp = new brls::ProgressDisplay();
+    if(progressBar && percentage)
+        this->progressDisp = new brls::ProgressDisplay();
+    else
+        this->progressDisp = new brls::ProgressDisplay(brls::ProgressDisplayFlags::SPINNER);
     this->progressDisp->setParent(this);
 
     this->label = new brls::Label(brls::LabelStyle::DIALOG, text, true);
@@ -36,12 +39,12 @@ WorkerPage::WorkerPage(brls::StagedAppletFrame* frame, const std::string& text, 
 void WorkerPage::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx)
 {
     if (this->draw_page) {
-        if (!this->workStarted) {
+        if (!this->workStarted ) {
             this->workStarted = true;
             appletSetMediaPlaybackState(true);
             appletBeginBlockingHomeButton(0);
             ProgressEvent::instance().reset();
-            workerThread = new std::thread(&WorkerPage::doWork, this);
+            workerThread = new std::thread(&WorkerPage::doWork, this); 
         }
         else if (ProgressEvent::instance().finished()) {
             appletEndBlockingHomeButton();
@@ -59,12 +62,18 @@ void WorkerPage::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned hei
             }
         }
         else {
-            this->progressDisp->setProgress(ProgressEvent::instance().getStep(), ProgressEvent::instance().getMax());
-            this->progressDisp->frame(ctx);
-            if (ProgressEvent::instance().getTotal()) {
-                this->label->setText(fmt::format("{0} ({1:.1f} MB {2} {3:.1f} MB - {4:.1f} MB/s)", text, ProgressEvent::instance().getNow() / 0x100000, "menu/worker/of"_i18n,ProgressEvent::instance().getTotal() / 0x100000, ProgressEvent::instance().getSpeed() / 0x100000));
+            if(m_progressBar && m_percentage) {
+                this->progressDisp->setProgress(ProgressEvent::instance().getStep(), ProgressEvent::instance().getMax());
+                this->progressDisp->frame(ctx);
+                if (ProgressEvent::instance().getTotal()) {
+                    this->label->setText(fmt::format("{0} ({1:.1f} MB {2} {3:.1f} MB - {4:.1f} MB/s)", text, ProgressEvent::instance().getNow() / 0x100000, "menu/worker/of"_i18n,ProgressEvent::instance().getTotal() / 0x100000, ProgressEvent::instance().getSpeed() / 0x100000));
+                }
+                this->label->frame(ctx);
+            }  else {
+                //Only for firmware install
+                this->label->setText("menu/worker/firmware_install"_i18n);
+                this->label->frame(ctx);
             }
-            this->label->frame(ctx);
         }
     }
 }

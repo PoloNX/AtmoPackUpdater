@@ -5,6 +5,7 @@
 #include "utils.hpp"
 #include "reboot.hpp"
 #include "dialogue_page.hpp"
+#include "daybreak_page.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -193,7 +194,7 @@ void UpdateTab::createList(contentType type) {
                             }
                         }
                         if (std::filesystem::exists(DAYBREAK_PATH)) {
-                            stagedFrame->addStage(new DialoguePage_fw(stagedFrame, doneMsg));
+                            stagedFrame->addStage(new DaybreakPage(stagedFrame, doneMsg));
                         }
                         else{
                         stagedFrame->addStage(new ConfirmPage(stagedFrame, doneMsg, true));

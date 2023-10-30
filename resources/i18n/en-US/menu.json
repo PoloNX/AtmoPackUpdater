@@ -27,7 +27,8 @@
       "apply_patch": "Your console must restart to apply the sigpatches.",
       "apply_app": "Homebrew must restart to apply the update.",
       "apply_homebrew": "The homebrew/sysmodules has been updated",
-      "auto-update": "Automatic Homebrew Update"
+      "auto-update": "Automatic Homebrew Update",
+      "install_finish": "Installation complete!"
     },
   
     "error": {
@@ -51,7 +52,8 @@
       "credits": "AtmoPackUpdater Credits",
       "copyright": "Copyright © 2022 PoloNX",
       "thanks_to": "Thanks to:",
-      "thanks": "THZoria for your AtmoPack-Vanilla\n\nSciresM for reboot_to_payload\n\nTeam Neptune for your rcm payload\n\nHamletDuFromage for your .nro which helped me"
+      "thanks": "THZoria for your AtmoPack-Vanilla\n\nSciresM for reboot_to_payload\n\nTeam Neptune for your rcm payload\n\nHamletDuFromage for AioSwitchUpdater which helped me",
+      "translator" : "Translated by Gum and numbersix"
     },
   
     "confirm": {
@@ -64,7 +66,9 @@
       "no": "No",
       "launch_daybreak": "Do you want to launch Daybreak?",
       "delete_theme": "Do you want to remove your theme?",
-      "mariko_model": "You're on a patched model, you have to restart your switch to apply the update and restart again to launch hekate"
+      "mariko_model": "You're on a patched model, you have to restart your switch to apply the update and restart again to launch hekate",
+      "exfat" : "Would you like to install the exFat drivers? (recommended)",
+      "update": "Firmware installation"
     },
   
     "worker": {
@@ -100,7 +104,8 @@
     },
 
     "custom_pack": {
-      "add": "Add a custom pack"
+      "add": "Add a custom pack",
+      "delete": "Delete"
     }
   }
   
