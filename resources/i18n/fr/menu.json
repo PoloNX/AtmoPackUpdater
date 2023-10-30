@@ -54,7 +54,8 @@
     "credits": "AtmoPackUpdater Crédits",
     "copyright": "Copyright © 2022 PoloNX",
     "thanks_to": "Remerciements à:",
-    "thanks": "THZoria for your AtmoPack-Vanilla\n\nSciresM for reboot_to_payload\n\nTeam Neptune for your rcm payload\n\nHamletDuFromage for your .nro which helped me."
+    "thanks": "THZoria Pour AtmoPack-Vanilla\n\nSciresM pour reboot_to_payload et Daybreak\n\nTeam Neptune pour le rcm payload\n\nHamletDuFromage pour AioSwitchUpdater which helped me.",
+    "translator" : "Traduit par PoloNX"
   },
 
   "confirm": {
