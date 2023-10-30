@@ -93,6 +93,7 @@
       "overwrite_ini": "Do you want to overwrite your current .ini ?",
       "yes": "Yes",
       "no": "No",
+      "homebrew_path": "Please choose the directory where you want to install your homebrews",
       "reboot": "Do you really want to restart your console?",
       "reboot_mariko": "Your console is not eligible for a standard reboot because it is a patched model.",
       "sysmodules": "Sysmodules have been detected on your switch, it is advised to remove them during a firmware update, do you want to remove them? Here are the different sysmodules installed : \n"

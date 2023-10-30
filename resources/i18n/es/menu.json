@@ -86,6 +86,7 @@
      "overwrite_ini":"¿Quieres sobrescribir tus archivos .ini guardados?",
      "yes":"Sí",
      "no":"No",
+     "homebrew_path": "Por favor, elige el directorio donde deseas instalar tus homebrews",
      "reboot":"¿Quieres reiniciar tu consola?",
      "reboot_mariko":"Tu consola no es elegible para un reinicio estándar ya que es un modelo parcheado.",
      "sysmodules":"Se detectaron sysmodules en tu Switch, se recomienda eliminarlos al actualizar el firmware, ¿quieres eliminarlos? Aquí están los diferentes sysmodules presentes: \n"
