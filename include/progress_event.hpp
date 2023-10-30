@@ -45,6 +45,7 @@ public:
     inline int getStep() { return _current; }
     inline double getNow() { return _now; }
     inline bool finished() { return (_current == _max); }
+    inline bool setFinish() { return (_current = _max); }
     inline int getMax() { return _max; }
     inline double getTotal() { return _total; }
     inline double getSpeed() { return _speed; }

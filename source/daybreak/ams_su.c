@@ -126,7 +126,8 @@ Result amssuSetupUpdateWithVariation(void *buffer, size_t size, const char *path
     return rc;
 }
 
-Result amssuRequestPrepareUpdate(AsyncResult *a) {
+Result 
+amssuRequestPrepareUpdate(AsyncResult *a) {
     memset(a, 0, sizeof(*a));
 
     Handle event = INVALID_HANDLE;

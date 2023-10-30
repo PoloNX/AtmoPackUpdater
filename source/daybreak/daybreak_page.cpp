@@ -283,9 +283,9 @@ Result DaybreakPage::TransitionUpdateState() {
 			/* Log success. */
             brls::Logger::info("Update applied successfully");
 
-			if (g_reset_to_factory) {
+			/*if (g_reset_to_factory) {
 				if (R_FAILED(rc = nsResetToFactorySettingsForRefurbishment())) {
-					/* Fallback on ResetToFactorySettings. */
+					// Fallback on ResetToFactorySettings. 
 					if (rc == MAKERESULT(Module_Libnx, LibnxError_IncompatSysVer)) {
 						if (R_FAILED(rc = nsResetToFactorySettings())) {
                             brls::Logger::error("Failed to reset to factory settings: 0x{:08X}", rc);
@@ -299,7 +299,7 @@ Result DaybreakPage::TransitionUpdateState() {
 					}
 				}
                 brls::Logger::info("Reset to factory settings successful");
-			}
+			}*/
 		}
 
 		MarkForReboot();
@@ -389,7 +389,7 @@ void DaybreakPage::InstallUpdate() {
         appletFrame->addStage(new ExFatPage(appletFrame, "menu/dialogue/exfat"_i18n, g_use_exfat));
     }
 
-    appletFrame->addStage(new ResetPage(appletFrame, "menu/dialogue/reset"_i18n, g_reset_to_factory));
+    //appletFrame->addStage(new ResetPage(appletFrame, "menu/dialogue/reset"_i18n, g_reset_to_factory));
 
     appletFrame->addStage(new WorkerPage(appletFrame, "menu/dialogue/update"_i18n, [this]() {
         //ProgressEvent::instance().setTotalSteps(100); //Percents
@@ -432,14 +432,14 @@ void DaybreakPage::InstallUpdate() {
             brls::Logger::info("6- Install state : {}", m_install_state);
             brls::Logger::info("Rebooting...");
             //reboot::rebootNow();
-            ProgressEvent::instance().finished();
+            ProgressEvent::instance().setFinish();
             this->DaybreakExit();
         }
-    }));
+    }, false, false));
 
-    std::string doneMsg = "menu/update/download_finish"_i18n + "menu/update/apply_firmware"_i18n;
+    std::string doneMsg = "menu/update/install_finish"_i18n + " " + "menu/update/apply_firmware"_i18n;
     
-    appletFrame->addStage(new ConfirmPage(appletFrame, doneMsg, true, true, util::isErista()));
+    appletFrame->addStage(new ConfirmPage(appletFrame, doneMsg, false, true, util::isErista()));
 
     appletFrame->setTitle(fmt::format("Daybreak Installing firmware {}.{}.{}", (m_update_info.version >> 26) & 0x1f, (m_update_info.version >> 20) & 0x1f, (m_update_info.version >> 16) & 0xf));
 

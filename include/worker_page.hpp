@@ -18,9 +18,11 @@ private:
     bool draw_page = true;
     std::thread* workerThread;
     worker_func_t workerFunc;
+    bool m_progressBar = true;
+    bool m_percentage = true;
 
 public:
-    WorkerPage(brls::StagedAppletFrame* frame, const std::string& text, worker_func_t worker_func);
+    WorkerPage(brls::StagedAppletFrame* frame, const std::string& text, worker_func_t worker_func, bool progressBar = true, bool percentage = true);
     ~WorkerPage();
 
     void draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, brls::Style* style, brls::FrameContext* ctx) override;

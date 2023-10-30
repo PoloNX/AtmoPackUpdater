@@ -157,7 +157,7 @@ void UpdateTab::createList(contentType type) {
                 //Create a Confirm Page
                 stagedFrame->addStage(new ConfirmPage(stagedFrame, text, true));
                 //Create a Download Page
-                stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url, homebrews, compteur]() {
+                /*stagedFrame->addStage(new WorkerPage(stagedFrame, "menu/update/download"_i18n, [this, type, url, homebrews, compteur]() {
                     if (homebrews.size()) {
                         util::downloadArchive(url, type, homebrews[compteur].homebrew); 
                     }
@@ -180,7 +180,7 @@ void UpdateTab::createList(contentType type) {
                             util::extractArchive(type);
                         }));
                     }
-                }
+                }*/
 
                 //Done messages
                 std::string doneMsg = "menu/update/download_finish"_i18n;
