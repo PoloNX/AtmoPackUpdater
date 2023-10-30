@@ -391,7 +391,7 @@ void DaybreakPage::InstallUpdate() {
 
     //appletFrame->addStage(new ResetPage(appletFrame, "menu/dialogue/reset"_i18n, g_reset_to_factory));
 
-    appletFrame->addStage(new WorkerPage(appletFrame, "menu/dialogue/update"_i18n, [this]() {
+    appletFrame->addStage(new WorkerPage(appletFrame, "", [this]() {
         //ProgressEvent::instance().setTotalSteps(100); //Percents
         //ProgressEvent::instance().setStep(0);
         hiddbgDeactivateHomeButton();
@@ -469,7 +469,7 @@ void ExFatPage::instantiateButtons() {
         brls::Logger::info("Exfat choice : {}", use_exfat);
     });
 
-    this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "menu/dialogue/exfat"_i18n), true);
+    //this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "menu/dialogue/exfat"_i18n), true);
 }
 
 
@@ -501,7 +501,7 @@ void ResetPage::instantiateButtons() {
         brls::Logger::info("Reset choice : {}", reset_to_factory);
     });
 
-    this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "menu/dialogue/reset"_i18n), true);
+    //this->label = new brls::Label(brls::LabelStyle::DIALOG, fmt::format("{}\n\n{}", this->text, "menu/dialogue/reset"_i18n), true);
 }
 
 
