@@ -48,15 +48,13 @@ int main() {
         chdir("sdmc:/");
         util::cp("romfs:/config/config.json", "/config/AtmoPackUpdater/config.json");
     }
+    
 
     nlohmann::ordered_json nxlinks;
     net::getRequest(NXLINKS_URL, nxlinks);
     
     if (util::is_older_version(APP_VER, nxlinks)) {
-        std::ifstream file("/config/AtmoPackUpdater/config.json"); //No condition is_open because created just before if it doesn't exist
-        nlohmann::json json;
-        file >> json;
-        file.close();
+        nlohmann::json json = util::getConfig();
         if (json.at("auto-update").get<bool>() == true) {
             if(!nxlinks.empty()) {
                 std::vector<homebrew_label> homebrews;

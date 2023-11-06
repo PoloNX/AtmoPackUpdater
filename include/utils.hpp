@@ -31,4 +31,6 @@ namespace util {
     std::string getAppPath();
     void restartApp();
     void updateConsole(const std::string& updatePath);
+    nlohmann::json getConfig();
+    void setConfig(const nlohmann::json& json);
 }

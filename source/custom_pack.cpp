@@ -3,6 +3,7 @@
 #include "worker_page.hpp"
 #include "confirm_page.hpp"
 
+#include <iostream>
 #include <fstream>
 
 namespace i18n = brls::i18n;
@@ -12,36 +13,30 @@ std::vector<Pack> CustomPack::getPacks() {
     std::vector<Pack> packs;
     std::ifstream file("/config/AtmoPackUpdater/config.json");
     if(file.is_open()) {
-        nlohmann::json j;
-        try {
-            file >> j;
-            file.close();
-            if(j.find("custom-pack") != j.end() && j["custom-pack"].is_array()) {
-                for(auto& element : j["custom-pack"]) {
-                    if (element.find("name") != element.end() && element.find("url") != element.end()) {
-                        std::string name = element["name"];
-                        std::string url = element["url"];
-                        packs.push_back(Pack(name, url));
-                        brls::Logger::info("Added pack: " + name);
-                    }
-                    else {
-                        brls::Logger::error("Invalid Pack Format");
-                        continue;
-                    }
+        nlohmann::json j = util::getConfig();
+    
+        if(j.find("custom-pack") != j.end() && j["custom-pack"].is_array()) {
+            for(auto& element : j["custom-pack"]) {
+                if (element.find("name") != element.end() && element.find("url") != element.end()) {
+                    std::string name = element["name"];
+                    std::string url = element["url"];
+                    packs.push_back(Pack(name, url));
+                    brls::Logger::info("Added pack: " + name);
+                }
+                else {
+                    brls::Logger::error("Invalid Pack Format");
+                    continue;
                 }
             }
-            else {
-                brls::Logger::error("Invalid Config Format");
-                j["custom-pack"] = nlohmann::json::array();
-
-            }
-        } catch (const nlohmann::json::parse_error &e) {
-            brls::Logger::error("Error while parsing json file");
+        }
+        else {
+            brls::Logger::error("No custom-pack array");
+            j["custom-pack"] = nlohmann::json::array();
         }
 
-        std::ofstream outFile("/config/AtmoPackUpdater/config.json");
-        outFile << j.dump(4);
-        outFile.close();
+        std::cout << j.dump(4) << std::endl;
+    
+        util::setConfig(j);
     }
     else {
         chdir("sdmc:/");

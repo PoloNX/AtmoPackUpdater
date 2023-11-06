@@ -468,6 +468,38 @@ namespace util {
         brls::Application::quit();
     }
 
+    nlohmann::json getConfig() {
+        if (!std::filesystem::exists("sdmc:/config/AtmoPackUpdater/config.json")) {
+            chdir("sdmc:/");
+            util::cp("romfs:/config/config.json", "/config/AtmoPackUpdater/config.json");
+        }
 
+        std::ifstream file("/config/AtmoPackUpdater/config.json"); //No condition is_open because created just before if it doesn't exist
+        nlohmann::json json;
+        file >> json;
+        file.close();
 
+        return json;
+    }
+
+    void setConfig(const nlohmann::json& json) {
+        if (!std::filesystem::exists("sdmc:/config/AtmoPackUpdater/config.json")) {
+            chdir("sdmc:/");
+            util::cp("romfs:/config/config.json", "/config/AtmoPackUpdater/config.json");
+        }
+
+        try {
+            std::ofstream file("sdmc:/config/AtmoPackUpdater/config.json");
+            if(file.is_open()) {
+                file << json.dump(4);
+                file.close();
+            } else {
+                file << json.dump(4);
+                file.close();
+                brls::Logger::error("Failed to open config file for writing");
+            }
+        } catch(const std::exception& e) {
+            brls::Logger::error("Failed to write config file");
+        }
+    }
 }
