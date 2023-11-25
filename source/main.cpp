@@ -45,6 +45,7 @@ int main() {
     brls::Logger::setLogLevel(brls::LogLevel::DEBUG);
 
     if (!std::filesystem::exists("sdmc:/config/AtmoPackUpdater/config.json")) {
+        std::filesystem::create_directory("sdmc:/config/AtmoPackUpdater");
         chdir("sdmc:/");
         util::cp("romfs:/config/config.json", "/config/AtmoPackUpdater/config.json");
     }
