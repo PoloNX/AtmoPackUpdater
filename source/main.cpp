@@ -11,7 +11,6 @@
 #include <borealis.hpp>
 #include "worker_page.hpp"
 #include "download.hpp"
-#include "ams_su.h"
 #include <fstream>
 
 namespace i18n = brls::i18n;
@@ -33,8 +32,8 @@ int main() {
     setsysInitialize();
     plInitialize(PlServiceType_User);
     nsInitialize();
-    socketInitializeDefault();
-    nxlinkStdio();
+    // socketInitializeDefault();
+    // nxlinkStdio();
     pmdmntInitialize();
     pminfoInitialize();
     splInitialize();
@@ -99,7 +98,6 @@ int main() {
     plExit();
     hiddbgExit();
     spsmExit();
-	amssuExit();
 
     return EXIT_SUCCESS;
 }

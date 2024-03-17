@@ -108,7 +108,7 @@ void DialoguePage_fw::instantiateButtons()
     });
 
     this->button1->getClickEvent()->subscribe([this](View* view) {
-        envSetNextLoad(DAYBREAK_PATH.c_str(), fmt::format("\"{}\"", DAYBREAK_PATH).c_str());
+        envSetNextLoad(DAYBREAK_PATH.c_str(), fmt::format("\"{}\" \"/firmware/\"", DAYBREAK_PATH).c_str());
         romfsExit();
         brls::Application::quit();
     });
