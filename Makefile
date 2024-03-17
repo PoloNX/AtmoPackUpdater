@@ -22,7 +22,7 @@ DATA		:=	data
 INCLUDES	:=	include /lib/borealis/library/include/borealis/extern/nlohmann include/daybreak
 APP_TITLE	:=	AtmoPackUpdater
 APP_AUTHOR	:=	PoloNX
-APP_VERSION :=  2.0.0
+APP_VERSION :=  2.0.1
 TARGET		:=	$(notdir $(CURDIR))
 
 ROMFS				:=	resources
